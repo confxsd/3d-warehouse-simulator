@@ -24,14 +24,7 @@ import { OrbitControls } from "./OrbitControls.js";
 const map = (value, x1, y1, x2, y2) =>
     ((value - x1) * (y2 - x2)) / (y1 - x1) + x2;
 
-const mouse = new Vector2();
 
-function onMouseMove(event) {
-    // calculate mouse position in normalized device coordinates
-    // (-1 to +1) for both components
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-}
 
 class Simulator {
     constructor({ containerId, data, div }) {
@@ -45,8 +38,6 @@ class Simulator {
         this.data = data;
         this.size = 32;
         this.blockSize = this.size / this.div;
-
-        this.raycaster = new Raycaster();
     }
     init() {
         const width = this.container.clientWidth;
@@ -68,11 +59,12 @@ class Simulator {
         const gridHelper = new GridHelper(this.size, this.div);
         this.scene.add(gridHelper);
 
-        this.tooltip = this.createTooltip();
-        this.container.appendChild(this.tooltip);
+        this.createTooltip();
+        this.createActionbar();
+        this.isActionActive = false;
 
         this.initBoxes();
-        window.addEventListener("mousemove", onMouseMove, false);
+
         this.animate();
     }
 
@@ -93,51 +85,191 @@ class Simulator {
         this.render();
     }
 
-    createTooltip() {
-        const divText = document.createElement("p");
-        const div = document.createElement("div");
-        div.appendChild(divText);
+    createActionbar() {
+        const add = document.createElement("p");
+        add.classList.add("add");
+        add.textContent = "Add";
 
-        div.style.position = "absolute";
-        div.style.top = `${0}px`;
-        div.style.left = `${0}px`;
-        div.style.display = "none";
-        return div;
-    }
+        const remove = document.createElement("remove");
+        remove.classList.add("remove");
+        remove.textContent = "Remove";
 
-    displayTooltip(mouse, item) {
-        const x = ((mouse.x + 1) / 2) * window.innerWidth;
-        const y = (-(mouse.y - 1) / 2) * window.innerHeight;
+        const actionbar = document.createElement("div");
+        actionbar.id = "Actionbar";
+        actionbar.appendChild(add);
+        actionbar.appendChild(remove);
 
-        this.tooltip.style.top = `${x}px`;
-        this.tooltip.style.left = `${y}px`;
-        this.tooltip.style.display = "block";
-        const p = this.tooltip.getElementsByTagName("p");
-        p.textContent = item;
-    }
+        this.container.appendChild(actionbar);
 
-    checkIntersection() {
-        this.raycaster.setFromCamera(mouse, this.camera);
-        // calculate objects intersecting the picking ray
-        const intersects = this.raycaster.intersectObjects(
-            this.boxGroup.children
-        );
+        actionbar.style.position = "absolute";
+        actionbar.style.top = `${-999}px`;
+        actionbar.style.left = `${-999}px`;
+        actionbar.style.display = "none";
+        actionbar.style.background = "white";
+        actionbar.style.padding = "4px 8px 12px 8px";
+        actionbar.style.border = "1px solid #666";
+        actionbar.style.display = "flex";
+        actionbar.style.width = "90px";
+        actionbar.style.justifyContent = "space-between";
 
-        for (let i = 0; i < intersects.length; i++) {
-            const box = intersects[i].object;
-            this.displayTooltip(mouse, box.title);
-            intersects[i].object.material.color.set(0xff0000);
+        const mouse = new Vector2();
+        const raycaster = new Raycaster();
+
+        const onMouse = (event) => {
+            const hideActionbar = () => {
+                this.isActionActive = false;
+                actionbar.style.display = "none";
+                return;
+            }
+
+            if (event.type == "click") {
+                hideActionbar();
+            }
+
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, this.camera);
+
+            const intersects = raycaster.intersectObjects(
+                this.boxGroup.children
+            );
+
+            const displayActionbar = (mouse, item) => {
+                this.isActionActive = true;
+                const x = (mouse.x + 1) / 2 * window.innerWidth;
+                const y = -(mouse.y - 1) / 2 * window.innerHeight;
+
+                actionbar.style.top = `${y}px`;
+                actionbar.style.left = `${x + 16}px`;
+                actionbar.style.display = "flex";
+
+                const handleActions = (event) => {
+                    if (event.target.classList.contains("add")) {
+                        alert("cannot add yet")
+                        hideActionbar();
+                    } else if (event.target.classList.contains("remove")) {
+                        alert("cannot remove yet");
+                        hideActionbar();
+                    }
+                }
+
+                actionbar.addEventListener("click", handleActions, {
+                    once: true
+                });
+            }
+
+            const hideTooltip = () => {
+                const tooltip = document.getElementById("Tooltip");
+                tooltip.style.display = "none";
+            }
+
+            if (intersects[0]) {
+                const item = intersects[0].object;
+                hideTooltip();
+                displayActionbar(mouse, item);
+            } else {
+                hideActionbar();
+            }
         }
+
+        this.renderer.domElement.addEventListener("click", onMouse, false);
+        this.renderer.domElement.addEventListener("contextmenu", onMouse, false);
+
     }
+
+    createTooltip() {
+        const title = document.createElement("p");
+        title.classList.add("title");
+
+        const size = document.createElement("p");
+        size.classList.add("size");
+
+        const tooltip = document.createElement("div");
+        tooltip.id = "Tooltip";
+        tooltip.appendChild(title);
+        tooltip.appendChild(size);
+
+        this.container.appendChild(tooltip);
+
+        tooltip.style.position = "absolute";
+        tooltip.style.top = `${0}px`;
+        tooltip.style.left = `${0}px`;
+        tooltip.style.display = "none";
+        tooltip.style.background = "white";
+        tooltip.style.padding = "4px 8px 12px 8px";
+        tooltip.style.border = "1px solid #666";
+
+        const mouse = new Vector2();
+        const raycaster = new Raycaster();
+
+        const onMouse = (event) => {
+            if (this.isActionActive) return;
+
+            if (event.type == "mouseleave") {
+                tooltip.style.display = "none";
+                return;
+            }
+
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, this.camera);
+
+            const intersects = raycaster.intersectObjects(
+                this.boxGroup.children
+            );
+
+            const displayTooltip = (mouse, item) => {
+                const x = (mouse.x + 1) / 2 * window.innerWidth;
+                const y = -(mouse.y - 1) / 2 * window.innerHeight;
+
+                tooltip.style.top = `${y}px`;
+                tooltip.style.left = `${x + 16}px`;
+                tooltip.style.display = "block";
+                const title = tooltip.getElementsByClassName("title")[0];
+                const size = tooltip.getElementsByClassName("size")[0];
+                title.textContent = "title: " + item.title;
+                size.textContent = "size: " + item.size;
+            }
+
+            if (intersects[0]) {
+                const item = intersects[0].object;
+                displayTooltip(mouse, item);
+            } else {
+                tooltip.style.display = "none";
+            }
+        }
+
+        this.renderer.domElement.addEventListener("mousemove", onMouse, false);
+        this.renderer.domElement.addEventListener("mouseleave", onMouse, false);
+        this.renderer.domElement.addEventListener("click", onMouse, false);
+    }
+
+
+
+
+    // checkIntersection() {
+    //     this.raycaster.setFromCamera(mouseRatio, this.camera);
+    //     // calculate objects intersecting the picking ray
+    //     const intersects = this.raycaster.intersectObjects(
+    //         this.boxGroup.children
+    //     );
+
+    //     for (let i = 0; i < intersects.length; i++) {
+    //         const box = intersects[i].object;
+    //         this.displayTooltip(mouse, box.title);
+    //         intersects[i].object.material.color.set(0xff0000);
+    //     }
+    // }
 
     render() {
-        this.checkIntersection();
         this.renderer.render(this.scene, this.camera);
     }
 
     addToScene(group, item) {
-        const colorval = Math.floor(map(item.size, 1 / 4, 1, 40, 140));
-        const colorhsl = `hsl(130, ${colorval}%, 60%)`;
+        const colorval = Math.floor(map(item.size, 1 / 4, 1, 20, 100));
+        const colorhsl = `hsl(175, ${colorval}%, 48%)`;
         const color = new Color(colorhsl);
         const material = new MeshBasicMaterial({
             // color: Math.floor(Math.random() * 16777215),
@@ -168,6 +300,7 @@ class Simulator {
         const box = new Mesh(geometry, material);
         box.name = item.x + "." + item.z;
         box.title = item.title;
+        box.size = item.size;
         group.add(box);
         // this.scene.add(line);
     }

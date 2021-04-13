@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Warehouse Simulation</title>
+    <style>
+        body {
+            position: relative;
+            font-family: sans-serif;
+            font-size: 12px;
+        }
+
+        body,h4,p,a  {
+            margin: 0;
+        }
+
+        h4 {
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        #Title {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 3;
+            text-align: center;
+        }
+
+        #Title h3 {
+            font-size: 16px;
+        }
+
+        #SimulationContainer {
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            z-index: 1;
+        }
+
+        #Panel {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 4;
+        }
+
+
+        #Panel #MainOps {
+            background: white;
+            padding: 24px;
+            margin: 12px 12px 0 0;
+            width: 240px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #Panel #MainOps >div {
+            margin-bottom: 16px;
+        }
+
+
+        #DepotInfo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 4;
+            padding: 12px 0 0 12px;
+        }
+
+        #DepotInfo p{
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .align-horizontal {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="Title"><h3>Warehouse Simulation</h3></div>
+    <div id="DepotInfo">
+        <p class="id">Depot id: <span></span></p>
+        <p class="name">Depot name: <span></span></p>
+        <p class="fill_rate">Fill rate: <span></span></p>
+    </div>
+    <div id="Panel">
+        <div id="MainOps">
+            <div>
+                <h4>Filter by </h4>
+                <div class="align-horizontal">
+                    <p id="filter_pop">Popularity</p>
+                    <p id="filter_wei">Weight</p>
+                    <p>Category</p>
+                    <p>Out of stock</p>
+                </div>
+            </div>
+            <div>
+                <h4 id="refresh">Reload View</h4>
+            </div>
+            <div>
+                <h4>View Orders</h4>
+            </div>
+            <div>
+                <h4>Start Replenishment</h4>
+            </div>
+        </div>
+    </div>
+    <div id="SimulationContainer"></div>
+    <!-- Demo Using gltfFile and data to illustrate use of DataVisual design pattern -->
+    <script src="main.js"></script>
+</body>
+
+</html>
