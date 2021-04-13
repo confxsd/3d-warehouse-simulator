@@ -119,11 +119,11 @@ class Simulator {
             const hideActionbar = () => {
                 this.isActionActive = false;
                 actionbar.style.display = "none";
-                return;
             }
 
             if (event.type == "click") {
                 hideActionbar();
+                return;
             }
 
             mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
