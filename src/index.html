@@ -11,7 +11,10 @@
             font-size: 12px;
         }
 
-        body,h4,p,a  {
+        body,
+        h4,
+        p,
+        a {
             margin: 0;
         }
 
@@ -56,7 +59,7 @@
             flex-direction: column;
         }
 
-        #Panel #MainOps >div {
+        #Panel #MainOps>div {
             margin-bottom: 16px;
         }
 
@@ -69,7 +72,7 @@
             padding: 12px 0 0 12px;
         }
 
-        #DepotInfo p{
+        #DepotInfo p {
             margin-bottom: 6px;
             font-size: 14px;
         }
@@ -80,39 +83,78 @@
             flex-direction: row;
         }
 
+        #SceneSimulation {
+            display: none;
+        }
+
+        #DepotInfo .fill_rate {
+            width: 160px;
+            background: gray;
+
+            height: 24px;
+        }
+
+        #DepotInfo .fill_rate span {
+            display: block;
+            width: 0%;
+            height: 100%;
+            line-height: 24px;
+            text-indent: 8px;
+            background: greenyellow;
+        }
+
+        #SceneDepotSelection {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 
 <body>
-    <div id="Title"><h3>Warehouse Simulation</h3></div>
-    <div id="DepotInfo">
-        <p class="id">Depot id: <span></span></p>
-        <p class="name">Depot name: <span></span></p>
-        <p class="fill_rate">Fill rate: <span></span></p>
-    </div>
-    <div id="Panel">
-        <div id="MainOps">
-            <div>
-                <h4>Filter by </h4>
-                <div class="align-horizontal">
-                    <p id="filter_pop">Popularity</p>
-                    <p id="filter_wei">Weight</p>
-                    <p>Category</p>
-                    <p>Out of stock</p>
-                </div>
-            </div>
-            <div>
-                <h4 id="refresh">Reload View</h4>
-            </div>
-            <div>
-                <h4>View Orders</h4>
-            </div>
-            <div>
-                <h4>Start Replenishment</h4>
-            </div>
+    <div id="SceneDepotSelection">
+        <div>
+            <h2>Please select the depot</h2>
+            <ul id="Depots">
+
+            </ul>
         </div>
     </div>
-    <div id="SimulationContainer"></div>
+    <div id="SceneSimulation">
+        <div id="Title">
+            <h3>Warehouse Simulation</h3>
+        </div>
+        <div id="DepotInfo">
+            <p class="id">Depot id: <span></span></p>
+            <p class="name">Depot name: <span></span></p>
+            <p class="fill_rate"><span>0%</span></p>
+        </div>
+        <div id="Panel">
+            <div id="MainOps">
+                <div>
+                    <h4>Filter by </h4>
+                    <div class="align-horizontal">
+                        <p id="filter_pop">Popularity</p>
+                        <p id="filter_wei">Weight</p>
+                        <p>Category</p>
+                        <p>Out of stock</p>
+                    </div>
+                </div>
+                <div>
+                    <h4 id="refresh">Reload View</h4>
+                </div>
+                <div>
+                    <h4>View Orders</h4>
+                </div>
+                <div>
+                    <h4>Start Replenishment</h4>
+                </div>
+            </div>
+        </div>
+        <div id="SimulationContainer"></div>
+    </div>
     <!-- Demo Using gltfFile and data to illustrate use of DataVisual design pattern -->
     <script src="main.js"></script>
 </body>

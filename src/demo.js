@@ -11,10 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // simulator.init();
     
     const app = new Manager({
+        depotSelectionId: 'SceneDepotSelection',
+        simulationSceneId: 'SceneSimulation',
         panelId: 'Panel',
         simulatorId: 'SimulationContainer',
         depotInfoId: 'DepotInfo',
-        remoteUrl: 'http://localhost:3002'
+        remoteUrl: 'https://hc-simulaiton.azurewebsites.net/api'
     })
 
     app.init();

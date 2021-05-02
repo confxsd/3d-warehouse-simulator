@@ -14,6 +14,9 @@ import {
     LineSegments,
     LineBasicMaterial,
     Object3D,
+    Font,
+    TextGeometry,
+    FontLoader,
     Group,
     Raycaster,
     Vector2,
@@ -21,8 +24,9 @@ import {
 // import * as d3 from "d3";
 import { OrbitControls } from "./OrbitControls.js";
 
-const map = (value, x1, y1, x2, y2) =>
-    ((value - x1) * (y2 - x2)) / (y1 - x1) + x2;
+const helvetikerFont = require('./assets/helvetiker.json')
+const util = require("./util");
+
 
 
 
@@ -36,12 +40,17 @@ class Simulator {
         this.camera = null;
         this.controls = null;
         this.data = data;
-        this.size = 32;
+        this.size = div;
         this.blockSize = this.size / this.div;
+
+        this.font = null;
     }
+
+
     init() {
         const width = this.container.clientWidth;
         const height = this.container.clientHeight;
+
         this.camera = new PerspectiveCamera(75, width / height, 0.1, 1000);
         this.controls = new OrbitControls(
             this.camera,
@@ -57,15 +66,49 @@ class Simulator {
         this.camera.position.set(0, 32, 20);
 
         const gridHelper = new GridHelper(this.size, this.div);
-        this.scene.add(gridHelper);
+        // this.scene.add(gridHelper);
 
         this.createTooltip();
         this.createActionbar();
+
         this.isActionActive = false;
 
         this.initBoxes();
 
+        this.createCorridorTexts();
+
         this.animate();
+    }
+
+    createCorridorTexts() {
+        const corridorNames = util.corridorNames(this.data);
+        console.log(corridorNames);
+        const font = new Font(helvetikerFont);
+
+        const material = new MeshBasicMaterial({
+            color: new Color('rgb(0, 0, 0)'),
+            opacity: 0.4,
+        });
+
+        for (let index = 0; index < corridorNames.length; index++) {
+            const name = corridorNames[index];
+            const geometry = new TextGeometry(name, {
+                font: font,
+                size: 1,
+                height: 0.05,
+            });
+
+            geometry.computeBoundingBox();
+
+            const textMesh = new Mesh(geometry, material);
+            textMesh.position.x = index * 4 + 3 * this.blockSize / 2 - this.div / 2;
+            textMesh.position.y = 0.1;
+            textMesh.position.z = this.size / 12;
+
+            textMesh.rotation.x = -Math.PI / 2;
+
+            this.scene.add(textMesh)
+        }
     }
 
     initBoxes() {
@@ -182,13 +225,17 @@ class Simulator {
         const title = document.createElement("p");
         title.classList.add("title");
 
-        const size = document.createElement("p");
-        size.classList.add("size");
+        const stock = document.createElement("p");
+        stock.classList.add("stock");
+
+        const locWeight = document.createElement("p");
+        locWeight.classList.add("loc_weight");
 
         const tooltip = document.createElement("div");
         tooltip.id = "Tooltip";
         tooltip.appendChild(title);
-        tooltip.appendChild(size);
+        tooltip.appendChild(stock);
+        tooltip.appendChild(locWeight);
 
         this.container.appendChild(tooltip);
 
@@ -228,9 +275,11 @@ class Simulator {
                 tooltip.style.left = `${x + 16}px`;
                 tooltip.style.display = "block";
                 const title = tooltip.getElementsByClassName("title")[0];
-                const size = tooltip.getElementsByClassName("size")[0];
+                const stock = tooltip.getElementsByClassName("stock")[0];
+                const locWeight = tooltip.getElementsByClassName("loc_weight")[0];
                 title.textContent = "title: " + item.title;
-                size.textContent = "size: " + item.size;
+                stock.textContent = "stock: " + item.stock;
+                locWeight.textContent = "loc weight: " + item.locWeight;
             }
 
             if (intersects[0]) {
@@ -246,48 +295,32 @@ class Simulator {
         this.renderer.domElement.addEventListener("click", onMouse, false);
     }
 
-
-
-
-    // checkIntersection() {
-    //     this.raycaster.setFromCamera(mouseRatio, this.camera);
-    //     // calculate objects intersecting the picking ray
-    //     const intersects = this.raycaster.intersectObjects(
-    //         this.boxGroup.children
-    //     );
-
-    //     for (let i = 0; i < intersects.length; i++) {
-    //         const box = intersects[i].object;
-    //         this.displayTooltip(mouse, box.title);
-    //         intersects[i].object.material.color.set(0xff0000);
-    //     }
-    // }
-
     render() {
         this.renderer.render(this.scene, this.camera);
     }
 
     addToScene(group, item) {
-        const colorval = Math.floor(map(item.size, 1 / 4, 1, 20, 100));
-        const colorhsl = `hsl(175, ${colorval}%, 48%)`;
-        const color = new Color(colorhsl);
+        const itemSize = util.map(item.stock, 0, 300, 0, 1);
+
+        const color = new Color(util.getColorValue(item.locWeight, itemSize));
         const material = new MeshBasicMaterial({
             // color: Math.floor(Math.random() * 16777215),
             color: color,
             opacity: 0.9,
         });
+
         material.needsUpdate = true;
 
         const geometry = new BoxGeometry(
             this.blockSize,
-            item.size,
+            itemSize,
             this.blockSize
         );
         geometry.dynamic = true;
 
         geometry.translate(
             item.x + this.blockSize / 2 - this.div / 2,
-            +item.size / 2,
+            +itemSize / 2,
             item.z + this.blockSize / 2 - this.div / 2
         );
 
@@ -298,9 +331,10 @@ class Simulator {
         // );
 
         const box = new Mesh(geometry, material);
-        box.name = item.x + "." + item.z;
-        box.title = item.title;
-        box.size = item.size;
+        box.title = item.id;
+        box.stock = item.stock;
+        box.locWeight = item.locWeight;
+
         group.add(box);
         // this.scene.add(line);
     }

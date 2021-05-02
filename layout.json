@@ -1,0 +1,3453 @@
+{
+    "DepoId": "02579e13-8d4f-4463-968d-7affe4b9919f",
+    "DepoDoluluk": 74.2248062015504,
+    "info": [
+        {
+            "LocId": "4H020K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 168,
+            "Stok": 168,
+            "InsertedAt": "2021-04-30T12:32:38.163000",
+            "ProId": 67923475
+        },
+        {
+            "LocId": "4H057K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:38.167000",
+            "ProId": 67160704
+        },
+        {
+            "LocId": "4G017K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 160,
+            "Stok": 160,
+            "InsertedAt": "2021-04-30T12:32:38.197000",
+            "ProId": 67493978
+        },
+        {
+            "LocId": "4H021K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 203,
+            "Stok": 203,
+            "InsertedAt": "2021-04-30T12:32:38.197000",
+            "ProId": 67256703
+        },
+        {
+            "LocId": "4G053K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 84,
+            "Stok": 84,
+            "InsertedAt": "2021-04-30T12:32:38.197000",
+            "ProId": 67426268
+        },
+        {
+            "LocId": "4H058K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 40,
+            "Stok": 40,
+            "InsertedAt": "2021-04-30T12:32:38.230000",
+            "ProId": 67889738
+        },
+        {
+            "LocId": "4G018K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 63,
+            "Stok": 63,
+            "InsertedAt": "2021-04-30T12:32:38.230000",
+            "ProId": 21116325
+        },
+        {
+            "LocId": "4G054K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 77,
+            "Stok": 77,
+            "InsertedAt": "2021-04-30T12:32:38.230000",
+            "ProId": 68422099
+        },
+        {
+            "LocId": "4H022K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 63,
+            "Stok": 63,
+            "InsertedAt": "2021-04-30T12:32:38.233000",
+            "ProId": 70003293
+        },
+        {
+            "LocId": "4H059K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 40,
+            "Stok": 40,
+            "InsertedAt": "2021-04-30T12:32:38.233000",
+            "ProId": 67889742
+        },
+        {
+            "LocId": "4G019K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 121,
+            "Stok": 121,
+            "InsertedAt": "2021-04-30T12:32:38.257000",
+            "ProId": 67623311
+        },
+        {
+            "LocId": "4H023K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 138,
+            "InsertedAt": "2021-04-30T12:32:38.273000",
+            "ProId": 21004181
+        },
+        {
+            "LocId": "4G055K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 40,
+            "Stok": 40,
+            "InsertedAt": "2021-04-30T12:32:38.277000",
+            "ProId": 67889740
+        },
+        {
+            "LocId": "4H060K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:38.277000",
+            "ProId": 67618003
+        },
+        {
+            "LocId": "4G020K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:38.280000",
+            "ProId": 68176465
+        },
+        {
+            "LocId": "4H024K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 114,
+            "Stok": 114,
+            "InsertedAt": "2021-04-30T12:32:38.303000",
+            "ProId": 70004874
+        },
+        {
+            "LocId": "4G056K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:38.307000",
+            "ProId": 21044654
+        },
+        {
+            "LocId": "4H061K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:38.307000",
+            "ProId": 20254106
+        },
+        {
+            "LocId": "4G021K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 150,
+            "Stok": 150,
+            "InsertedAt": "2021-04-30T12:32:38.310000",
+            "ProId": 67798838
+        },
+        {
+            "LocId": "4H025K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:38.350000",
+            "ProId": 20032187
+        },
+        {
+            "LocId": "4G057K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 64,
+            "Stok": 64,
+            "InsertedAt": "2021-04-30T12:32:38.353000",
+            "ProId": 67577289
+        },
+        {
+            "LocId": "4H062K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 64,
+            "Stok": 64,
+            "InsertedAt": "2021-04-30T12:32:38.367000",
+            "ProId": 67577287
+        },
+        {
+            "LocId": "4H026K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 114,
+            "Stok": 114,
+            "InsertedAt": "2021-04-30T12:32:38.370000",
+            "ProId": 21006815
+        },
+        {
+            "LocId": "4G022K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 64,
+            "Stok": 64,
+            "InsertedAt": "2021-04-30T12:32:38.370000",
+            "ProId": 67577277
+        },
+        {
+            "LocId": "4G058K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 48,
+            "Stok": 48,
+            "InsertedAt": "2021-04-30T12:32:38.400000",
+            "ProId": 67466989
+        },
+        {
+            "LocId": "4H063K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 180,
+            "Stok": 180,
+            "InsertedAt": "2021-04-30T12:32:38.400000",
+            "ProId": 67579091
+        },
+        {
+            "LocId": "4G023K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:38.400000",
+            "ProId": 67618001
+        },
+        {
+            "LocId": "4G059K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 176,
+            "Stok": 176,
+            "InsertedAt": "2021-04-30T12:32:38.430000",
+            "ProId": 20031301
+        },
+        {
+            "LocId": "4H064K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:38.430000",
+            "ProId": 20254108
+        },
+        {
+            "LocId": "4G024K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 114,
+            "Stok": 114,
+            "InsertedAt": "2021-04-30T12:32:38.443000",
+            "ProId": 70007777
+        },
+        {
+            "LocId": "4G060K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:38.447000",
+            "ProId": 67959035
+        },
+        {
+            "LocId": "4F001K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:38.450000",
+            "ProId": 67565711
+        },
+        {
+            "LocId": "4F039K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:38.477000",
+            "ProId": 67565711
+        },
+        {
+            "LocId": "4F040K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 147,
+            "Stok": 147,
+            "InsertedAt": "2021-04-30T12:32:38.477000",
+            "ProId": 67293883
+        },
+        {
+            "LocId": "4F002K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 120,
+            "Stok": 120,
+            "InsertedAt": "2021-04-30T12:32:38.480000",
+            "ProId": 67101442
+        },
+        {
+            "LocId": "4F003K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 120,
+            "Stok": 120,
+            "InsertedAt": "2021-04-30T12:32:38.507000",
+            "ProId": 67867064
+        },
+        {
+            "LocId": "4F041K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 132,
+            "Stok": 132,
+            "InsertedAt": "2021-04-30T12:32:38.510000",
+            "ProId": 67071750
+        },
+        {
+            "LocId": "4F004K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 132,
+            "Stok": 132,
+            "InsertedAt": "2021-04-30T12:32:38.510000",
+            "ProId": 67071750
+        },
+        {
+            "LocId": "4F042K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 147,
+            "Stok": 147,
+            "InsertedAt": "2021-04-30T12:32:38.540000",
+            "ProId": 67293883
+        },
+        {
+            "LocId": "4F005K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 120,
+            "Stok": 120,
+            "InsertedAt": "2021-04-30T12:32:38.540000",
+            "ProId": 67101569
+        },
+        {
+            "LocId": "4F043K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 120,
+            "Stok": 120,
+            "InsertedAt": "2021-04-30T12:32:38.553000",
+            "ProId": 67101442
+        },
+        {
+            "LocId": "4F044K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 63,
+            "Stok": 63,
+            "InsertedAt": "2021-04-30T12:32:38.557000",
+            "ProId": 67307641
+        },
+        {
+            "LocId": "4F006K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:38.557000",
+            "ProId": 70006868
+        },
+        {
+            "LocId": "4F045K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 135,
+            "Stok": 135,
+            "InsertedAt": "2021-04-30T12:32:38.587000",
+            "ProId": 67101446
+        },
+        {
+            "LocId": "4F007K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:38.587000",
+            "ProId": 70006863
+        },
+        {
+            "LocId": "4E039K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 147,
+            "Stok": 71,
+            "InsertedAt": "2021-04-30T12:32:38.590000",
+            "ProId": 67293891
+        },
+        {
+            "LocId": "4F008K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 120,
+            "Stok": 120,
+            "InsertedAt": "2021-04-30T12:32:38.633000",
+            "ProId": 67867064
+        },
+        {
+            "LocId": "4F046K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 135,
+            "Stok": 135,
+            "InsertedAt": "2021-04-30T12:32:38.633000",
+            "ProId": 67101446
+        },
+        {
+            "LocId": "4E040K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:38.637000",
+            "ProId": 70006863
+        },
+        {
+            "LocId": "4F009K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 120,
+            "Stok": 120,
+            "InsertedAt": "2021-04-30T12:32:38.663000",
+            "ProId": 67239841
+        },
+        {
+            "LocId": "4F047K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 147,
+            "Stok": 131,
+            "InsertedAt": "2021-04-30T12:32:38.667000",
+            "ProId": 67293879
+        },
+        {
+            "LocId": "4E041K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 35,
+            "Stok": 35,
+            "InsertedAt": "2021-04-30T12:32:38.667000",
+            "ProId": 67722092
+        },
+        {
+            "LocId": "4F048K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 120,
+            "Stok": 120,
+            "InsertedAt": "2021-04-30T12:32:38.697000",
+            "ProId": 67101581
+        },
+        {
+            "LocId": "4F010K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 120,
+            "Stok": 120,
+            "InsertedAt": "2021-04-30T12:32:38.697000",
+            "ProId": 67239841
+        },
+        {
+            "LocId": "4E042K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:38.697000",
+            "ProId": 21041965
+        },
+        {
+            "LocId": "4F011K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:38.727000",
+            "ProId": 21041980
+        },
+        {
+            "LocId": "4F049K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 63,
+            "Stok": 63,
+            "InsertedAt": "2021-04-30T12:32:38.727000",
+            "ProId": 67277839
+        },
+        {
+            "LocId": "4E043K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:38.740000",
+            "ProId": 21042012
+        },
+        {
+            "LocId": "4F012K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 144,
+            "Stok": 144,
+            "InsertedAt": "2021-04-30T12:32:38.743000",
+            "ProId": 21038907
+        },
+        {
+            "LocId": "4F050K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 63,
+            "Stok": 63,
+            "InsertedAt": "2021-04-30T12:32:38.743000",
+            "ProId": 70009454
+        },
+        {
+            "LocId": "4E044K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 147,
+            "Stok": 147,
+            "InsertedAt": "2021-04-30T12:32:38.773000",
+            "ProId": 67293891
+        },
+        {
+            "LocId": "4F013K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 147,
+            "Stok": 147,
+            "InsertedAt": "2021-04-30T12:32:38.777000",
+            "ProId": 67293879
+        },
+        {
+            "LocId": "4F051K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 63,
+            "Stok": 63,
+            "InsertedAt": "2021-04-30T12:32:38.777000",
+            "ProId": 20030944
+        },
+        {
+            "LocId": "4E045K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 155,
+            "Stok": 155,
+            "InsertedAt": "2021-04-30T12:32:38.803000",
+            "ProId": 21038893
+        },
+        {
+            "LocId": "4F052K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:38.807000",
+            "ProId": 21041800
+        },
+        {
+            "LocId": "4F014K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 120,
+            "Stok": 120,
+            "InsertedAt": "2021-04-30T12:32:38.807000",
+            "ProId": 67101569
+        },
+        {
+            "LocId": "4E046K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 63,
+            "Stok": 63,
+            "InsertedAt": "2021-04-30T12:32:38.837000",
+            "ProId": 20030941
+        },
+        {
+            "LocId": "4F015K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 120,
+            "Stok": 120,
+            "InsertedAt": "2021-04-30T12:32:38.837000",
+            "ProId": 67101581
+        },
+        {
+            "LocId": "4F053K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:38.840000",
+            "ProId": 68390662
+        },
+        {
+            "LocId": "4E047K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 48,
+            "Stok": 48,
+            "InsertedAt": "2021-04-30T12:32:38.850000",
+            "ProId": 67834520
+        },
+        {
+            "LocId": "4F054K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 120,
+            "Stok": 120,
+            "InsertedAt": "2021-04-30T12:32:38.853000",
+            "ProId": 67101470
+        },
+        {
+            "LocId": "4F016K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 143,
+            "Stok": 143,
+            "InsertedAt": "2021-04-30T12:32:38.853000",
+            "ProId": 68304243
+        },
+        {
+            "LocId": "4E048K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:38.883000",
+            "ProId": 70007771
+        },
+        {
+            "LocId": "4F055K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 54,
+            "Stok": 54,
+            "InsertedAt": "2021-04-30T12:32:38.883000",
+            "ProId": 67997499
+        },
+        {
+            "LocId": "4D005K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 36,
+            "Stok": 36,
+            "InsertedAt": "2021-04-30T12:32:39.663000",
+            "ProId": 70006864
+        },
+        {
+            "LocId": "4E012K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 24,
+            "Stok": 24,
+            "InsertedAt": "2021-04-30T12:32:39.667000",
+            "ProId": 67793853
+        },
+        {
+            "LocId": "4D040K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:39.667000",
+            "ProId": 67793860
+        },
+        {
+            "LocId": "4D006K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:39.693000",
+            "ProId": 21113366
+        },
+        {
+            "LocId": "4D041K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:39.697000",
+            "ProId": 21107076
+        },
+        {
+            "LocId": "4E013K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 48,
+            "Stok": 48,
+            "InsertedAt": "2021-04-30T12:32:39.697000",
+            "ProId": 21121161
+        },
+        {
+            "LocId": "4D007K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:39.727000",
+            "ProId": 68441737
+        },
+        {
+            "LocId": "4D042K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 162,
+            "Stok": 162,
+            "InsertedAt": "2021-04-30T12:32:39.727000",
+            "ProId": 67857552
+        },
+        {
+            "LocId": "4E014K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 35,
+            "Stok": 35,
+            "InsertedAt": "2021-04-30T12:32:39.730000",
+            "ProId": 67021719
+        },
+        {
+            "LocId": "4D008K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 162,
+            "Stok": 162,
+            "InsertedAt": "2021-04-30T12:32:39.740000",
+            "ProId": 67857554
+        },
+        {
+            "LocId": "4D043K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 36,
+            "Stok": 36,
+            "InsertedAt": "2021-04-30T12:32:39.743000",
+            "ProId": 67458287
+        },
+        {
+            "LocId": "4D009K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 85,
+            "Stok": 85,
+            "InsertedAt": "2021-04-30T12:32:39.743000",
+            "ProId": 67975696
+        },
+        {
+            "LocId": "4D044K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 36,
+            "Stok": 36,
+            "InsertedAt": "2021-04-30T12:32:39.747000",
+            "ProId": 67460698
+        },
+        {
+            "LocId": "4D010K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:39.773000",
+            "ProId": 21107074
+        },
+        {
+            "LocId": "4D045K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 24,
+            "Stok": 24,
+            "InsertedAt": "2021-04-30T12:32:39.773000",
+            "ProId": 67793855
+        },
+        {
+            "LocId": "4D046K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:39.777000",
+            "ProId": 68389549
+        },
+        {
+            "LocId": "4D011K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 36,
+            "Stok": 36,
+            "InsertedAt": "2021-04-30T12:32:39.777000",
+            "ProId": 20052929
+        },
+        {
+            "LocId": "4E015K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:39.803000",
+            "ProId": 67793857
+        },
+        {
+            "LocId": "4D012K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 36,
+            "Stok": 36,
+            "InsertedAt": "2021-04-30T12:32:39.807000",
+            "ProId": 67463551
+        },
+        {
+            "LocId": "4E016K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 28,
+            "Stok": 28,
+            "InsertedAt": "2021-04-30T12:32:39.807000",
+            "ProId": 67809169
+        },
+        {
+            "LocId": "4D047K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 24,
+            "Stok": 24,
+            "InsertedAt": "2021-04-30T12:32:39.837000",
+            "ProId": 67793862
+        },
+        {
+            "LocId": "4D013K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 112,
+            "Stok": 112,
+            "InsertedAt": "2021-04-30T12:32:39.837000",
+            "ProId": 67540485
+        },
+        {
+            "LocId": "4E017K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:39.840000",
+            "ProId": 21051024
+        },
+        {
+            "LocId": "4D048K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:39.867000",
+            "ProId": 67794498
+        },
+        {
+            "LocId": "4E018K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 77,
+            "Stok": 77,
+            "InsertedAt": "2021-04-30T12:32:39.870000",
+            "ProId": 70008727
+        },
+        {
+            "LocId": "4D049K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 77,
+            "Stok": 77,
+            "InsertedAt": "2021-04-30T12:32:39.870000",
+            "ProId": 70008728
+        },
+        {
+            "LocId": "4D050K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 36,
+            "Stok": 36,
+            "InsertedAt": "2021-04-30T12:32:39.883000",
+            "ProId": 20254105
+        },
+        {
+            "LocId": "4E019K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 63,
+            "Stok": 63,
+            "InsertedAt": "2021-04-30T12:32:39.883000",
+            "ProId": 21122114
+        },
+        {
+            "LocId": "4D014K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:39.883000",
+            "ProId": 67955428
+        },
+        {
+            "LocId": "4D051K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 120,
+            "Stok": 120,
+            "InsertedAt": "2021-04-30T12:32:39.887000",
+            "ProId": 68346598
+        },
+        {
+            "LocId": "4E020K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 84,
+            "Stok": 84,
+            "InsertedAt": "2021-04-30T12:32:39.913000",
+            "ProId": 67975698
+        },
+        {
+            "LocId": "4D015K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 54,
+            "Stok": 54,
+            "InsertedAt": "2021-04-30T12:32:39.913000",
+            "ProId": 67293858
+        },
+        {
+            "LocId": "4D052K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 35,
+            "Stok": 35,
+            "InsertedAt": "2021-04-30T12:32:39.917000",
+            "ProId": 67770647
+        },
+        {
+            "LocId": "4D016K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 50,
+            "Stok": 50,
+            "InsertedAt": "2021-04-30T12:32:39.917000",
+            "ProId": 67622179
+        },
+        {
+            "LocId": "4E022K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:39.943000",
+            "ProId": 67918409
+        },
+        {
+            "LocId": "4D053K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 120,
+            "Stok": 120,
+            "InsertedAt": "2021-04-30T12:32:39.947000",
+            "ProId": 68346596
+        },
+        {
+            "LocId": "4D017K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:39.947000",
+            "ProId": 67918411
+        },
+        {
+            "LocId": "4E023K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:39.950000",
+            "ProId": 67793867
+        },
+        {
+            "LocId": "4D054K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:39.977000",
+            "ProId": 21113367
+        },
+        {
+            "LocId": "4E024K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:39.977000",
+            "ProId": 67072461
+        },
+        {
+            "LocId": "4D055K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:39.980000",
+            "ProId": 21107078
+        },
+        {
+            "LocId": "4D019K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:39.980000",
+            "ProId": 67955426
+        },
+        {
+            "LocId": "4E025K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:39.990000",
+            "ProId": 70008481
+        },
+        {
+            "LocId": "4D056K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:39.993000",
+            "ProId": 68154527
+        },
+        {
+            "LocId": "4D020K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 28,
+            "Stok": 28,
+            "InsertedAt": "2021-04-30T12:32:39.993000",
+            "ProId": 67809171
+        },
+        {
+            "LocId": "4E026K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 84,
+            "Stok": 84,
+            "InsertedAt": "2021-04-30T12:32:39.997000",
+            "ProId": 67754292
+        },
+        {
+            "LocId": "4D057K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:40.023000",
+            "ProId": 67634522
+        },
+        {
+            "LocId": "4D058K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:40.040000",
+            "ProId": 68154531
+        },
+        {
+            "LocId": "4D022K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:40.057000",
+            "ProId": 70008429
+        },
+        {
+            "LocId": "4D060K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 36,
+            "Stok": 36,
+            "InsertedAt": "2021-04-30T12:32:40.070000",
+            "ProId": 20212323
+        },
+        {
+            "LocId": "4D024K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:40.070000",
+            "ProId": 67634516
+        },
+        {
+            "LocId": "4D061K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 35,
+            "Stok": 35,
+            "InsertedAt": "2021-04-30T12:32:40.073000",
+            "ProId": 67444970
+        },
+        {
+            "LocId": "4D030K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 48,
+            "Stok": 48,
+            "InsertedAt": "2021-04-30T12:32:40.087000",
+            "ProId": 21048431
+        },
+        {
+            "LocId": "4D001K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 30,
+            "Stok": 17,
+            "InsertedAt": "2021-04-30T12:32:40.087000",
+            "ProId": 70009140
+        },
+        {
+            "LocId": "4C001K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:40.090000",
+            "ProId": 70009140
+        },
+        {
+            "LocId": "4C039K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 84,
+            "Stok": 84,
+            "InsertedAt": "2021-04-30T12:32:40.090000",
+            "ProId": 67767533
+        },
+        {
+            "LocId": "4C002K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 84,
+            "Stok": 84,
+            "InsertedAt": "2021-04-30T12:32:40.117000",
+            "ProId": 67754288
+        },
+        {
+            "LocId": "4C040K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 72,
+            "Stok": 72,
+            "InsertedAt": "2021-04-30T12:32:40.117000",
+            "ProId": 20018093
+        },
+        {
+            "LocId": "4C003K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 30,
+            "Stok": 18,
+            "InsertedAt": "2021-04-30T12:32:40.120000",
+            "ProId": 70003152
+        },
+        {
+            "LocId": "4C041K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:40.120000",
+            "ProId": 70003152
+        },
+        {
+            "LocId": "4C004K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 84,
+            "Stok": 84,
+            "InsertedAt": "2021-04-30T12:32:40.147000",
+            "ProId": 67767533
+        },
+        {
+            "LocId": "4C042K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:40.150000",
+            "ProId": 20217232
+        },
+        {
+            "LocId": "4C005K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 35,
+            "Stok": 35,
+            "InsertedAt": "2021-04-30T12:32:40.150000",
+            "ProId": 20217230
+        },
+        {
+            "LocId": "4C043K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 84,
+            "Stok": 84,
+            "InsertedAt": "2021-04-30T12:32:40.150000",
+            "ProId": 67754288
+        },
+        {
+            "LocId": "4C006K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:40.163000",
+            "ProId": 20217232
+        },
+        {
+            "LocId": "4C044K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 72,
+            "Stok": 72,
+            "InsertedAt": "2021-04-30T12:32:40.163000",
+            "ProId": 20018093
+        },
+        {
+            "LocId": "4C007K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 72,
+            "Stok": 72,
+            "InsertedAt": "2021-04-30T12:32:40.167000",
+            "ProId": 70020251
+        },
+        {
+            "LocId": "4C045K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 72,
+            "Stok": 72,
+            "InsertedAt": "2021-04-30T12:32:40.167000",
+            "ProId": 70020251
+        },
+        {
+            "LocId": "4C008K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 35,
+            "Stok": 35,
+            "InsertedAt": "2021-04-30T12:32:40.193000",
+            "ProId": 20217230
+        },
+        {
+            "LocId": "4C046K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:40.197000",
+            "ProId": 67228954
+        },
+        {
+            "LocId": "4C009K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:40.197000",
+            "ProId": 67129108
+        },
+        {
+            "LocId": "4C047K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 35,
+            "Stok": 35,
+            "InsertedAt": "2021-04-30T12:32:40.200000",
+            "ProId": 70009141
+        },
+        {
+            "LocId": "4C010K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 63,
+            "Stok": 63,
+            "InsertedAt": "2021-04-30T12:32:40.227000",
+            "ProId": 70008729
+        },
+        {
+            "LocId": "4C048K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 35,
+            "Stok": 35,
+            "InsertedAt": "2021-04-30T12:32:40.227000",
+            "ProId": 70009141
+        },
+        {
+            "LocId": "4C011K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 35,
+            "Stok": 35,
+            "InsertedAt": "2021-04-30T12:32:40.230000",
+            "ProId": 70005997
+        },
+        {
+            "LocId": "4C012K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 35,
+            "Stok": 35,
+            "InsertedAt": "2021-04-30T12:32:40.240000",
+            "ProId": 70005997
+        },
+        {
+            "LocId": "4C049K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:40.243000",
+            "ProId": 20056722
+        },
+        {
+            "LocId": "4H035K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 144,
+            "Stok": 144,
+            "InsertedAt": "2021-04-30T12:32:37.660000",
+            "ProId": 67707904
+        },
+        {
+            "LocId": "4H001K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 180,
+            "Stok": 180,
+            "InsertedAt": "2021-04-30T12:32:37.663000",
+            "ProId": 67560294
+        },
+        {
+            "LocId": "4H036K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 96,
+            "Stok": 71,
+            "InsertedAt": "2021-04-30T12:32:37.663000",
+            "ProId": 70001159
+        },
+        {
+            "LocId": "4H002K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 180,
+            "Stok": 180,
+            "InsertedAt": "2021-04-30T12:32:37.667000",
+            "ProId": 67755838
+        },
+        {
+            "LocId": "4H037K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 180,
+            "Stok": 180,
+            "InsertedAt": "2021-04-30T12:32:37.667000",
+            "ProId": 67755838
+        },
+        {
+            "LocId": "4H003K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 132,
+            "Stok": 132,
+            "InsertedAt": "2021-04-30T12:32:37.667000",
+            "ProId": 68167032
+        },
+        {
+            "LocId": "4H038K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 96,
+            "Stok": 96,
+            "InsertedAt": "2021-04-30T12:32:37.670000",
+            "ProId": 70001159
+        },
+        {
+            "LocId": "4H004K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 76,
+            "Stok": 16,
+            "InsertedAt": "2021-04-30T12:32:37.670000",
+            "ProId": 68559940
+        },
+        {
+            "LocId": "4H039K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:37.670000",
+            "ProId": 70006848
+        },
+        {
+            "LocId": "4H005K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 90,
+            "Stok": 90,
+            "InsertedAt": "2021-04-30T12:32:37.673000",
+            "ProId": 20052927
+        },
+        {
+            "LocId": "4H040K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 150,
+            "Stok": 150,
+            "InsertedAt": "2021-04-30T12:32:37.673000",
+            "ProId": 70003580
+        },
+        {
+            "LocId": "4H006K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 180,
+            "Stok": 180,
+            "InsertedAt": "2021-04-30T12:32:37.677000",
+            "ProId": 67755836
+        },
+        {
+            "LocId": "4H041K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 180,
+            "Stok": 180,
+            "InsertedAt": "2021-04-30T12:32:37.677000",
+            "ProId": 67755836
+        },
+        {
+            "LocId": "4G001K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 144,
+            "Stok": 144,
+            "InsertedAt": "2021-04-30T12:32:37.680000",
+            "ProId": 67707906
+        },
+        {
+            "LocId": "4H007K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 180,
+            "Stok": 180,
+            "InsertedAt": "2021-04-30T12:32:37.680000",
+            "ProId": 67681068
+        },
+        {
+            "LocId": "4G039K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:37.680000",
+            "ProId": 68284970
+        },
+        {
+            "LocId": "4H042K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 115,
+            "InsertedAt": "2021-04-30T12:32:37.683000",
+            "ProId": 68284972
+        },
+        {
+            "LocId": "4G002K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 132,
+            "Stok": 132,
+            "InsertedAt": "2021-04-30T12:32:37.697000",
+            "ProId": 68167030
+        },
+        {
+            "LocId": "4H008K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 144,
+            "Stok": 144,
+            "InsertedAt": "2021-04-30T12:32:37.697000",
+            "ProId": 67707902
+        },
+        {
+            "LocId": "4G040K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 144,
+            "Stok": 144,
+            "InsertedAt": "2021-04-30T12:32:37.697000",
+            "ProId": 67707904
+        },
+        {
+            "LocId": "4H043K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 180,
+            "Stok": 180,
+            "InsertedAt": "2021-04-30T12:32:37.727000",
+            "ProId": 67560294
+        },
+        {
+            "LocId": "4G003K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:37.740000",
+            "ProId": 21029756
+        },
+        {
+            "LocId": "4G041K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 180,
+            "Stok": 180,
+            "InsertedAt": "2021-04-30T12:32:37.743000",
+            "ProId": 67569910
+        },
+        {
+            "LocId": "4H009K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 144,
+            "Stok": 144,
+            "InsertedAt": "2021-04-30T12:32:37.743000",
+            "ProId": 67707906
+        },
+        {
+            "LocId": "4H044K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 90,
+            "Stok": 90,
+            "InsertedAt": "2021-04-30T12:32:37.747000",
+            "ProId": 70003657
+        },
+        {
+            "LocId": "4G004K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 144,
+            "Stok": 144,
+            "InsertedAt": "2021-04-30T12:32:37.773000",
+            "ProId": 67707902
+        },
+        {
+            "LocId": "4H010K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 132,
+            "Stok": 132,
+            "InsertedAt": "2021-04-30T12:32:37.777000",
+            "ProId": 68225200
+        },
+        {
+            "LocId": "4G042K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:37.777000",
+            "ProId": 70021056
+        },
+        {
+            "LocId": "4H045K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 64,
+            "Stok": 64,
+            "InsertedAt": "2021-04-30T12:32:37.790000",
+            "ProId": 67305665
+        },
+        {
+            "LocId": "4G005K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 132,
+            "Stok": 132,
+            "InsertedAt": "2021-04-30T12:32:37.790000",
+            "ProId": 68167032
+        },
+        {
+            "LocId": "4G043K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:37.790000",
+            "ProId": 21029756
+        },
+        {
+            "LocId": "4H046K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 132,
+            "Stok": 132,
+            "InsertedAt": "2021-04-30T12:32:37.790000",
+            "ProId": 68225200
+        },
+        {
+            "LocId": "4H011K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 90,
+            "Stok": 90,
+            "InsertedAt": "2021-04-30T12:32:37.820000",
+            "ProId": 70003656
+        },
+        {
+            "LocId": "4G006K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 132,
+            "Stok": 132,
+            "InsertedAt": "2021-04-30T12:32:37.820000",
+            "ProId": 68167030
+        },
+        {
+            "LocId": "4H012K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:37.823000",
+            "ProId": 68504838
+        },
+        {
+            "LocId": "4G044K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 150,
+            "Stok": 150,
+            "InsertedAt": "2021-04-30T12:32:37.823000",
+            "ProId": 70003580
+        },
+        {
+            "LocId": "4H047K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 132,
+            "Stok": 132,
+            "InsertedAt": "2021-04-30T12:32:37.850000",
+            "ProId": 68167038
+        },
+        {
+            "LocId": "4G007K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 132,
+            "Stok": 132,
+            "InsertedAt": "2021-04-30T12:32:37.853000",
+            "ProId": 68167038
+        },
+        {
+            "LocId": "4H013K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 150,
+            "Stok": 150,
+            "InsertedAt": "2021-04-30T12:32:37.853000",
+            "ProId": 20052923
+        },
+        {
+            "LocId": "4G045K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 132,
+            "Stok": 132,
+            "InsertedAt": "2021-04-30T12:32:37.853000",
+            "ProId": 21083546
+        },
+        {
+            "LocId": "4H048K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:37.900000",
+            "ProId": 68504836
+        },
+        {
+            "LocId": "4G008K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:37.900000",
+            "ProId": 70021056
+        },
+        {
+            "LocId": "4G046K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 180,
+            "Stok": 180,
+            "InsertedAt": "2021-04-30T12:32:37.900000",
+            "ProId": 67681070
+        },
+        {
+            "LocId": "4H049K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 150,
+            "Stok": 150,
+            "InsertedAt": "2021-04-30T12:32:37.900000",
+            "ProId": 20052923
+        },
+        {
+            "LocId": "4G009K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 160,
+            "Stok": 110,
+            "InsertedAt": "2021-04-30T12:32:37.930000",
+            "ProId": 21121363
+        },
+        {
+            "LocId": "4G047K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 77,
+            "Stok": 77,
+            "InsertedAt": "2021-04-30T12:32:37.930000",
+            "ProId": 20254870
+        },
+        {
+            "LocId": "4H050K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:37.933000",
+            "ProId": 70021063
+        },
+        {
+            "LocId": "4G010K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 168,
+            "Stok": 168,
+            "InsertedAt": "2021-04-30T12:32:37.933000",
+            "ProId": 67923477
+        },
+        {
+            "LocId": "4H014K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:37.933000",
+            "ProId": 20032425
+        },
+        {
+            "LocId": "4G048K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 77,
+            "Stok": 77,
+            "InsertedAt": "2021-04-30T12:32:37.977000",
+            "ProId": 68422095
+        },
+        {
+            "LocId": "4H051K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 54,
+            "Stok": 54,
+            "InsertedAt": "2021-04-30T12:32:37.977000",
+            "ProId": 67997495
+        },
+        {
+            "LocId": "4G011K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 104,
+            "Stok": 104,
+            "InsertedAt": "2021-04-30T12:32:37.980000",
+            "ProId": 67616130
+        },
+        {
+            "LocId": "4H015K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 45,
+            "Stok": 45,
+            "InsertedAt": "2021-04-30T12:32:37.980000",
+            "ProId": 67903861
+        },
+        {
+            "LocId": "4H052K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:38.007000",
+            "ProId": 20022117
+        },
+        {
+            "LocId": "4G012K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:38.010000",
+            "ProId": 68165241
+        },
+        {
+            "LocId": "4H016K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 77,
+            "Stok": 77,
+            "InsertedAt": "2021-04-30T12:32:38.010000",
+            "ProId": 68422101
+        },
+        {
+            "LocId": "4G049K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 63,
+            "Stok": 63,
+            "InsertedAt": "2021-04-30T12:32:38.010000",
+            "ProId": 68422103
+        },
+        {
+            "LocId": "4G050K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:38.040000",
+            "ProId": 20022119
+        },
+        {
+            "LocId": "4H053K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 90,
+            "Stok": 90,
+            "InsertedAt": "2021-04-30T12:32:38.040000",
+            "ProId": 67493976
+        },
+        {
+            "LocId": "4H017K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:38.040000",
+            "ProId": 67681149
+        },
+        {
+            "LocId": "4G013K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 80,
+            "Stok": 80,
+            "InsertedAt": "2021-04-30T12:32:38.070000",
+            "ProId": 21129096
+        },
+        {
+            "LocId": "4G051K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:38.070000",
+            "ProId": 20077260
+        },
+        {
+            "LocId": "5H054K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 168,
+            "Stok": 168,
+            "InsertedAt": "2021-04-30T12:32:38.073000",
+            "ProId": 67681059
+        },
+        {
+            "LocId": "4G014K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:38.100000",
+            "ProId": 20254117
+        },
+        {
+            "LocId": "4H018K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:38.103000",
+            "ProId": 67073111
+        },
+        {
+            "LocId": "4H055K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 108,
+            "Stok": 108,
+            "InsertedAt": "2021-04-30T12:32:38.103000",
+            "ProId": 68390675
+        },
+        {
+            "LocId": "4G015K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:38.107000",
+            "ProId": 20254119
+        },
+        {
+            "LocId": "4H019K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:38.133000",
+            "ProId": 70006854
+        },
+        {
+            "LocId": "4H056K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 152,
+            "Stok": 152,
+            "InsertedAt": "2021-04-30T12:32:38.133000",
+            "ProId": 21028405
+        },
+        {
+            "LocId": "4G016K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 77,
+            "Stok": 77,
+            "InsertedAt": "2021-04-30T12:32:38.137000",
+            "ProId": 68422097
+        },
+        {
+            "LocId": "4B018K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 24,
+            "Stok": 24,
+            "InsertedAt": "2021-04-30T12:32:40.887000",
+            "ProId": 68226104
+        },
+        {
+            "LocId": "4B056K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 40,
+            "Stok": 40,
+            "InsertedAt": "2021-04-30T12:32:40.890000",
+            "ProId": 68226126
+        },
+        {
+            "LocId": "4B019K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 24,
+            "Stok": 24,
+            "InsertedAt": "2021-04-30T12:32:40.890000",
+            "ProId": 68226770
+        },
+        {
+            "LocId": "4B021K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 42,
+            "Stok": 37,
+            "InsertedAt": "2021-04-30T12:32:40.913000",
+            "ProId": 21049506
+        },
+        {
+            "LocId": "4B022K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 24,
+            "Stok": 24,
+            "InsertedAt": "2021-04-30T12:32:40.917000",
+            "ProId": 68213193
+        },
+        {
+            "LocId": "4B023K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 24,
+            "Stok": 14,
+            "InsertedAt": "2021-04-30T12:32:40.917000",
+            "ProId": 68211621
+        },
+        {
+            "LocId": "4B024K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 36,
+            "Stok": 36,
+            "InsertedAt": "2021-04-30T12:32:40.930000",
+            "ProId": 32011116
+        },
+        {
+            "LocId": "4F017K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 280,
+            "Stok": 280,
+            "InsertedAt": "2021-04-30T12:32:38.887000",
+            "ProId": 67622832
+        },
+        {
+            "LocId": "4E049K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 120,
+            "Stok": 120,
+            "InsertedAt": "2021-04-30T12:32:38.913000",
+            "ProId": 67077983
+        },
+        {
+            "LocId": "4F018K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 120,
+            "Stok": 120,
+            "InsertedAt": "2021-04-30T12:32:38.913000",
+            "ProId": 67732053
+        },
+        {
+            "LocId": "4F056K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:38.917000",
+            "ProId": 67464015
+        },
+        {
+            "LocId": "4E050K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:38.930000",
+            "ProId": 21042007
+        },
+        {
+            "LocId": "4F057K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 63,
+            "Stok": 63,
+            "InsertedAt": "2021-04-30T12:32:38.930000",
+            "ProId": 70003292
+        },
+        {
+            "LocId": "4F019K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 120,
+            "Stok": 120,
+            "InsertedAt": "2021-04-30T12:32:38.960000",
+            "ProId": 67101555
+        },
+        {
+            "LocId": "4E051K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 120,
+            "Stok": 120,
+            "InsertedAt": "2021-04-30T12:32:38.963000",
+            "ProId": 68228551
+        },
+        {
+            "LocId": "4F058K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:38.963000",
+            "ProId": 20052925
+        },
+        {
+            "LocId": "4F020K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 120,
+            "Stok": 120,
+            "InsertedAt": "2021-04-30T12:32:38.990000",
+            "ProId": 67732051
+        },
+        {
+            "LocId": "4E052K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:38.993000",
+            "ProId": 68299480
+        },
+        {
+            "LocId": "4F059K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:38.993000",
+            "ProId": 67460699
+        },
+        {
+            "LocId": "4F021K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 120,
+            "Stok": 120,
+            "InsertedAt": "2021-04-30T12:32:39.023000",
+            "ProId": 67101420
+        },
+        {
+            "LocId": "4E053K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:39.023000",
+            "ProId": 68281994
+        },
+        {
+            "LocId": "4F022K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 120,
+            "Stok": 120,
+            "InsertedAt": "2021-04-30T12:32:39.027000",
+            "ProId": 67101565
+        },
+        {
+            "LocId": "4F060K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:39.040000",
+            "ProId": 21042017
+        },
+        {
+            "LocId": "4E054K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 120,
+            "Stok": 120,
+            "InsertedAt": "2021-04-30T12:32:39.040000",
+            "ProId": 67101579
+        },
+        {
+            "LocId": "4F023K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 45,
+            "Stok": 45,
+            "InsertedAt": "2021-04-30T12:32:39.040000",
+            "ProId": 32011992
+        },
+        {
+            "LocId": "4F061K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:39.073000",
+            "ProId": 70002048
+        },
+        {
+            "LocId": "4E055K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:39.073000",
+            "ProId": 21041975
+        },
+        {
+            "LocId": "4F062K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:39.077000",
+            "ProId": 21009447
+        },
+        {
+            "LocId": "4F024K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:39.100000",
+            "ProId": 68225181
+        },
+        {
+            "LocId": "4E056K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 54,
+            "Stok": 54,
+            "InsertedAt": "2021-04-30T12:32:39.103000",
+            "ProId": 67997497
+        },
+        {
+            "LocId": "4F063K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:39.103000",
+            "ProId": 68225179
+        },
+        {
+            "LocId": "4F025K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 147,
+            "Stok": 147,
+            "InsertedAt": "2021-04-30T12:32:39.133000",
+            "ProId": 67101571
+        },
+        {
+            "LocId": "4E057K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 280,
+            "Stok": 280,
+            "InsertedAt": "2021-04-30T12:32:39.133000",
+            "ProId": 67622828
+        },
+        {
+            "LocId": "4F026K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 120,
+            "Stok": 120,
+            "InsertedAt": "2021-04-30T12:32:39.137000",
+            "ProId": 67101557
+        },
+        {
+            "LocId": "4F064K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 300,
+            "Stok": 300,
+            "InsertedAt": "2021-04-30T12:32:39.163000",
+            "ProId": 67622830
+        },
+        {
+            "LocId": "4E058K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 155,
+            "Stok": 155,
+            "InsertedAt": "2021-04-30T12:32:39.167000",
+            "ProId": 67409059
+        },
+        {
+            "LocId": "4F027K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:39.167000",
+            "ProId": 68459158
+        },
+        {
+            "LocId": "4F065K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 63,
+            "Stok": 63,
+            "InsertedAt": "2021-04-30T12:32:39.193000",
+            "ProId": 68436161
+        },
+        {
+            "LocId": "4E059K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 147,
+            "Stok": 147,
+            "InsertedAt": "2021-04-30T12:32:39.197000",
+            "ProId": 67893613
+        },
+        {
+            "LocId": "4F066K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 80,
+            "Stok": 80,
+            "InsertedAt": "2021-04-30T12:32:39.200000",
+            "ProId": 20051884
+        },
+        {
+            "LocId": "4F028K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 56,
+            "Stok": 56,
+            "InsertedAt": "2021-04-30T12:32:39.227000",
+            "ProId": 70020682
+        },
+        {
+            "LocId": "4E060K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 120,
+            "Stok": 120,
+            "InsertedAt": "2021-04-30T12:32:39.227000",
+            "ProId": 68225196
+        },
+        {
+            "LocId": "4F029K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 120,
+            "Stok": 120,
+            "InsertedAt": "2021-04-30T12:32:39.230000",
+            "ProId": 67101573
+        },
+        {
+            "LocId": "4F067K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 80,
+            "Stok": 80,
+            "InsertedAt": "2021-04-30T12:32:39.257000",
+            "ProId": 20018418
+        },
+        {
+            "LocId": "4E061K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 50,
+            "Stok": 50,
+            "InsertedAt": "2021-04-30T12:32:39.260000",
+            "ProId": 67188569
+        },
+        {
+            "LocId": "4F030K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 54,
+            "Stok": 54,
+            "InsertedAt": "2021-04-30T12:32:39.260000",
+            "ProId": 67343812
+        },
+        {
+            "LocId": "4F068K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 120,
+            "Stok": 120,
+            "InsertedAt": "2021-04-30T12:32:39.290000",
+            "ProId": 67732044
+        },
+        {
+            "LocId": "4E062K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 35,
+            "Stok": 35,
+            "InsertedAt": "2021-04-30T12:32:39.290000",
+            "ProId": 67722088
+        },
+        {
+            "LocId": "4F031K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:39.290000",
+            "ProId": 70007769
+        },
+        {
+            "LocId": "4F069K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 164,
+            "Stok": 164,
+            "InsertedAt": "2021-04-30T12:32:39.303000",
+            "ProId": 21164989
+        },
+        {
+            "LocId": "4E063K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 54,
+            "Stok": 54,
+            "InsertedAt": "2021-04-30T12:32:39.307000",
+            "ProId": 67343498
+        },
+        {
+            "LocId": "4F032K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 72,
+            "Stok": 72,
+            "InsertedAt": "2021-04-30T12:32:39.307000",
+            "ProId": 21126474
+        },
+        {
+            "LocId": "4F070K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 120,
+            "Stok": 120,
+            "InsertedAt": "2021-04-30T12:32:39.337000",
+            "ProId": 67256724
+        },
+        {
+            "LocId": "4E064K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 50,
+            "Stok": 50,
+            "InsertedAt": "2021-04-30T12:32:39.337000",
+            "ProId": 67189065
+        },
+        {
+            "LocId": "4F071K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:39.340000",
+            "ProId": 67419192
+        },
+        {
+            "LocId": "4F033K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 144,
+            "Stok": 144,
+            "InsertedAt": "2021-04-30T12:32:39.367000",
+            "ProId": 67409057
+        },
+        {
+            "LocId": "4E065K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 54,
+            "Stok": 54,
+            "InsertedAt": "2021-04-30T12:32:39.370000",
+            "ProId": 67343810
+        },
+        {
+            "LocId": "4F072K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 60,
+            "Stok": 60,
+            "InsertedAt": "2021-04-30T12:32:39.370000",
+            "ProId": 67072939
+        },
+        {
+            "LocId": "4F034K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 135,
+            "Stok": 135,
+            "InsertedAt": "2021-04-30T12:32:39.400000",
+            "ProId": 67101583
+        },
+        {
+            "LocId": "4E066K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 50,
+            "Stok": 50,
+            "InsertedAt": "2021-04-30T12:32:39.400000",
+            "ProId": 67188566
+        },
+        {
+            "LocId": "4F073K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:39.400000",
+            "ProId": 67709334
+        },
+        {
+            "LocId": "4F035K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 35,
+            "Stok": 35,
+            "InsertedAt": "2021-04-30T12:32:39.433000",
+            "ProId": 67722090
+        },
+        {
+            "LocId": "4E067K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 147,
+            "Stok": 147,
+            "InsertedAt": "2021-04-30T12:32:39.440000",
+            "ProId": 67101563
+        },
+        {
+            "LocId": "4F074K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 80,
+            "Stok": 80,
+            "InsertedAt": "2021-04-30T12:32:39.443000",
+            "ProId": 20018421
+        },
+        {
+            "LocId": "4F036K1",
+            "LocWeight": 2,
+            "ProWeight": 2,
+            "MaxQuan": 147,
+            "Stok": 147,
+            "InsertedAt": "2021-04-30T12:32:39.443000",
+            "ProId": 67101175
+        },
+        {
+            "LocId": "4E001K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 48,
+            "Stok": 12,
+            "InsertedAt": "2021-04-30T12:32:39.477000",
+            "ProId": 67799463
+        },
+        {
+            "LocId": "4E002K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 48,
+            "Stok": 48,
+            "InsertedAt": "2021-04-30T12:32:39.480000",
+            "ProId": 67799463
+        },
+        {
+            "LocId": "4E003K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 36,
+            "Stok": 36,
+            "InsertedAt": "2021-04-30T12:32:39.480000",
+            "ProId": 70006862
+        },
+        {
+            "LocId": "4E004K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 112,
+            "Stok": 112,
+            "InsertedAt": "2021-04-30T12:32:39.507000",
+            "ProId": 67540491
+        },
+        {
+            "LocId": "4E005K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 112,
+            "Stok": 112,
+            "InsertedAt": "2021-04-30T12:32:39.510000",
+            "ProId": 67540491
+        },
+        {
+            "LocId": "4E006K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 112,
+            "Stok": 112,
+            "InsertedAt": "2021-04-30T12:32:39.510000",
+            "ProId": 70003551
+        },
+        {
+            "LocId": "4E007K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 48,
+            "Stok": 48,
+            "InsertedAt": "2021-04-30T12:32:39.540000",
+            "ProId": 21121162
+        },
+        {
+            "LocId": "4D035K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 36,
+            "Stok": 36,
+            "InsertedAt": "2021-04-30T12:32:39.540000",
+            "ProId": 70006862
+        },
+        {
+            "LocId": "4E008K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 54,
+            "Stok": 54,
+            "InsertedAt": "2021-04-30T12:32:39.540000",
+            "ProId": 67293875
+        },
+        {
+            "LocId": "4D036K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 48,
+            "Stok": 48,
+            "InsertedAt": "2021-04-30T12:32:39.570000",
+            "ProId": 21121162
+        },
+        {
+            "LocId": "4D002K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 84,
+            "Stok": 59,
+            "InsertedAt": "2021-04-30T12:32:39.570000",
+            "ProId": 67754290
+        },
+        {
+            "LocId": "4E009K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 112,
+            "Stok": 112,
+            "InsertedAt": "2021-04-30T12:32:39.573000",
+            "ProId": 70003552
+        },
+        {
+            "LocId": "4D037K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 54,
+            "Stok": 54,
+            "InsertedAt": "2021-04-30T12:32:39.600000",
+            "ProId": 67293875
+        },
+        {
+            "LocId": "4D003K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 84,
+            "Stok": 84,
+            "InsertedAt": "2021-04-30T12:32:39.603000",
+            "ProId": 67754290
+        },
+        {
+            "LocId": "4E010K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 36,
+            "Stok": 36,
+            "InsertedAt": "2021-04-30T12:32:39.603000",
+            "ProId": 70006864
+        },
+        {
+            "LocId": "4D038K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 112,
+            "Stok": 112,
+            "InsertedAt": "2021-04-30T12:32:39.633000",
+            "ProId": 70003551
+        },
+        {
+            "LocId": "4D004K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 112,
+            "Stok": 112,
+            "InsertedAt": "2021-04-30T12:32:39.633000",
+            "ProId": 70003552
+        },
+        {
+            "LocId": "4E011K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:39.637000",
+            "ProId": 70004590
+        },
+        {
+            "LocId": "4D039K1",
+            "LocWeight": 3,
+            "ProWeight": 3,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:39.637000",
+            "ProId": 70004590
+        },
+        {
+            "LocId": "4C050K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:40.243000",
+            "ProId": 21025593
+        },
+        {
+            "LocId": "4C013K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 42,
+            "Stok": 36,
+            "InsertedAt": "2021-04-30T12:32:40.257000",
+            "ProId": 20056718
+        },
+        {
+            "LocId": "4C051K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 35,
+            "Stok": 35,
+            "InsertedAt": "2021-04-30T12:32:40.260000",
+            "ProId": 67622165
+        },
+        {
+            "LocId": "4C014K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 28,
+            "Stok": 28,
+            "InsertedAt": "2021-04-30T12:32:40.260000",
+            "ProId": 67809165
+        },
+        {
+            "LocId": "4C015K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 42,
+            "Stok": 32,
+            "InsertedAt": "2021-04-30T12:32:40.260000",
+            "ProId": 21109201
+        },
+        {
+            "LocId": "4C016K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:40.290000",
+            "ProId": 67472292
+        },
+        {
+            "LocId": "4C052K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 63,
+            "Stok": 63,
+            "InsertedAt": "2021-04-30T12:32:40.290000",
+            "ProId": 70008730
+        },
+        {
+            "LocId": "4C017K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 35,
+            "Stok": 35,
+            "InsertedAt": "2021-04-30T12:32:40.290000",
+            "ProId": 67438382
+        },
+        {
+            "LocId": "4C053K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 35,
+            "Stok": 35,
+            "InsertedAt": "2021-04-30T12:32:40.293000",
+            "ProId": 67460869
+        },
+        {
+            "LocId": "4C018K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:40.320000",
+            "ProId": 67943962
+        },
+        {
+            "LocId": "4C054K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:40.323000",
+            "ProId": 21025596
+        },
+        {
+            "LocId": "4C019K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:40.323000",
+            "ProId": 67537006
+        },
+        {
+            "LocId": "4C055K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:40.350000",
+            "ProId": 67131353
+        },
+        {
+            "LocId": "4C020K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:40.357000",
+            "ProId": 21025583
+        },
+        {
+            "LocId": "4C056K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 36,
+            "Stok": 36,
+            "InsertedAt": "2021-04-30T12:32:40.357000",
+            "ProId": 68154535
+        },
+        {
+            "LocId": "4C021K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:40.357000",
+            "ProId": 67438385
+        },
+        {
+            "LocId": "4C057K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:40.383000",
+            "ProId": 67460696
+        },
+        {
+            "LocId": "4C022K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:40.383000",
+            "ProId": 21115483
+        },
+        {
+            "LocId": "4C058K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:40.383000",
+            "ProId": 21025585
+        },
+        {
+            "LocId": "4C023K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:40.387000",
+            "ProId": 21025587
+        },
+        {
+            "LocId": "4C059K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:40.413000",
+            "ProId": 21049201
+        },
+        {
+            "LocId": "4C024K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:40.413000",
+            "ProId": 67460267
+        },
+        {
+            "LocId": "4C060K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:40.417000",
+            "ProId": 20230043
+        },
+        {
+            "LocId": "4C025K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:40.417000",
+            "ProId": 70007880
+        },
+        {
+            "LocId": "4C061K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:40.443000",
+            "ProId": 21049505
+        },
+        {
+            "LocId": "4B058K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 28,
+            "Stok": 28,
+            "InsertedAt": "2021-04-30T12:32:40.447000",
+            "ProId": 67809185
+        },
+        {
+            "LocId": "4C062K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:40.447000",
+            "ProId": 70007912
+        },
+        {
+            "LocId": "4C063K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 30,
+            "Stok": 20,
+            "InsertedAt": "2021-04-30T12:32:40.460000",
+            "ProId": 20241638
+        },
+        {
+            "LocId": "4C028K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 24,
+            "Stok": 22,
+            "InsertedAt": "2021-04-30T12:32:40.463000",
+            "ProId": 20241637
+        },
+        {
+            "LocId": "4B060K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 36,
+            "Stok": 36,
+            "InsertedAt": "2021-04-30T12:32:40.463000",
+            "ProId": 68154533
+        },
+        {
+            "LocId": "4C064K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:40.490000",
+            "ProId": 21025597
+        },
+        {
+            "LocId": "4C029K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 35,
+            "Stok": 35,
+            "InsertedAt": "2021-04-30T12:32:40.493000",
+            "ProId": 20254948
+        },
+        {
+            "LocId": "4B061K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:40.493000",
+            "ProId": 21025589
+        },
+        {
+            "LocId": "4B062K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:40.523000",
+            "ProId": 20019295
+        },
+        {
+            "LocId": "4C066K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:40.523000",
+            "ProId": 68201303
+        },
+        {
+            "LocId": "4C032K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:40.527000",
+            "ProId": 21107071
+        },
+        {
+            "LocId": "4C068K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 42,
+            "Stok": 27,
+            "InsertedAt": "2021-04-30T12:32:40.530000",
+            "ProId": 21048430
+        },
+        {
+            "LocId": "4C034K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:40.530000",
+            "ProId": 21025588
+        },
+        {
+            "LocId": "4B068K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:40.530000",
+            "ProId": 70007873
+        },
+        {
+            "LocId": "4C070K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:40.570000",
+            "ProId": 70007872
+        },
+        {
+            "LocId": "4C036K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:40.570000",
+            "ProId": 21025591
+        },
+        {
+            "LocId": "4C072K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:40.573000",
+            "ProId": 21103830
+        },
+        {
+            "LocId": "4B070K1",
+            "LocWeight": 4,
+            "ProWeight": 4,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:40.573000",
+            "ProId": 21025592
+        },
+        {
+            "LocId": "4B001K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:40.587000",
+            "ProId": 20264419
+        },
+        {
+            "LocId": "4B039K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:40.587000",
+            "ProId": 67129110
+        },
+        {
+            "LocId": "4B040K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:40.590000",
+            "ProId": 67129112
+        },
+        {
+            "LocId": "4B002K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:40.617000",
+            "ProId": 67474578
+        },
+        {
+            "LocId": "4B003K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:40.617000",
+            "ProId": 67129112
+        },
+        {
+            "LocId": "4B041K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 45,
+            "Stok": 45,
+            "InsertedAt": "2021-04-30T12:32:40.633000",
+            "ProId": 67780156
+        },
+        {
+            "LocId": "4B004K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 45,
+            "Stok": 45,
+            "InsertedAt": "2021-04-30T12:32:40.633000",
+            "ProId": 67780152
+        },
+        {
+            "LocId": "4B042K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 45,
+            "Stok": 45,
+            "InsertedAt": "2021-04-30T12:32:40.633000",
+            "ProId": 67780156
+        },
+        {
+            "LocId": "4B043K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:40.637000",
+            "ProId": 67129110
+        },
+        {
+            "LocId": "4B005K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:40.680000",
+            "ProId": 20292362
+        },
+        {
+            "LocId": "4B006K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 45,
+            "Stok": 45,
+            "InsertedAt": "2021-04-30T12:32:40.680000",
+            "ProId": 67780152
+        },
+        {
+            "LocId": "4B044K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 20,
+            "Stok": 20,
+            "InsertedAt": "2021-04-30T12:32:40.680000",
+            "ProId": 67622149
+        },
+        {
+            "LocId": "4B007K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:40.683000",
+            "ProId": 67476103
+        },
+        {
+            "LocId": "4B045K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:40.710000",
+            "ProId": 21004809
+        },
+        {
+            "LocId": "4B008K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:40.710000",
+            "ProId": 20292365
+        },
+        {
+            "LocId": "4B046K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:40.713000",
+            "ProId": 67476103
+        },
+        {
+            "LocId": "4B047K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:40.713000",
+            "ProId": 20264032
+        },
+        {
+            "LocId": "4B009K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 40,
+            "Stok": 40,
+            "InsertedAt": "2021-04-30T12:32:40.740000",
+            "ProId": 68226130
+        },
+        {
+            "LocId": "4B048K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:40.743000",
+            "ProId": 67622162
+        },
+        {
+            "LocId": "4B010K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 48,
+            "Stok": 48,
+            "InsertedAt": "2021-04-30T12:32:40.743000",
+            "ProId": 68170017
+        },
+        {
+            "LocId": "4B011K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 20,
+            "Stok": 20,
+            "InsertedAt": "2021-04-30T12:32:40.747000",
+            "ProId": 67622159
+        },
+        {
+            "LocId": "4B049K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 30,
+            "Stok": 30,
+            "InsertedAt": "2021-04-30T12:32:40.773000",
+            "ProId": 20264420
+        },
+        {
+            "LocId": "4B050K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 36,
+            "Stok": 36,
+            "InsertedAt": "2021-04-30T12:32:40.790000",
+            "ProId": 67072457
+        },
+        {
+            "LocId": "4B012K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 36,
+            "Stok": 36,
+            "InsertedAt": "2021-04-30T12:32:40.790000",
+            "ProId": 67634546
+        },
+        {
+            "LocId": "4B051K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 20,
+            "Stok": 20,
+            "InsertedAt": "2021-04-30T12:32:40.790000",
+            "ProId": 67622151
+        },
+        {
+            "LocId": "4B013K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 42,
+            "Stok": 42,
+            "InsertedAt": "2021-04-30T12:32:40.793000",
+            "ProId": 67460270
+        },
+        {
+            "LocId": "4B014K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 40,
+            "Stok": 40,
+            "InsertedAt": "2021-04-30T12:32:40.820000",
+            "ProId": 68226114
+        },
+        {
+            "LocId": "4B052K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 24,
+            "Stok": 24,
+            "InsertedAt": "2021-04-30T12:32:40.820000",
+            "ProId": 68211625
+        },
+        {
+            "LocId": "4B053K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 36,
+            "Stok": 36,
+            "InsertedAt": "2021-04-30T12:32:40.823000",
+            "ProId": 32011111
+        },
+        {
+            "LocId": "4B015K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 36,
+            "Stok": 26,
+            "InsertedAt": "2021-04-30T12:32:40.823000",
+            "ProId": 67072465
+        },
+        {
+            "LocId": "4B054K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 36,
+            "Stok": 36,
+            "InsertedAt": "2021-04-30T12:32:40.850000",
+            "ProId": 67634529
+        },
+        {
+            "LocId": "4B016K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 24,
+            "Stok": 24,
+            "InsertedAt": "2021-04-30T12:32:40.853000",
+            "ProId": 68211623
+        },
+        {
+            "LocId": "4B055K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 45,
+            "Stok": 45,
+            "InsertedAt": "2021-04-30T12:32:40.853000",
+            "ProId": 67785999
+        },
+        {
+            "LocId": "4B017K1",
+            "LocWeight": 5,
+            "ProWeight": 5,
+            "MaxQuan": 54,
+            "Stok": 54,
+            "InsertedAt": "2021-04-30T12:32:40.887000",
+            "ProId": 67786001
+        },
+        {
+            "LocId": "4G052K1",
+            "LocWeight": 1,
+            "ProWeight": 1,
+            "MaxQuan": 140,
+            "Stok": 140,
+            "InsertedAt": "2021-04-30T12:32:38.167000",
+            "ProId": 20254114
+        }
+    ]
+}
