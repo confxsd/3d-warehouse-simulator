@@ -14,6 +14,12 @@ class Manager {
         this.depotInfoId = depotInfoId;
         this.remoteUrl = remoteUrl;
         this.selectedDepotId = null;
+
+        this.selectedFilters = {
+            weight: [],
+            product: [],
+            location: false
+        }
     }
 
     init() {
@@ -71,14 +77,172 @@ class Manager {
             }
         });
 
+        this.handleFilters();
+
         this.prepareFirstValues(layout.DepoDoluluk, "depotInfo");
         this.simulator.init();
 
     }
 
+    filterSwitchWeightCategory(checked) {
+        const container = document.querySelector(`#${this.panelId} .filters_container .weight_category_container`);
+        if (checked) {
+            container.style.display = "block";
+        } else {
+            this.selectedFilters.weight = [];
+            container.style.display = "none";
+        }
+    }
+
+    filterSwitchProductCategory(checked) {
+        const container = document.querySelector(`#${this.panelId} .filters_container .product_category_container`);
+        if (checked) {
+            container.style.display = "block";
+        } else {
+            this.selectedFilters.product = [];
+            container.style.display = "none";
+        }
+    }
+
+    filterConstructOptions(weightCategories, productCategories) {
+        const weightContainer = document.querySelector(`#${this.panelId} .filters_container .weight_category_container fieldset`);
+        const productContainer = document.querySelector(`#${this.panelId} .filters_container .product_category_container fieldset`);
+
+        let id = 0
+        weightCategories.forEach((name) => {
+            const inputElem = document.createElement("input");
+            inputElem.type = "checkbox"
+            inputElem.name = "weight_category_filter"
+            inputElem.id = id
+            inputElem.value = name
+
+            const labelElem = document.createElement("label")
+            labelElem.textContent = name
+            labelElem.htmlFor = id
+
+            inputElem.addEventListener("click", (e) => {
+                if (e.target.checked) {
+                    this.selectedFilters.weight.push(e.target.value)
+                } else {
+                    this.selectedFilters.weight = this.selectedFilters.weight.filter(item => item !== e.target.value);
+                }
+            })
+
+            weightContainer.appendChild(inputElem)
+            weightContainer.appendChild(labelElem)
+            id += 1
+        });
+
+
+
+        id = 0
+        productCategories.forEach((name) => {
+            const inputElem = document.createElement("input");
+            inputElem.type = "checkbox"
+            inputElem.name = "product_category_filter"
+            inputElem.id = id
+            inputElem.value = name
+
+            const labelElem = document.createElement("label")
+            labelElem.textContent = name
+            labelElem.htmlFor = id
+
+            inputElem.addEventListener("click", (e) => {
+                if (e.target.checked) {
+                    this.selectedFilters.product.push(e.target.value)
+                } else {
+                    this.selectedFilters.product = this.selectedFilters.product.filter(item => item !== e.target.value);
+                }
+            })
+
+            const br = document.createElement("br")
+
+            productContainer.appendChild(inputElem)
+            productContainer.appendChild(labelElem)
+            productContainer.appendChild(br)
+            id += 1
+        });
+    }
+
+    async filterLayout() {
+        const whichFilters = [];
+        if (this.selectedFilters.weight.length > 0) whichFilters.push(1);
+        if (this.selectedFilters.product.length > 0) whichFilters.push(2);
+        if (this.selectedFilters.location) whichFilters.push(3);
+
+        const filterRequest = {
+            Depot_Id: this.selectedDepotId,
+            Filters: whichFilters,
+            Product_Weight: this.selectedFilters.weight,
+            Product_Category: this.selectedFilters.product
+        }
+        alert("filtered");
+        console.log(filterRequest);
+    }
+
+    async prepareCategories() {
+        // await this.dataController.getCategories();
+        return {
+            product: [
+                "baharat",
+                "bulyon",
+                "çay",
+                "çorba",
+                "harç",
+                "makarna",
+                "mix",
+                "SosAfterCook",
+                "SosWhileCook",
+                "tatlı"
+            ],
+            weight: [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    }
+
+    async handleFilters() {
+        const categories = await this.prepareCategories();
+
+        this.filterConstructOptions(categories.weight, categories.product)
+
+        const filters = document.querySelectorAll(`#${this.panelId} .filters_container input`);
+        filters.forEach((filter) => {
+            filter.addEventListener("click", (e) => {
+                const item = e.target;
+
+                if (item.id === "weight_category") {
+                    this.filterSwitchWeightCategory(item.checked);
+                }
+                else if (item.id === "product_category") {
+                    this.filterSwitchProductCategory(item.checked);
+                } else if (item.id === "location_weight") {
+                    this.selectedFilters.location = item.checked;
+                }
+            })
+        })
+
+        const btnSubmit = document.querySelector(`#${this.panelId} .filters_container button`);
+        btnSubmit.addEventListener("click", (e) => {
+            const { weight, product, location } = this.selectedFilters
+
+            if (weight.length == 0 && product.length == 0 && !location) {
+                alert("select some filters");
+            } else {
+                console.log(this.selectedFilters);
+                this.filterLayout()
+            }
+        })
+
+    }
+
     async btnRefreshLayout() {
         const layoutData = await this.prepareLayoutData();
-        this.simulator.refreshLayout(layoutData);   
+        this.simulator.refreshLayout(layoutData);
     }
 
     async prepareFirstValues(fillRate, depotInfo) {

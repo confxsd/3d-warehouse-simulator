@@ -63,6 +63,13 @@
             margin-bottom: 16px;
         }
 
+        #Panel #MainOps button {
+            width: 100%;
+            margin: 4px 0;
+            border: none;
+            padding: 8px 0;
+        }
+
 
         #DepotInfo {
             position: absolute;
@@ -133,29 +140,35 @@
         </div>
         <div id="Panel">
             <div id="MainOps">
-                <div>
+                <div class="filters_container">
                     <h4>Filter by </h4>
-                    <div class="align-horizontal">
-                        <p id="filter_pop">Popularity</p>
-                        <p id="filter_wei">Weight</p>
-                        <p>Category</p>
-                        <p>Out of stock</p>
+                    <fieldset class="align-horizontal">
+                        <input type="checkbox" name="filters" id="weight_category" value="weight_category" /><label
+                            for="weight_category">Weight Category</label>
+                        <input type="checkbox" name="filters" id="product_category" value="product_category" /><label
+                            for="product_category">Product Category</label>
+                        <input type="checkbox" name="filters" id="location_weight" value="location_weight"><label
+                            for="location_weight">Location Weight</label>
+                    </fieldset>
+                    <div class="weight_category_container" style="display: none;">
+                        <fieldset>
+                            <legend>Weight Category Options</legend>
+                        </fieldset>
                     </div>
+                    <div class="product_category_container" style="display: none;">
+                        <fieldset>
+                            <legend>Product Category Options</legend>
+                        </fieldset>
+                    </div>
+                    <button>Filter</button>
                 </div>
                 <div>
-                    <h4 id="refresh">Reload View</h4>
-                </div>
-                <div>
-                    <h4>View Orders</h4>
-                </div>
-                <div>
-                    <h4>Start Replenishment</h4>
+                    <h4 id="refresh">Reload Layout</h4>
                 </div>
             </div>
         </div>
         <div id="SimulationContainer"></div>
     </div>
-    <!-- Demo Using gltfFile and data to illustrate use of DataVisual design pattern -->
     <script src="main.js"></script>
 </body>
 
