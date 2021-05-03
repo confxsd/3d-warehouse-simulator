@@ -25,15 +25,13 @@ class DataController {
         }
     }
 
-    async getLayout() {
+    async getLayout(depotId) {
         try {
             const url = `${this.base}/GetLayout`;
             const res = await axios.get(url, {
                 params: {
-                    code: "HAzwypx06J1lLS6FgP2C3luLW3QE/U/iY0UVxHNf0DaXmondvohgIQ=="
-                },
-                data: {
-                    Depot_Id: "02579e13-8d4f-4463-968d-7affe4b9919f"
+                    code: "HAzwypx06J1lLS6FgP2C3luLW3QE/U/iY0UVxHNf0DaXmondvohgIQ==",
+                    Depot_Id: depotId
                 }
             });
             return res.data;
@@ -41,6 +39,22 @@ class DataController {
             console.log(error);
         }
     }
+
+    async getCategories(depotId) {
+        try {
+            const url = `${this.base}/GetCategories`;
+            const res = await axios.get(url, {
+                params: {
+                    code: "DVEIM74Odx9tmHUaTQC9Vw5sn8vh11nUDgKCyaQAEDmZsLyceTjP4g==",
+                    Depot_Id: depotId
+                }
+            });
+            return res.data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
 
     async getDepotInfo() {
         try {
@@ -60,7 +74,6 @@ class DataController {
                     code: "F0aJNaES2qvRS1S6MGECqOk8asL61LkBnzjVgK3eKdOaomF5zyGH4A=="
                 }
             });
-            console.log(res)
             return res.data.info;
         } catch (error) {
             console.log(error);

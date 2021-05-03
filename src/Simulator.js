@@ -28,8 +28,6 @@ const helvetikerFont = require('./assets/helvetiker.json')
 const util = require("./util");
 
 
-
-
 class Simulator {
     constructor({ containerId, data, div }) {
         this.container = document.getElementById(containerId);
@@ -73,7 +71,7 @@ class Simulator {
 
         this.isActionActive = false;
 
-        this.initBoxes();
+        this.initBoxes(this.data);
 
         this.createCorridorTexts();
 
@@ -81,7 +79,8 @@ class Simulator {
     }
 
     createCorridorTexts() {
-        const corridorNames = util.corridorNames(this.data);
+        const corridorNames = util.allCorridorNames();
+
         console.log(corridorNames);
         const font = new Font(helvetikerFont);
 
@@ -111,11 +110,16 @@ class Simulator {
         }
     }
 
-    initBoxes() {
+    refreshLayout(layout) {
+        this.boxGroup.children = [];
+        this.initBoxes(layout);
+    }
+
+    initBoxes(layout) {
         this.boxGroup = new Group();
         this.boxGroup.type = "box";
         // console.log(this.data);
-        for (const item of this.data) {
+        for (const item of layout) {
             this.addToScene(this.boxGroup, item);
         }
 
@@ -254,6 +258,9 @@ class Simulator {
             if (this.isActionActive) return;
 
             if (event.type == "mouseleave") {
+                // this.boxGroup.traverse((box) => {
+                //     box.remove(line);
+                // })
                 tooltip.style.display = "none";
                 return;
             }
@@ -268,6 +275,8 @@ class Simulator {
             );
 
             const displayTooltip = (mouse, item) => {
+                if (item.title === "block") return;
+
                 const x = (mouse.x + 1) / 2 * window.innerWidth;
                 const y = -(mouse.y - 1) / 2 * window.innerHeight;
 
@@ -282,10 +291,29 @@ class Simulator {
                 locWeight.textContent = "loc weight: " + item.locWeight;
             }
 
-            if (intersects[0]) {
-                const item = intersects[0].object;
+            const intersected = intersects[0];
+
+
+            if (intersected) {
+                const item = intersected.object;
+
+                const edges = new EdgesGeometry(item.geometry);
+                const line = new LineSegments(
+                    edges,
+                    new LineBasicMaterial({ color: 0x444444 })
+                );
+                line.type = "hoverbox";
+
+                // this.scene.add(line);
+
                 displayTooltip(mouse, item);
             } else {
+                // this.scene.traverse((obj) => {
+                //     console.log(obj)
+                //     if(obj.type === "hoverbox") {
+                //         this.scene.remove(obj);
+                //     }
+                // })
                 tooltip.style.display = "none";
             }
         }
@@ -300,9 +328,13 @@ class Simulator {
     }
 
     addToScene(group, item) {
-        const itemSize = util.map(item.stock, 0, 300, 0, 1);
+        let itemSize = 1;
 
-        const color = new Color(util.getColorValue(item.locWeight, itemSize));
+        if (item.id !== "block") {
+            itemSize = util.map(item.stock, 0, 300, 0, 1);
+        }
+
+        const color = new Color(util.getColorValue(item.locWeight, itemSize, item.id));
         const material = new MeshBasicMaterial({
             // color: Math.floor(Math.random() * 16777215),
             color: color,
@@ -327,16 +359,16 @@ class Simulator {
         // const edges = new EdgesGeometry(geometry);
         // const line = new LineSegments(
         //     edges,
-        //     new LineBasicMaterial({ color: 0x85de95 })
+        //     new LineBasicMaterial({ color: 0x999999 })
         // );
 
         const box = new Mesh(geometry, material);
         box.title = item.id;
         box.stock = item.stock;
         box.locWeight = item.locWeight;
+        // box.add(line);
 
         group.add(box);
-        // this.scene.add(line);
     }
 }
 

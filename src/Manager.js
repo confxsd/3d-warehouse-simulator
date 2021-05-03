@@ -47,7 +47,6 @@ class Manager {
 
     async prepareLayoutData() {
         // const layout = await this.dataController.getLayout(this.selectedDepotId);
-
         return util.toGridLayout(layout.info);
     }
 
@@ -68,14 +67,18 @@ class Manager {
         this.panel.addEventListener('click', (e) => {
             console.log(e.target.id);
             if (e.target.id === 'refresh') {
-                // this.refresh();
-                alert('refresh clicked');
+                this.btnRefreshLayout();
             }
         });
 
         this.prepareFirstValues(layout.DepoDoluluk, "depotInfo");
         this.simulator.init();
 
+    }
+
+    async btnRefreshLayout() {
+        const layoutData = await this.prepareLayoutData();
+        this.simulator.refreshLayout(layoutData);   
     }
 
     async prepareFirstValues(fillRate, depotInfo) {
