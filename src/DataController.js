@@ -73,6 +73,27 @@ class DataController {
         }
     }
 
+    async uploadNewLayout(depotId, form) {
+        try {
+            const url = `${this.base}/InsertLayout`;
+            let data = new FormData(form)
+            const res = await axios({
+                method: 'post',
+                url,
+                data,
+                params: {
+                    code: "6mwa4yhvCbwyc6UONSZAUqkwv4O2v4C0/rT5HAOgTvbku5a/WtRicA==",
+                    Depot_Id: depotId
+                }
+            });
+            return res.data;
+            // return "res.data";
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
 
     async getDepotInfo() {
         try {

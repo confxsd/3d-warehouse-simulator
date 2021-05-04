@@ -58,7 +58,6 @@ class Manager {
     }
 
     async initSimulation() {
-        this.panel = document.getElementById(this.panelId);
         this.simulationScene = document.getElementById(this.simulationSceneId);
         this.simulationScene.style.display = "block";
         this.depotInfoContainer = document.getElementById(this.depotInfoId);
@@ -72,19 +71,37 @@ class Manager {
             getHistory: this.getHistory,
         });
 
-        this.panel.addEventListener('click', (e) => {
-            console.log(e.target.id);
-            if (e.target.id === 'refresh') {
-                this.btnRefreshLayout();
-            }
-        });
-
+        this.handlePanel();
         this.handleFilters();
+        this.handleLayoutUpload();
+
 
         this.prepareFirstValues(this.fillRate, "depotInfo");
         this.simulator.init();
 
     }
+
+
+    handlePanel() {
+        const panel = document.getElementById(this.panelId);
+        panel.addEventListener('click', (e) => {
+            console.log(e.target.id);
+            if (e.target.id === 'Refresh') {
+                this.btnRefreshLayout();
+            }
+        });
+    }
+
+    handleLayoutUpload() {
+        const form = document.querySelector('#UploadLayout form');
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            // const uploadedLayout = await this.dataController.uploadNewLayout(this.selectedDepotId, form);
+            // console.log(uploadedLayout);
+            alert("Layout updated");
+        })
+    }
+
 
     filterSwitchWeightCategory(checked) {
         const container = document.querySelector(`#${this.panelId} .filters_container .weight_category_container`);
