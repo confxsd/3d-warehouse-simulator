@@ -18,9 +18,57 @@
             margin: 0;
         }
 
+        a {
+            cursor: pointer;
+        }
+
         h4 {
             font-size: 14px;
             margin-bottom: 6px;
+        }
+
+        .popup_modal {
+            height: 365px;
+            width: 650px;
+            background-color: #fff;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 16px;
+            opacity: 1;
+            transition: all 300ms ease-in-out;
+            z-index: 1011;
+        }
+
+        .closed {
+            display: none;
+            opacity: 0;
+        }
+
+        .open {
+            display: block;
+        }
+
+        .popup_modal .container .close {
+            position: absolute;
+            right: 12px;
+            font-weight: 600;
+        }
+
+        .popup_modal .table_container {
+            overflow-y: scroll;
+            width: 610px;
+            height: 350px;
+        }
+
+        .popup_modal table th, td {
+            padding: 0 4px 4px 0;
+            text-align: left;
+        }
+
+        .popup_modal table > tr:nth-child(2n) {
+            background: #efefef;
         }
 
         #Title {
@@ -40,6 +88,19 @@
             height: 100vh;
             position: absolute;
             z-index: 1;
+        }
+
+
+        #Actionbar p {
+            padding: 6px 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        #Actionbar p:hover {
+            color: #1e3fe6;
         }
 
         #Panel {
@@ -92,6 +153,8 @@
 
         #SceneSimulation {
             display: none;
+            width: 100vw;
+            height: 100vh;
         }
 
         #DepotInfo .fill_rate {
@@ -121,6 +184,14 @@
 </head>
 
 <body>
+    <div id="LocHistoryPopup" class="popup_modal closed">
+        <div class="container">
+            <a class="close">Close</a>
+            <div class="table_container">
+
+            </div>
+        </div>
+    </div>
     <div id="SceneDepotSelection">
         <div>
             <h2>Please select the depot</h2>

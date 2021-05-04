@@ -29,7 +29,7 @@ const util = require("./util");
 
 
 class Simulator {
-    constructor({ containerId, data, div }) {
+    constructor({ containerId, data, div, getHistory }) {
         this.container = document.getElementById(containerId);
         this.renderer = new WebGLRenderer();
 
@@ -40,6 +40,7 @@ class Simulator {
         this.data = data;
         this.size = div;
         this.blockSize = this.size / this.div;
+        this.getHistory = getHistory;
 
         this.font = null;
     }
@@ -137,14 +138,19 @@ class Simulator {
         add.classList.add("add");
         add.textContent = "Add";
 
-        const remove = document.createElement("remove");
+        const remove = document.createElement("p");
         remove.classList.add("remove");
         remove.textContent = "Remove";
+
+        const history = document.createElement("p");
+        history.classList.add("history");
+        history.textContent = "History";
 
         const actionbar = document.createElement("div");
         actionbar.id = "Actionbar";
         actionbar.appendChild(add);
         actionbar.appendChild(remove);
+        actionbar.appendChild(history);
 
         this.container.appendChild(actionbar);
 
@@ -156,8 +162,8 @@ class Simulator {
         actionbar.style.padding = "4px 8px 12px 8px";
         actionbar.style.border = "1px solid #666";
         actionbar.style.display = "flex";
-        actionbar.style.width = "90px";
         actionbar.style.justifyContent = "space-between";
+        actionbar.style.flexDirection = "column";
 
         const mouse = new Vector2();
         const raycaster = new Raycaster();
@@ -191,12 +197,17 @@ class Simulator {
                 actionbar.style.left = `${x + 16}px`;
                 actionbar.style.display = "flex";
 
-                const handleActions = (event) => {
+                const handleActions = async (event) => {
                     if (event.target.classList.contains("add")) {
                         alert("cannot add yet")
                         hideActionbar();
                     } else if (event.target.classList.contains("remove")) {
                         alert("cannot remove yet");
+                        hideActionbar();
+                    } else if (event.target.classList.contains("history")) {
+                        const history = await this.getHistory(item.title, "2019-01-01", "2021-04-30");
+                        console.log(history);
+                        this.showLocHistory(history);
                         hideActionbar();
                     }
                 }
@@ -223,6 +234,48 @@ class Simulator {
         this.renderer.domElement.addEventListener("click", onMouse, false);
         this.renderer.domElement.addEventListener("contextmenu", onMouse, false);
 
+    }
+
+    showLocHistory(history) {
+        const popup = document.getElementById("LocHistoryPopup");
+        const closeBtn = document.querySelector("#LocHistoryPopup .close");
+        const tableContainer = document.querySelector("#LocHistoryPopup .table_container")
+        popup.classList.remove("closed");
+
+        const historyListElem = this.constructHistoryTable(history);
+        tableContainer.appendChild(historyListElem);
+
+        closeBtn.addEventListener("click", (e) => {
+            tableContainer.textContent = "";
+            popup.classList.add("closed");
+        });
+    }
+
+    constructHistoryTable(history) {
+        const table = document.createElement("table");
+
+        // header
+        const tr = document.createElement("tr");
+        Object.keys(history[0]).forEach((val) => {
+            const th = document.createElement("th");
+            th.textContent = val;
+            tr.appendChild(th);
+        })
+        table.appendChild(tr);
+
+        // rest of the table
+        history.forEach(item => {
+            const tr = document.createElement("tr");
+
+            Object.keys(item).forEach(val => {
+                const td = document.createElement("td");
+                td.textContent = item[val];
+                tr.appendChild(td);
+            });
+            table.appendChild(tr);
+        });
+
+        return table;
     }
 
     createTooltip() {

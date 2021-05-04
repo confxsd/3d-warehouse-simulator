@@ -18,6 +18,8 @@ class Manager {
             product: [],
             location: false
         }
+
+        this.getHistory = this.getHistory.bind(this);
     }
 
     init() {
@@ -66,7 +68,8 @@ class Manager {
         this.simulator = new Simulator({
             data: layoutData,
             containerId: this.simulatorId,
-            div: 39
+            div: 39,
+            getHistory: this.getHistory,
         });
 
         this.panel.addEventListener('click', (e) => {
@@ -246,6 +249,11 @@ class Manager {
 
         depotIdBox.textContent = `${depotInfo.id}`;
         depotNameBox.textContent = `${depotInfo.name}`;
+    }
+
+    async getHistory(loc, startDate, endDate) {
+        const history = await this.dataController.getLocHistory(this.selectedDepotId, loc, startDate, endDate);
+        return history;
     }
 
 }

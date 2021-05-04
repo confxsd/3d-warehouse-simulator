@@ -55,6 +55,24 @@ class DataController {
         }
     }
 
+    async getLocHistory(depotId, loc, startDate, endDate) {
+        try {
+            const url = `${this.base}/GetLocHistory`;
+            const res = await axios.get(url, {
+                params: {
+                    code: "oAYBeb0JJQr1fDBA9SkauwGsQA7hNNSOnbtipjyTxNnrY09lgmpxKw==",
+                    Depot_Id: depotId,
+                    Location: loc,
+                    "Date-LowerBound": startDate,
+                    "Date-UpperBound": endDate
+                }
+            });
+            return res.data.info;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
 
     async getDepotInfo() {
         try {
