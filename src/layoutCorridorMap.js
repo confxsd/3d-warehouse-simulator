@@ -20,13 +20,13 @@ module.exports = layoutCorridorMap = {
     },
     right: {
       range: [39, 72],
-      blocks: [51, 63]
+      blocks: [52, 64]
     }
   },
   D: {
     left: {
       range: [1, 34],
-      blocks: [13, 26]
+      blocks: [14, 27]
     },
     right: {
       range: [35, 72]
@@ -54,7 +54,7 @@ module.exports = layoutCorridorMap = {
     },
     right: {
       range: [39, 72],
-      blocks: [51, 63]
+      blocks: [52, 64]
     }
   },
   H: {

@@ -1,8 +1,6 @@
 import Simulator from "./Simulator";
 import DataController from './DataController';
-import data from "./data.json";
 const util = require("./util")
-const layout = require("../layout.json")
 
 
 class Manager {
@@ -52,7 +50,8 @@ class Manager {
     }
 
     async prepareLayoutData() {
-        // const layout = await this.dataController.getLayout(this.selectedDepotId);
+        const layout = await this.dataController.getLayout(this.selectedDepotId);
+        this.fillRate = layout.DepoDoluluk;
         return util.toGridLayout(layout.info);
     }
 
@@ -79,7 +78,7 @@ class Manager {
 
         this.handleFilters();
 
-        this.prepareFirstValues(layout.DepoDoluluk, "depotInfo");
+        this.prepareFirstValues(this.fillRate, "depotInfo");
         this.simulator.init();
 
     }
@@ -181,33 +180,16 @@ class Manager {
     }
 
     async prepareCategories() {
-        // await this.dataController.getCategories();
+        const categories = await this.dataController.getCategories(this.selectedDepotId);
         return {
-            product: [
-                "baharat",
-                "bulyon",
-                "çay",
-                "çorba",
-                "harç",
-                "makarna",
-                "mix",
-                "SosAfterCook",
-                "SosWhileCook",
-                "tatlı"
-            ],
-            weight: [
-                1,
-                2,
-                3,
-                4,
-                5
-            ]
+            product: categories.Categories,
+            weight: categories.Weigths
         }
     }
 
     async handleFilters() {
         const categories = await this.prepareCategories();
-
+        console.log(categories)
         this.filterConstructOptions(categories.weight, categories.product)
 
         const filters = document.querySelectorAll(`#${this.panelId} .filters_container input`);
