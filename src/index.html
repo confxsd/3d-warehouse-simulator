@@ -27,6 +27,10 @@
             margin-bottom: 6px;
         }
 
+        fieldset {
+            border: 1px solid #aaa;
+        }
+
         .popup_modal {
             height: 365px;
             width: 650px;
@@ -62,12 +66,13 @@
             height: 350px;
         }
 
-        .popup_modal table th, td {
+        .popup_modal table th,
+        td {
             padding: 0 4px 4px 0;
             text-align: left;
         }
 
-        .popup_modal table > tr:nth-child(2n) {
+        .popup_modal table>tr:nth-child(2n) {
             background: #efefef;
         }
 
@@ -90,9 +95,25 @@
             z-index: 1;
         }
 
+        #MainOps fieldset.filter_types {
+            border: none;
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+        #Actionbar {
+            position: absolute;
+            top: -999px;
+            left: -999px;
+            display: none;
+            background: white;
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+        }
 
         #Actionbar p {
-            padding: 6px 8px;
+            padding: 8px;
             font-weight: 600;
             font-size: 14px;
             cursor: pointer;
@@ -101,6 +122,37 @@
 
         #Actionbar p:hover {
             color: #1e3fe6;
+        }
+
+        #Actionbar .options_list {
+            border: 1px solid #666;
+            padding: 4px 8px 8px 8px;
+        }
+
+        #Actionbar .options_params {
+            display: none;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: column;
+            border: 1px solid #666;
+            padding: 8px;
+            border-left: none;
+            width: 140px;
+        }
+
+        #Actionbar .options_params input {
+            box-sizing: border-box;
+            width: 100%;
+            border-radius: 0;
+            border: 1px solid #ccc;
+            padding: 4px;
+            margin-bottom: 8px;
+        }
+
+        #Actionbar button {
+            width: 100%;
+            border: none;
+            padding: 6px 0;
         }
 
         #Panel {
@@ -113,7 +165,6 @@
 
         #Panel #MainOps {
             background: white;
-            padding: 24px;
             margin: 12px 12px 0 0;
             width: 240px;
             display: flex;
@@ -121,7 +172,11 @@
         }
 
         #Panel #MainOps>div {
-            margin-bottom: 16px;
+            padding: 12px 24px;
+        }
+
+        #Panel #MainOps>div+div {
+            border-top: 1px solid #ccc;
         }
 
         #Panel #MainOps button {
@@ -217,7 +272,7 @@
             <div id="MainOps">
                 <div class="filters_container">
                     <h4>Filter by </h4>
-                    <fieldset class="align-horizontal">
+                    <fieldset class="filter_types align-horizontal">
                         <input type="checkbox" name="filters" id="weight_category" value="weight_category" /><label
                             for="weight_category">Weight Category</label>
                         <input type="checkbox" name="filters" id="product_category" value="product_category" /><label
@@ -238,7 +293,14 @@
                     <button>Filter</button>
                 </div>
                 <div>
-                    <h4 id="refresh">Reload Layout</h4>
+                    <button id="Refresh">Reload Layout</button>
+                </div>
+                <div id="UploadLayout">
+                    <h4>Upload Layout</h4>
+                    <form>
+                        <input type="file" accept=".json" name="layout" id="layout">
+                        <button id="BtnUploadLayout" href="#">Upload</button>
+                    </form>
                 </div>
             </div>
         </div>

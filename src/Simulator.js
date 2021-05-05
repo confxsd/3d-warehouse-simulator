@@ -134,6 +134,12 @@ class Simulator {
     }
 
     createActionbar() {
+        const optionsList = document.createElement("div");
+        optionsList.className = "options_list"
+
+        const optionsParams = document.createElement("div");
+        optionsParams.className = "options_params"
+
         const add = document.createElement("p");
         add.classList.add("add");
         add.textContent = "Add";
@@ -148,22 +154,24 @@ class Simulator {
 
         const actionbar = document.createElement("div");
         actionbar.id = "Actionbar";
-        actionbar.appendChild(add);
-        actionbar.appendChild(remove);
-        actionbar.appendChild(history);
+
+        optionsList.appendChild(add);
+        optionsList.appendChild(remove);
+        optionsList.appendChild(history);
+
+        actionbar.appendChild(optionsList);
+        actionbar.appendChild(optionsParams);
 
         this.container.appendChild(actionbar);
 
-        actionbar.style.position = "absolute";
-        actionbar.style.top = `${-999}px`;
-        actionbar.style.left = `${-999}px`;
-        actionbar.style.display = "none";
-        actionbar.style.background = "white";
-        actionbar.style.padding = "4px 8px 12px 8px";
-        actionbar.style.border = "1px solid #666";
-        actionbar.style.display = "flex";
-        actionbar.style.justifyContent = "space-between";
-        actionbar.style.flexDirection = "column";
+        // actionbar.style.position = "absolute";
+        // actionbar.style.top = `${-999}px`;
+        // actionbar.style.left = `${-999}px`;
+        // actionbar.style.display = "none";
+        // actionbar.style.background = "white";
+        // actionbar.style.display = "flex";
+        // actionbar.style.justifyContent = "space-between";
+        // actionbar.style.flexDirection = "row";
 
         const mouse = new Vector2();
         const raycaster = new Raycaster();
@@ -171,6 +179,8 @@ class Simulator {
         const onMouse = (event) => {
             const hideActionbar = () => {
                 this.isActionActive = false;
+                optionsParams.innerHTML = ""
+                optionsParams.style.display = "none"
                 actionbar.style.display = "none";
             }
 
@@ -187,6 +197,53 @@ class Simulator {
             const intersects = raycaster.intersectObjects(
                 this.boxGroup.children
             );
+
+            const displayHistoryOptions = (title, cb) => {
+                optionsParams.innerHTML = ""
+                optionsParams.style.display = "flex";
+
+                const itemTitle = document.createElement("p");
+                itemTitle.textContent = title;
+
+                const inputStart = document.createElement("input");
+                inputStart.name = "input_start_date"
+                inputStart.placeholder = "Start (YYYY-MM-DD)"
+
+                const inputEnd = document.createElement("input");
+                inputEnd.name = "input_end_date"
+                inputEnd.placeholder = "End (YYYY-MM-DD)"
+
+                const btnGet = document.createElement("button")
+                btnGet.textContent = "Get"
+
+                btnGet.addEventListener("click", (e) => {
+                    const startDateStr = inputStart.value;
+                    const endDateStr = inputEnd.value;
+
+                    cb(startDateStr, endDateStr);
+                })
+
+                optionsParams.appendChild(itemTitle);
+                optionsParams.appendChild(inputStart);
+                optionsParams.appendChild(inputEnd);
+                optionsParams.appendChild(btnGet);
+            }
+
+            const displayStockUpdateOptions = (type, item) => {
+                optionsParams.innerHTML = ""
+                const container = document.createElement("div");
+
+                const inputStart = document.createElement("input");
+                inputStart.name = "input_start_date"
+
+                const inputEnd = document.createElement("input");
+                inputEnd.name = "input_end_date"
+
+                container.appendChild(inputStart);
+                container.appendChild(inputEnd);
+
+                optionsParams.appendChild(container)
+            }
 
             const displayActionbar = (mouse, item) => {
                 this.isActionActive = true;
@@ -205,10 +262,36 @@ class Simulator {
                         alert("cannot remove yet");
                         hideActionbar();
                     } else if (event.target.classList.contains("history")) {
-                        const history = await this.getHistory(item.title, "2019-01-01", "2021-04-30");
-                        console.log(history);
-                        this.showLocHistory(history);
-                        hideActionbar();
+                        displayHistoryOptions(item.title, async (startDateStr, endDateStr) => {
+
+                            const pattern = /^(\d{4})(\/|-)(\d{1,2})(\/|-)(\d{1,2})$/
+
+                            const startDateMatch = startDateStr.match(pattern);
+                            const endDateMatch = endDateStr.match(pattern);
+
+                            if (!startDateMatch || !endDateMatch) {
+                                alert("Invalid dates")
+
+                                // hideActionbar();
+                                return;
+                            }
+
+                            const endDate = new Date(endDateStr);
+                            if (endDate - new Date() >= 0) {
+                                alert("End date cannot exceed today");
+                                // hideActionbar();
+                                return;
+                            }
+
+
+
+                            const history = await this.getHistory(item.title, startDateStr, endDateStr);
+                            console.log(startDateStr, endDateStr);
+                            console.log(history);
+                            this.showLocHistory(history);
+                            hideActionbar();
+                        })
+
                     }
                 }
 
@@ -228,6 +311,7 @@ class Simulator {
                 displayActionbar(mouse, item);
             } else {
                 hideActionbar();
+
             }
         }
 
