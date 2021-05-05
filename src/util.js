@@ -150,11 +150,11 @@ const toGridLayout = (layout) => {
 }
 
 const colorMap = [
-    'hsl(30, 60%, X%)',
-    'hsl(60, 60%, X%)',
-    'hsl(90, 60%, X%)',
-    'hsl(120, 60%, X%)',
-    'hsl(150, 60%, X%)',
+    'hsl(60, 65%, X%)',
+    'hsl(120, 65%, X%)',
+    'hsl(180, 65%, X%)',
+    'hsl(220, 65%, X%)',
+    'hsl(350, 65%, X%)',
 ]
 
 const getColorValue = (id, stockRatio, type) => {
@@ -162,7 +162,7 @@ const getColorValue = (id, stockRatio, type) => {
         return 'rgb(100,100,100)';
     } else {
         let color = colorMap[id - 1];
-        let colorRatio = map(1 - stockRatio, 0, 1, 30, 66);
+        let colorRatio = map(1 - stockRatio, 0, 1, 25, 60);
         return color.replace('X', Math.floor(colorRatio));
     }
 }
