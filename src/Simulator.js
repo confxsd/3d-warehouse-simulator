@@ -522,18 +522,42 @@ class Simulator {
   }
 
   addToScene(group, item) {
-    let itemSize = 1;
+    let itemSize;
+    let itemType;
 
-    if (item.id !== "block") {
+    if (item.id === "block") {
+      itemType = "block"
+    } else if (item.locWeight === -1) {
+      itemType = "empty"
+    } else {
+      itemType = "standart"
+    }
+
+    if (itemType === "block") {
+      itemSize = 1;
+    } else if (itemType === "empty") {
+      itemSize = 1;
+    } else {
       itemSize = util.map(item.stock, 0, 300, 0, 1);
     }
 
     const color = new Color(util.getColorValue(item.locWeight, itemSize, item.id));
-    const material = new MeshBasicMaterial({
-      // color: Math.floor(Math.random() * 16777215),
-      color: color,
-      opacity: 0.9,
-    });
+
+    let material;
+    if (itemType === "empty") {
+      material = new MeshBasicMaterial({
+        // color: Math.floor(Math.random() * 16777215),
+        color: color,
+        opacity: 0.5,
+        transparent: true
+      });
+    } else {
+      material = new MeshBasicMaterial({
+        // color: Math.floor(Math.random() * 16777215),
+        color: color,
+        opacity: 1
+      });
+    }
 
     material.needsUpdate = true;
 

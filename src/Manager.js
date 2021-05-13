@@ -64,6 +64,7 @@ class Manager {
     this.depotInfoContainer = document.getElementById(this.depotInfoId);
 
     const layoutData = await this.prepareLayoutData();
+    console.log(layoutData)
 
     this.simulator = new Simulator({
       data: layoutData,

@@ -105,7 +105,7 @@ const fillRestOfLayout = (layout) => {
                     x: corridorDist * 4,
                     z: order + i
                 }
-                layout.push(block)   
+                layout.push(block)
             }
         }
 
@@ -125,7 +125,7 @@ const fillRestOfLayout = (layout) => {
         }
     });
 
-    return layout;
+    return fillEmptySlots(layout);
 }
 
 const toGridLayout = (layout) => {
@@ -149,6 +149,73 @@ const toGridLayout = (layout) => {
     return fillRestOfLayout(layoutMapped);
 }
 
+const isLocEmpty = (layout, corr, order) => {
+    const locId = toLocationId(corr, order);
+    const point = locToGridPoint(locId);
+
+
+    for (let i = 0; i < layout.length; i++) {
+        const loc = layout[i];
+
+        if (loc.x === point.x && loc.z === point.y) return false;
+    }
+
+    return true;
+}
+
+const toLocationId = (corr, order) => {
+    const orderPadded = String(order).padStart(3, '0');
+    return `4${corr}${orderPadded}K1`;
+}
+
+const fillEmptySlots = (layout) => {
+    let empties = []
+    Object.keys(LAYOUT_CORRIDOR_MAP).forEach((corrName) => {
+        const corr = LAYOUT_CORRIDOR_MAP[corrName];
+        if (corr.left) {
+            for (let i = corr.left.range[0]; i <= corr.left.range[1]; i++) {
+                if (corr.left.blocks && corr.left.blocks.indexOf(i) !== -1) continue;
+                if (isLocEmpty(layout, corrName, i)) {
+                    empties.push({
+                        corrName,
+                        i
+                    })
+                }
+            }
+        }
+        if (corr.right) {
+            for (let i = corr.right.range[0]; i <= corr.right.range[1]; i++) {
+                if (corr.right.blocks && corr.right.blocks.indexOf(i) !== -1) continue;
+                if (isLocEmpty(layout, corrName, i)) {
+                    empties.push({
+                        corrName,
+                        i
+                    })
+                }
+            }
+        }
+    })
+
+
+    empties.forEach((e) => {
+        const locId = toLocationId(e.corrName, e.i);
+        const point = locToGridPoint(locId);
+        layout.push({
+            x: point.x,
+            z: point.y,
+            id: locId,
+            stock: 0,
+            maxQuan: 0,
+            locWeight: -1,
+            proWeight: null,
+            insertedAt: null,
+            proId: null
+        });
+    })
+
+    return layout;
+}
+
 const colorMap = [
     'hsl(60, 65%, X%)',
     'hsl(120, 65%, X%)',
@@ -160,6 +227,8 @@ const colorMap = [
 const getColorValue = (id, stockRatio, type) => {
     if (type === "block") {
         return 'rgb(100,100,100)';
+    } else if(id === -1) {
+        return 'rgb(255, 255, 255)'
     } else {
         let color = colorMap[id - 1];
         let colorRatio = map(1 - stockRatio, 0, 1, 25, 60);
