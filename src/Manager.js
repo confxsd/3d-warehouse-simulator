@@ -125,12 +125,73 @@ class Manager {
     }
   }
 
-  filterConstructOptions(weightCategories, productCategories) {
+  updateFilterOptions(type) {
+    const weightOptions = document.querySelectorAll(`#${this.panelId} .filters_container .weight_category_container fieldset input`);
+    const productOptions = document.querySelectorAll(`#${this.panelId} .filters_container .product_category_container fieldset input`);
+
+    if (type === "weight") {
+      if (this.selectedFilters.weight.length === 0) {
+        for (let i = 0; i < productOptions.length; i++) {
+          const op = productOptions[i]; op.disabled = false;
+        }
+      } else {
+        let enabledProductOptions = new Set();
+        this.selectedFilters.weight.forEach((id) => {
+          console.log(this.allCategories.weight[String(id + 1)])
+          this.allCategories.weight[String(id + 1)].forEach(enabledProductOptions.add, enabledProductOptions);
+        });
+
+        for (let i = 0; i < productOptions.length; i++) {
+          const op = productOptions[i]; 
+          op.disabled = true;
+        }
+
+        enabledProductOptions.forEach((name) => {
+          const op = document.querySelector(`#${this.panelId} .filters_container .product_category_container fieldset input[value=${name}]`);
+          op.disabled = false;
+        })
+
+        console.log(enabledProductOptions)
+      }
+
+    }
+    else if (type === "product") {
+      if (this.selectedFilters.product.length === 0) {
+        for (let i = 0; i < weightOptions.length; i++) {
+          const op = weightOptions[i]; 
+          op.disabled = false;
+        }
+
+      } else {
+        let enabledWeightOptions = new Set();
+        this.selectedFilters.product.forEach((name) => {
+          this.allCategories.product[name].forEach(enabledWeightOptions.add, enabledWeightOptions);
+        });
+
+        for (let i = 0; i < weightOptions.length; i++) {
+          const op = weightOptions[i]; 
+          op.disabled = true;
+        }
+
+        enabledWeightOptions.forEach((id) => {
+          const op = document.querySelectorAll(`#${this.panelId} .filters_container .weight_category_container fieldset input`)[id - 1];
+          op.disabled = false;
+        })
+
+        console.log(enabledWeightOptions)
+      }
+    }
+  }
+
+  filterConstructOptions() {
+    const weightCategories = this.allCategories.weight;
+    const productCategories = this.allCategories.product;
+
     const weightContainer = document.querySelector(`#${this.panelId} .filters_container .weight_category_container fieldset`);
     const productContainer = document.querySelector(`#${this.panelId} .filters_container .product_category_container fieldset`);
 
     let id = 0
-    weightCategories.forEach((name) => {
+    Object.keys(weightCategories).forEach((name) => {
       const inputElem = document.createElement("input");
       inputElem.type = "checkbox"
       inputElem.name = "weight_category_filter"
@@ -143,10 +204,11 @@ class Manager {
 
       inputElem.addEventListener("click", (e) => {
         if (e.target.checked) {
-          this.selectedFilters.weight.push(e.target.value)
+          this.selectedFilters.weight.push(parseInt(e.target.id))
         } else {
-          this.selectedFilters.weight = this.selectedFilters.weight.filter(item => item !== e.target.value);
+          this.selectedFilters.weight = this.selectedFilters.weight.filter(item => item !== parseInt(e.target.id));
         }
+        this.updateFilterOptions("weight")
       })
 
       weightContainer.appendChild(inputElem)
@@ -157,7 +219,7 @@ class Manager {
 
 
     id = 0
-    productCategories.forEach((name) => {
+    Object.keys(productCategories).forEach((name) => {
       const inputElem = document.createElement("input");
       inputElem.type = "checkbox"
       inputElem.name = "product_category_filter"
@@ -174,6 +236,7 @@ class Manager {
         } else {
           this.selectedFilters.product = this.selectedFilters.product.filter(item => item !== e.target.value);
         }
+        this.updateFilterOptions("product")
       })
 
       const br = document.createElement("br")
@@ -210,9 +273,8 @@ class Manager {
   }
 
   async handleFilters() {
-    const categories = await this.prepareCategories();
-    console.log(categories)
-    this.filterConstructOptions(categories.weight, categories.product)
+    this.allCategories = await this.prepareCategories();
+    this.filterConstructOptions();
 
     const filters = document.querySelectorAll(`#${this.panelId} .filters_container input`);
     filters.forEach((filter) => {
