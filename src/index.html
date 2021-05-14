@@ -46,7 +46,7 @@
         }
 
         .closed {
-            display: none;
+            display: none !important;
             opacity: 0;
         }
 
@@ -239,10 +239,32 @@
         #SceneDepotSelection ul li {
             cursor: pointer;
         }
+
+        #Loading {
+            z-index: 9;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            position: absolute;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #Loading p {
+            background: white;
+            width: 240px;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #333;
+            font-size: 14px;
+        }
     </style>
 </head>
 
 <body>
+
     <div id="LocHistoryPopup" class="popup_modal closed">
         <div class="container">
             <a class="close">Close</a>
@@ -260,6 +282,9 @@
         </div>
     </div>
     <div id="SceneSimulation">
+        <div id="Loading" class="closed">
+            <p>Loading...</p>
+        </div>
         <div id="Title">
             <h3>Warehouse Simulation</h3>
         </div>

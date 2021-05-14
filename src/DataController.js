@@ -34,7 +34,10 @@ class DataController {
           Depot_Id: depotId
         }
       });
-      return res.data;
+      return {
+        fillRate: res.data.DepoDoluluk,
+        data: res.data.info
+      }
     } catch (error) {
       console.log(error);
     }
@@ -108,6 +111,27 @@ class DataController {
       return res.data;
       // return "res.data";
 
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async filterLayout(depotId, filters, weight_filters, product_filters) {
+    try {
+      const url = `${this.base}/PlacementFilter`;
+      const res = await axios.get(url, {
+        params: {
+          code: "R6RlRGdvkT8kY/ztnaBWwo0ZI9l3knvctkcBY7cRBDKSCIAwkjYaIw==",
+          Depot_Id: depotId,
+          Filters: filters.join(","),
+          Product_Category: product_filters ? product_filters.join(",") : "",
+          Product_Weight: weight_filters ? weight_filters.join(",") : ""
+        }
+      });
+      return {
+        fillRate: res.data.DepoDoluluk,
+        data: res.data.Info
+      }
     } catch (error) {
       console.log(error);
     }

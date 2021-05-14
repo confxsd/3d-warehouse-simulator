@@ -536,7 +536,7 @@ class Simulator {
     if (itemType === "block") {
       itemSize = 1;
     } else if (itemType === "empty") {
-      itemSize = 1;
+      itemSize = 0.5;
     } else {
       itemSize = util.map(item.stock, 0, 300, 0, 1);
     }

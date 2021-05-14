@@ -128,23 +128,42 @@ const fillRestOfLayout = (layout) => {
     return fillEmptySlots(layout);
 }
 
-const toGridLayout = (layout) => {
+const toGridLayout = (layout, type) => {
     // layoutSorted = layout.sort(layoutSorter)
-    const layoutMapped = layout.map(loc => {
-        const point = locToGridPoint(loc.LocId);
-        return {
-            id: loc.LocId,
-            x: point.x,
-            z: point.y,
-            stock: loc.Stok,
-            locWeight: loc.LocWeight,
-            proWeight: loc.ProWeight,
-            maxQuan: loc.MaxQuan,
-            stock: loc.Stok,
-            insertedAt: loc.InsertedAt,
-            proId: loc.ProId
-        }
-    });
+    let layoutMapped;
+    if (type == "get") {
+        layoutMapped = layout.map(loc => {
+            const point = locToGridPoint(loc.LocId);
+            return {
+                id: loc.LocId,
+                x: point.x,
+                z: point.y,
+                stock: loc.Stok,
+                locWeight: loc.LocWeight,
+                proWeight: loc.ProWeight,
+                maxQuan: loc.MaxQuan,
+                insertedAt: loc.InsertedAt,
+                proId: loc.ProId
+            }
+        });
+    } else if (type == "filter") {
+        layoutMapped = layout.map(loc => {
+            const point = locToGridPoint(loc.Lokasyon);
+            return {
+                id: loc.Lokasyon,
+                x: point.x,
+                z: point.y,
+                stock: loc["Koli Miktari"],
+                locWeight: loc["Lokasyon Agirlik Grubu"],
+                proWeight: loc["Kategori"],
+                maxQuan: loc["Max Quantity"],
+                insertedAt: loc.Inserted_At,
+                proId: loc["Product ID"]
+            }
+        });
+    } else {
+        throw Error("Invalid formatting type (must be get or filter)")
+    }
 
     return fillRestOfLayout(layoutMapped);
 }
@@ -227,7 +246,7 @@ const colorMap = [
 const getColorValue = (id, stockRatio, type) => {
     if (type === "block") {
         return 'rgb(100,100,100)';
-    } else if(id === -1) {
+    } else if (id === -1) {
         return 'rgb(255, 255, 255)'
     } else {
         let color = colorMap[id - 1];

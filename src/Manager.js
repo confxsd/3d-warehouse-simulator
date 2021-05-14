@@ -54,8 +54,15 @@ class Manager {
 
   async prepareLayoutData() {
     const layout = await this.dataController.getLayout(this.selectedDepotId);
-    this.fillRate = layout.DepoDoluluk;
-    return util.toGridLayout(layout.info);
+    this.fillRate = layout.fillRate;
+
+    console.log("in prepare data")
+    console.log(layout)
+    return this.formatLayoutData(layout.data, "get");
+  }
+
+  async formatLayoutData(layoutData, type) {
+    return util.toGridLayout(layoutData, type);
   }
 
   async initSimulation() {
@@ -81,16 +88,24 @@ class Manager {
 
     this.prepareFirstValues(this.fillRate, "depotInfo");
     this.simulator.init();
+    this.isLoading = false;
+  }
 
+  toggleLoading() {
+    const loadingBox = document.getElementById("Loading");
+    loadingBox.classList.toggle("closed");
+    this.isLoading = !this.isLoading;
   }
 
 
   handlePanel() {
     const panel = document.getElementById(this.panelId);
-    panel.addEventListener('click', (e) => {
+    panel.addEventListener('click', async (e) => {
       console.log(e.target.id);
       if (e.target.id === 'Refresh') {
-        this.btnRefreshLayout();
+        this.toggleLoading();
+        await this.btnRefreshLayout();
+        this.toggleLoading();
       }
     });
   }
@@ -138,48 +153,59 @@ class Manager {
       } else {
         let enabledProductOptions = new Set();
         this.selectedFilters.weight.forEach((id) => {
-          console.log(this.allCategories.weight[String(id + 1)])
-          this.allCategories.weight[String(id + 1)].forEach(enabledProductOptions.add, enabledProductOptions);
+          this.allCategories.weight[id].forEach(enabledProductOptions.add, enabledProductOptions);
         });
 
         for (let i = 0; i < productOptions.length; i++) {
-          const op = productOptions[i]; 
-          op.disabled = true;
+          const op = productOptions[i];
+
+          if ([...enabledProductOptions].indexOf(op.value) === -1) {
+            op.disabled = true;
+            op.checked = false;
+          } else {
+            op.disabled = false;
+          }
         }
-
-        enabledProductOptions.forEach((name) => {
-          const op = document.querySelector(`#${this.panelId} .filters_container .product_category_container fieldset input[value=${name}]`);
-          op.disabled = false;
-        })
-
-        console.log(enabledProductOptions)
       }
 
     }
     else if (type === "product") {
       if (this.selectedFilters.product.length === 0) {
         for (let i = 0; i < weightOptions.length; i++) {
-          const op = weightOptions[i]; 
+          const op = weightOptions[i];
           op.disabled = false;
         }
 
       } else {
         let enabledWeightOptions = new Set();
         this.selectedFilters.product.forEach((name) => {
-          this.allCategories.product[name].forEach(enabledWeightOptions.add, enabledWeightOptions);
+          console.log(name, this.allCategories.product[name])
+          this.allCategories.product[name].map(p => String(p)).forEach(enabledWeightOptions.add, enabledWeightOptions);
         });
 
+
         for (let i = 0; i < weightOptions.length; i++) {
-          const op = weightOptions[i]; 
-          op.disabled = true;
+          const op = weightOptions[i];
+
+          if ([...enabledWeightOptions].indexOf(op.value) === -1) {
+            op.disabled = true;
+            op.checked = false;
+          } else {
+            op.disabled = false;
+          }
         }
 
-        enabledWeightOptions.forEach((id) => {
-          const op = document.querySelectorAll(`#${this.panelId} .filters_container .weight_category_container fieldset input`)[id - 1];
-          op.disabled = false;
-        })
+        // for (let i = 0; i < weightOptions.length; i++) {
+        //   const op = weightOptions[i];
+        //   op.disabled = true;
+        // }
 
-        console.log(enabledWeightOptions)
+        // enabledWeightOptions.forEach((id) => {
+        //   const op = document.querySelectorAll(`#${this.panelId} .filters_container .weight_category_container fieldset input`)[id - 1];
+        //   op.disabled = false;
+        // })
+
+        // console.log(enabledWeightOptions)
       }
     }
   }
@@ -205,9 +231,9 @@ class Manager {
 
       inputElem.addEventListener("click", (e) => {
         if (e.target.checked) {
-          this.selectedFilters.weight.push(parseInt(e.target.id))
+          this.selectedFilters.weight.push(e.target.value)
         } else {
-          this.selectedFilters.weight = this.selectedFilters.weight.filter(item => item !== parseInt(e.target.id));
+          this.selectedFilters.weight = this.selectedFilters.weight.filter(item => item !== e.target.value);
         }
         this.updateFilterOptions("weight")
       })
@@ -237,7 +263,7 @@ class Manager {
         } else {
           this.selectedFilters.product = this.selectedFilters.product.filter(item => item !== e.target.value);
         }
-        this.updateFilterOptions("product")
+        this.updateFilterOptions("product") //TODO: discuss this later on
       })
 
       const br = document.createElement("br")
@@ -250,10 +276,13 @@ class Manager {
   }
 
   async filterLayout() {
+
+    this.toggleLoading();
+
     const whichFilters = [];
-    if (this.selectedFilters.weight.length > 0) whichFilters.push(1);
-    if (this.selectedFilters.product.length > 0) whichFilters.push(2);
-    if (this.selectedFilters.location) whichFilters.push(3);
+    if (this.selectedFilters.weight.length > 0) whichFilters.push("1");
+    if (this.selectedFilters.product.length > 0) whichFilters.push("2");
+    if (this.selectedFilters.location) whichFilters.push("3");
 
     const filterRequest = {
       Depot_Id: this.selectedDepotId,
@@ -261,8 +290,17 @@ class Manager {
       Product_Weight: this.selectedFilters.weight,
       Product_Category: this.selectedFilters.product
     }
-    alert("filtered");
+
+    const filteredLayout = await this.dataController.filterLayout(this.selectedDepotId, whichFilters, this.selectedFilters.weight, this.selectedFilters.product);
+
     console.log(filterRequest);
+    console.log(filteredLayout);
+
+    const layoutData = await this.formatLayoutData(filteredLayout.data, "filter");
+    console.log(layoutData)
+    this.simulator.refreshLayout(layoutData);
+
+    this.toggleLoading();
   }
 
   async prepareCategories() {
