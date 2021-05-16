@@ -309,16 +309,18 @@ class Simulator {
           }
           cb(amount, productId);
         })
-
+        
+        // complex logic, can be simplified
         optionsParams.appendChild(itemTitle);
-
-        if (!isEmpty) {
+        if (isEmpty) {
+          if (type === "add") {
+            optionsParams.appendChild(inputProductId);
+            optionsParams.appendChild(btnAction);
+          }
+        } else {
           optionsParams.appendChild(inputAmount);
-        } else if (type === "add") {
-          optionsParams.appendChild(inputProductId);
+          optionsParams.appendChild(btnAction);
         }
-
-        optionsParams.appendChild(btnAction);
       }
 
       const displayActionbar = (mouse, item) => {
