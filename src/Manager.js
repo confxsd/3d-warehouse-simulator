@@ -120,9 +120,28 @@ class Manager {
     const form = document.querySelector('#UploadLayout form');
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      // const uploadedLayout = await this.dataController.uploadNewLayout(this.selectedDepotId, form);
-      // console.log(uploadedLayout);
-      alert("Layout updated");
+      const fileInput = form.querySelector("input[type=file]");
+      if (!fileInput.files || fileInput.files.length !== 1) {
+        alert("Select a json file");
+        return;
+      }
+
+      this.toggleLoading();
+
+      const file = fileInput.files[0];
+      try{
+        const uploadedLayout = await this.dataController.uploadNewLayout(this.selectedDepotId, file);
+        const formattedLayoutData = await this.formatLayoutData(uploadedLayout.info, "get");
+        this.simulator.refreshLayout(formattedLayoutData);
+        this.toggleLoading();
+        alert("Layout updated");
+      } catch(error) {
+        console.log(error)
+        alert("Something went wrong");
+        this.toggleLoading();
+      }
+      
+      
     })
   }
 
@@ -350,11 +369,11 @@ class Manager {
     } else if (type === "remove") {
       opType = "Delete"
     }
-    
+
 
     this.toggleLoading();
     const res = await this.dataController.updateStock(this.selectedDepotId, opType, loc, amount, productId);
-    if(res && res.Stok) {
+    if (res && res.Stok) {
       await this.btnRefreshLayout();
       alert("Succesfully updated the stock value");
     } else {
