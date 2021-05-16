@@ -318,8 +318,8 @@ class Simulator {
                 alert("Invalid value")
                 return
               }
-              if (amount < 0) {
-                alert("Cannot add negative units")
+              if (amount <= 0) {
+                alert("Amount should be positive")
                 return
               }
               if (item.stock + amount > item.maxQuan) {
@@ -328,9 +328,7 @@ class Simulator {
                 return
               }
 
-              // let res = await this.updateStock("Add", item.title, amount, null);
-              // console.log(res);
-              alert("should add", amount, "units");
+              const res = await this.updateStock("add", item.title, amount, "");
 
               hideActionbar();
             })
@@ -341,8 +339,8 @@ class Simulator {
                 alert("Invalid value")
                 return
               }
-              if (amount < 0) {
-                alert("Cannot remove negative units")
+              if (amount <= 0) {
+                alert("Amount should be positive")
                 return
               }
               if (amount > item.stock) {
@@ -350,10 +348,9 @@ class Simulator {
                 alert("Amount exceeds stock quantity")
                 return
               }
-
-              // let res = await this.updateStock("Delete", item.title, amount, null);
-              // console.log(res);
-              alert("should remove", amount, "units");
+              
+              const res = await this.updateStock("remove", item.title, amount);
+              console.log(res)
 
               hideActionbar();
             })

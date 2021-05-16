@@ -71,7 +71,6 @@ class Manager {
     this.depotInfoContainer = document.getElementById(this.depotInfoId);
 
     const layoutData = await this.prepareLayoutData();
-    console.log(layoutData)
 
     this.simulator = new Simulator({
       data: layoutData,
@@ -80,7 +79,7 @@ class Manager {
         x: 39, y: 38
       },
       getHistory: this.getHistory,
-      updateStock: this.updateStock
+      updateStock: this.updateStock,
     });
 
     this.handlePanel();
@@ -344,6 +343,27 @@ class Manager {
     return route;
   }
 
+  async updateStock(type, loc, amount, productId) {
+    let opType;
+    if (type === "add") {
+      opType = "Add"
+    } else if (type === "remove") {
+      opType = "Delete"
+    }
+    console.log(this.selectedDepotId, opType, loc, amount, productId)
+
+    this.toggleLoading();
+    const res = await this.dataController.updateStock(this.selectedDepotId, opType, loc, amount, productId);
+    if(res && res.Stok) {
+      await this.btnRefreshLayout();
+      alert("Succesfully updated the stock value");
+    } else {
+      alert("Something went wrong")
+    }
+    this.toggleLoading();
+    return res;
+  }
+
   async showRouting() {
     const startDate = document.querySelector(`#Routing input[name="start_date"]`)
     const endDate = document.querySelector(`#Routing input[name="end_date"]`)
@@ -390,11 +410,6 @@ class Manager {
   async getHistory(loc, startDate, endDate) {
     const history = await this.dataController.getLocHistory(this.selectedDepotId, loc, startDate, endDate);
     return history;
-  }
-
-  async updateStock(opType, loc, amount, productId) {
-    const res = await this.dataController.updateStock(this.selectedDepotId, opType, loc, amount, productId);
-    return res;
   }
 
 }
