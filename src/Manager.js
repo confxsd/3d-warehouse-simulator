@@ -350,7 +350,7 @@ class Manager {
     } else if (type === "remove") {
       opType = "Delete"
     }
-    console.log(this.selectedDepotId, opType, loc, amount, productId)
+    
 
     this.toggleLoading();
     const res = await this.dataController.updateStock(this.selectedDepotId, opType, loc, amount, productId);

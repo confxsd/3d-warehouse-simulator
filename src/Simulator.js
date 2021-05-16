@@ -171,7 +171,7 @@ class Simulator {
     this.render();
   }
 
-  createActionbar() {
+  createActionbar(item) {
     const optionsList = document.createElement("div");
     optionsList.className = "options_list"
 
@@ -185,6 +185,7 @@ class Simulator {
     const remove = document.createElement("p");
     remove.classList.add("remove");
     remove.textContent = "Remove";
+
 
     const history = document.createElement("p");
     history.classList.add("history");
@@ -273,16 +274,21 @@ class Simulator {
         optionsParams.appendChild(btnGet);
       }
 
-      const displayStockUpdateOptions = (type, title, cb) => {
+      const displayStockUpdateOptions = (type, item, cb) => {
         optionsParams.innerHTML = ""
         optionsParams.style.display = "flex";
 
         const itemTitle = document.createElement("p");
-        itemTitle.textContent = title;
+        itemTitle.textContent = item.title;
 
         const inputAmount = document.createElement("input");
         inputAmount.name = "input_amount"
         inputAmount.placeholder = "Amount"
+
+        const inputProductId = document.createElement("input");
+        inputProductId.name = "input_product_id"
+        inputProductId.placeholder = "Product Id"
+
 
         const btnAction = document.createElement("button")
         if (type === "add") {
@@ -291,13 +297,27 @@ class Simulator {
           btnAction.textContent = "Remove"
         }
 
+        const isEmpty = item.stock === 0;
+
         btnAction.addEventListener("click", (e) => {
-          const amount = inputAmount.value;
-          cb(amount);
+          let amount = inputAmount.value;
+          let productId = null
+
+          if (type === "add" && isEmpty) {
+            amount = "0";
+            productId = inputProductId.value;
+          }
+          cb(amount, productId);
         })
 
         optionsParams.appendChild(itemTitle);
-        optionsParams.appendChild(inputAmount);
+
+        if (!isEmpty) {
+          optionsParams.appendChild(inputAmount);
+        } else if (type === "add") {
+          optionsParams.appendChild(inputProductId);
+        }
+
         optionsParams.appendChild(btnAction);
       }
 
@@ -312,13 +332,13 @@ class Simulator {
 
         const handleActions = async (event) => {
           if (event.target.classList.contains("add")) {
-            displayStockUpdateOptions("add", item.title, async (amountStr) => {
+            displayStockUpdateOptions("add", item, async (amountStr, productId) => {
               const amount = parseInt(amountStr);
-              if (!amount) {
+              if (!amountStr) {
                 alert("Invalid value")
                 return
               }
-              if (amount <= 0) {
+              if (amount < 0) {
                 alert("Amount should be positive")
                 return
               }
@@ -328,14 +348,18 @@ class Simulator {
                 return
               }
 
-              const res = await this.updateStock("add", item.title, amount, "");
+              const res = await this.updateStock("add", item.title, amount, productId);
 
               hideActionbar();
             })
           } else if (event.target.classList.contains("remove")) {
-            displayStockUpdateOptions("remove", item.title, async (amountStr) => {
+            displayStockUpdateOptions("remove", item, async (amountStr) => {
+              if (item.stock === 0) {
+                alert("Cannot remove from empty location")
+                return;
+              }
               const amount = parseInt(amountStr);
-              if (!amount) {
+              if (!amountStr) {
                 alert("Invalid value")
                 return
               }
@@ -348,7 +372,7 @@ class Simulator {
                 alert("Amount exceeds stock quantity")
                 return
               }
-              
+
               const res = await this.updateStock("remove", item.title, amount);
               console.log(res)
 
@@ -454,8 +478,8 @@ class Simulator {
   }
 
   createTooltip() {
-    const title = document.createElement("p");
-    title.classList.add("title");
+    const locId = document.createElement("p");
+    locId.classList.add("loc_id");
 
     const stock = document.createElement("p");
     stock.classList.add("stock");
@@ -463,11 +487,24 @@ class Simulator {
     const locWeight = document.createElement("p");
     locWeight.classList.add("loc_weight");
 
+    const proWeight = document.createElement("p");
+    proWeight.classList.add("pro_weight");
+
+    const maxQuan = document.createElement("p");
+    maxQuan.classList.add("max_quan");
+
+    const proId = document.createElement("p");
+    proId.classList.add("pro_id");
+
     const tooltip = document.createElement("div");
     tooltip.id = "Tooltip";
-    tooltip.appendChild(title);
-    tooltip.appendChild(stock);
+
+    tooltip.appendChild(locId);
     tooltip.appendChild(locWeight);
+    tooltip.appendChild(proWeight);
+    tooltip.appendChild(maxQuan);
+    tooltip.appendChild(stock);
+    tooltip.appendChild(proId);
 
     this.container.appendChild(tooltip);
 
@@ -511,12 +548,33 @@ class Simulator {
         tooltip.style.top = `${y}px`;
         tooltip.style.left = `${x + 16}px`;
         tooltip.style.display = "block";
-        const title = tooltip.getElementsByClassName("title")[0];
-        const stock = tooltip.getElementsByClassName("stock")[0];
+
+        const locId = tooltip.getElementsByClassName("loc_id")[0];
         const locWeight = tooltip.getElementsByClassName("loc_weight")[0];
-        title.textContent = "title: " + item.title;
-        stock.textContent = "stock: " + item.stock;
-        locWeight.textContent = "loc weight: " + item.locWeight;
+        const proWeight = tooltip.getElementsByClassName("pro_weight")[0];
+        const maxQuan = tooltip.getElementsByClassName("max_quan")[0];
+        const stock = tooltip.getElementsByClassName("stock")[0];
+        const proId = tooltip.getElementsByClassName("pro_id")[0];
+
+        locId.textContent = "Loc Id: " + item.title;
+        stock.textContent = "Stock: " + item.stock;
+
+        if (item.stock !== 0) {
+          maxQuan.style.display = "block"
+          locWeight.style.display = "block"
+          proWeight.style.display = "block"
+          proId.style.display = "block"
+
+          maxQuan.textContent = "Max Quantity: " + item.maxQuan;
+          locWeight.textContent = "Loc weight: " + item.locWeight;
+          proWeight.textContent = "Pro Weight: " + item.proWeight;
+          proId.textContent = "Product Id: " + item.proId;
+        } else {
+          maxQuan.style.display = "none"
+          locWeight.style.display = "none"
+          proWeight.style.display = "none"
+          proId.style.display = "none"
+        }
       }
 
       const intersected = intersects[0];
@@ -617,7 +675,9 @@ class Simulator {
     box.title = item.id;
     box.stock = item.stock;
     box.locWeight = item.locWeight;
+    box.proWeight = item.proWeight;
     box.maxQuan = item.maxQuan;
+    box.proId = item.proId;
     // box.add(line);
 
     group.add(box);

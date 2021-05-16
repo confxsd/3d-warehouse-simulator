@@ -231,7 +231,7 @@ const fillEmptySlots = (layout) => {
             z: point.y,
             id: locId,
             stock: 0,
-            maxQuan: 0,
+            maxQuan: 9999,
             locWeight: -1,
             proWeight: null,
             insertedAt: null,
