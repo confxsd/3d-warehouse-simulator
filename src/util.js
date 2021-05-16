@@ -19,24 +19,6 @@ const corridorNames = (layout) => {
     return Array.from(names).sort();
 }
 
-const locToGridPoint2 = (locId) => {
-    const firstCorridor = 'B'
-    const corridorLength = 38
-    const corridorName = locId[1];
-    const index = parseInt(locId.slice(2, 5));
-
-    const corridorDist = corridorName.charCodeAt(0) - firstCorridor.charCodeAt(0);
-    let x = corridorDist * 4 + (index > corridorLength ? 3 : 0);
-    let y = index > corridorLength ? index - corridorLength - 1 : index;
-
-    if (corridorDist == 0) {
-        x = (index > corridorLength ? 3 : 0);
-    }
-
-    return {
-        x, y
-    }
-}
 
 const getCorridorDist = (name) => {
     const firstCorridor = 'A';
@@ -45,48 +27,73 @@ const getCorridorDist = (name) => {
 
 
 
-const locToGridPoint = (locId) => {
-    const corridorName = locId[1];
-    const order = parseInt(locId.slice(2, 5));
-
-    let corridorLength;
-    let x, y;
-
-    const corridorDist = getCorridorDist(corridorName);
-    const left = LAYOUT_CORRIDOR_MAP[corridorName].left;
-    const right = LAYOUT_CORRIDOR_MAP[corridorName].right;
-
-    if (left) {
-        corridorLength = left.range[1];
-    } else {
-        corridorLength = right.range[0] - 1;
-    }
-
-    const isLocAtLeft = order <= corridorLength;
-
-    x = corridorDist * 4 + (order > corridorLength ? 3 : 0);
-
-    if (isLocAtLeft) {
-        y = order;
-        if (left.blocks) {
-            if (order >= left.blocks[0])
-                y += 1;
-            if (order >= left.blocks[1])
-                y += 1;
+const locToGridPoint = (locId, mapSizeX) => {
+    if (locId === "start") {
+        return {
+            x: mapSizeX / 2,
+            y: -mapSizeX /2
         }
-    } else {
-        y = order - corridorLength;
-        if (right.blocks) {
-            if (order >= right.blocks[0])
-                y += 1;
-            if (order >= right.blocks[1])
-                y += 1;
+    } else if (locId.includes("Yol") || locId.includes("yol")) {
+        const order = parseInt(locId.slice(-1));
+        return {
+            x:  mapSizeX / 2 - (order + 1) * 4 ,
+            y: -mapSizeX / 2
         }
     }
+    else {
+        const corridorName = locId[1];
+        const order = parseInt(locId.slice(2, 5));
 
-    return {
-        x, y
+        let corridorLength;
+        let x, y;
+
+        const corridorDist = getCorridorDist(corridorName);
+        const left = LAYOUT_CORRIDOR_MAP[corridorName].left;
+        const right = LAYOUT_CORRIDOR_MAP[corridorName].right;
+
+        if (left) {
+            corridorLength = left.range[1];
+        } else {
+            corridorLength = right.range[0] - 1;
+        }
+
+        const isLocAtLeft = order <= corridorLength;
+
+        x = corridorDist * 4 + (order > corridorLength ? 3 : 0);
+
+        if (isLocAtLeft) {
+            y = order;
+            if (left.blocks) {
+                if (order >= left.blocks[0])
+                    y += 1;
+                if (order >= left.blocks[1])
+                    y += 1;
+            }
+        } else {
+            y = order - corridorLength;
+            if (right.blocks) {
+                if (order >= right.blocks[0])
+                    y += 1;
+                if (order >= right.blocks[1])
+                    y += 1;
+            }
+        }
+
+        return {
+            x, y
+        }
     }
+}
+
+const determineRoutePaths = (locs, mapSize) => {
+    let paths = []
+    for (let i = 0; i < locs.length - 1; i++) {
+        const p1 = locToGridPoint(locs[i], mapSize);
+        const p2 = locToGridPoint(locs[i + 1], mapSize);
+        paths.push([p1, p2])
+    }
+
+    return paths;
 }
 
 const fillRestOfLayout = (layout) => {
@@ -264,5 +271,6 @@ module.exports = {
     toGridLayout,
     getColorValue,
     map,
-    allCorridorNames
+    allCorridorNames,
+    determineRoutePaths
 }

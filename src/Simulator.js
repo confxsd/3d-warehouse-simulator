@@ -13,13 +13,14 @@ import {
   EdgesGeometry,
   LineSegments,
   LineBasicMaterial,
-  Object3D,
   Font,
   TextGeometry,
-  FontLoader,
   Group,
   Raycaster,
   Vector2,
+  BufferGeometry,
+  Line,
+  Vector3
 } from "three";
 // import * as d3 from "d3";
 import { OrbitControls } from "./OrbitControls.js";
@@ -29,17 +30,16 @@ const util = require("./util");
 
 
 class Simulator {
-  constructor({ containerId, data, div, getHistory, updateStock }) {
+  constructor({ containerId, data, size, getHistory, updateStock }) {
     this.container = document.getElementById(containerId);
     this.renderer = new WebGLRenderer();
 
     this.scene = new Scene();
-    this.div = div;
     this.camera = null;
     this.controls = null;
     this.data = data;
-    this.size = div;
-    this.blockSize = this.size / this.div;
+    this.size = size;
+    this.blockSize = 1;
     this.getHistory = getHistory;
     this.updateStock = updateStock;
 
@@ -65,25 +65,59 @@ class Simulator {
 
     this.camera.position.set(0, 32, 20);
 
-    const gridHelper = new GridHelper(this.size, this.div);
+    const gridHelper = new GridHelper(this.size.x, this.size.x);
     // this.scene.add(gridHelper);
 
     this.createTooltip();
     this.createActionbar();
-
     this.isActionActive = false;
 
-    this.initBoxes(this.data);
+
 
     this.createCorridorTexts();
+    this.createRoutingTexts();
+    this.initBoxes(this.data);
+
+
+
 
     this.animate();
+  }
+
+
+  createRoutingTexts() {
+    const routingPoints = ["Yol-1", "Yol-2", "Yol-3", "Yol-4", "Yol-5", "Yol-6", "Yol-7", "Yol-8"].reverse()
+
+    const font = new Font(helvetikerFont);
+    const material = new MeshBasicMaterial({
+      color: new Color('rgb(0, 0, 0)'),
+      opacity: 0.4,
+    });
+
+    for (let index = 0; index < routingPoints.length; index++) {
+      const name = routingPoints[index];
+      const geometry = new TextGeometry(name, {
+        font: font,
+        size: 0.4,
+        height: 0.025,
+      });
+
+      geometry.computeBoundingBox();
+
+      const textMesh = new Mesh(geometry, material);
+      textMesh.position.x = (index + 1) * 4 - this.size.x / 2 + 0.5;
+      textMesh.position.y = 0;
+      textMesh.position.z = -this.size.y / 2 - 1;
+
+      textMesh.rotation.x = -Math.PI / 2;
+
+      this.scene.add(textMesh)
+    }
   }
 
   createCorridorTexts() {
     const corridorNames = util.allCorridorNames();
 
-    console.log(corridorNames);
     const font = new Font(helvetikerFont);
 
     const material = new MeshBasicMaterial({
@@ -96,15 +130,15 @@ class Simulator {
       const geometry = new TextGeometry(name, {
         font: font,
         size: 1,
-        height: 0.05,
+        height: 0.025,
       });
 
       geometry.computeBoundingBox();
 
       const textMesh = new Mesh(geometry, material);
-      textMesh.position.x = index * 4 + 3 * this.blockSize / 2 - this.div / 2;
+      textMesh.position.x = index * 4 - this.size.x / 2 + 0.75;
       textMesh.position.y = 0.1;
-      textMesh.position.z = this.size / 12;
+      textMesh.position.z = 0;
 
       textMesh.rotation.x = -Math.PI / 2;
 
@@ -118,6 +152,9 @@ class Simulator {
   }
 
   initBoxes(layout) {
+    this.routingPaths = new Group();
+    this.routingPaths.type = "paths";
+
     this.boxGroup = new Group();
     this.boxGroup.type = "box";
     // console.log(this.data);
@@ -548,7 +585,7 @@ class Simulator {
       material = new MeshBasicMaterial({
         // color: Math.floor(Math.random() * 16777215),
         color: color,
-        opacity: 0.5,
+        opacity: 0.6,
         transparent: true
       });
     } else {
@@ -567,11 +604,10 @@ class Simulator {
       this.blockSize
     );
     geometry.dynamic = true;
-
     geometry.translate(
-      item.x + this.blockSize / 2 - this.div / 2,
+      item.x - this.size.x / 2 - 0.5,
       +itemSize / 2,
-      item.z + this.blockSize / 2 - this.div / 2
+      item.z - this.size.y / 2 - 0.5
     );
 
     // const edges = new EdgesGeometry(geometry);
@@ -588,6 +624,39 @@ class Simulator {
     // box.add(line);
 
     group.add(box);
+  }
+
+  clearRouting() {
+    this.routingPaths.children = []
+  }
+
+  async drawRouting(route) {
+    this.scene.add(this.routingPaths);
+
+    const material = new LineBasicMaterial({ color: 0xff0000, linewidth: 3 });
+
+    const paths = util.determineRoutePaths(route, this.size.x);
+    for (let i = 0; i < paths.length; i++) {
+      const p = paths[i];
+      const points = [];
+
+      const p0x = p[0].x - 0.5;
+      const p0y = p[0].y - 0.5;
+      const p1x = p[1].x - 0.5;
+      const p1y = p[1].y - 0.5;
+
+      points.push(new Vector3(p0x, 0.1, p0y));
+      points.push(new Vector3(p1x, 0.1, p1y));
+
+      const geometry = new BufferGeometry().setFromPoints(points);
+      const line = new Line(geometry, material);
+      this.routingPaths.add(line);
+
+      await new Promise(r => setTimeout(r, 2000));
+    }
+
+    console.log(paths)
+
   }
 }
 

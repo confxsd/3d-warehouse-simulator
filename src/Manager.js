@@ -45,19 +45,19 @@ class Manager {
     });
   }
 
-  goToSimulationScene(selectedDepotId) {
+  async goToSimulationScene(selectedDepotId) {
     const depotSelectionScene = document.querySelector(`#${this.depotSelectionId}`);
     depotSelectionScene.style.display = "none";
     this.selectedDepotId = selectedDepotId;
-    this.initSimulation();
+    this.toggleLoading()
+    await this.initSimulation();
+    this.toggleLoading()
   }
 
   async prepareLayoutData() {
     const layout = await this.dataController.getLayout(this.selectedDepotId);
     this.fillRate = layout.fillRate;
 
-    console.log("in prepare data")
-    console.log(layout)
     return this.formatLayoutData(layout.data, "get");
   }
 
@@ -76,7 +76,9 @@ class Manager {
     this.simulator = new Simulator({
       data: layoutData,
       containerId: this.simulatorId,
-      div: 39,
+      size: {
+        x: 39, y: 38
+      },
       getHistory: this.getHistory,
       updateStock: this.updateStock
     });
@@ -101,11 +103,16 @@ class Manager {
   handlePanel() {
     const panel = document.getElementById(this.panelId);
     panel.addEventListener('click', async (e) => {
-      console.log(e.target.id);
-      if (e.target.id === 'Refresh') {
+      if (e.target.id === 'Reload') {
         this.toggleLoading();
         await this.btnRefreshLayout();
         this.toggleLoading();
+      }
+      else if (e.target.id === 'BtnRouting') {
+        await this.showRouting();
+      }
+      else if (e.target.id === 'BtnRoutingClear') {
+        this.clearRouting();
       }
     });
   }
@@ -194,18 +201,6 @@ class Manager {
             op.disabled = false;
           }
         }
-
-        // for (let i = 0; i < weightOptions.length; i++) {
-        //   const op = weightOptions[i];
-        //   op.disabled = true;
-        // }
-
-        // enabledWeightOptions.forEach((id) => {
-        //   const op = document.querySelectorAll(`#${this.panelId} .filters_container .weight_category_container fieldset input`)[id - 1];
-        //   op.disabled = false;
-        // })
-
-        // console.log(enabledWeightOptions)
       }
     }
   }
@@ -276,31 +271,16 @@ class Manager {
   }
 
   async filterLayout() {
-
-    this.toggleLoading();
-
     const whichFilters = [];
     if (this.selectedFilters.weight.length > 0) whichFilters.push("1");
     if (this.selectedFilters.product.length > 0) whichFilters.push("2");
     if (this.selectedFilters.location) whichFilters.push("3");
 
-    const filterRequest = {
-      Depot_Id: this.selectedDepotId,
-      Filters: whichFilters,
-      Product_Weight: this.selectedFilters.weight,
-      Product_Category: this.selectedFilters.product
-    }
-
     const filteredLayout = await this.dataController.filterLayout(this.selectedDepotId, whichFilters, this.selectedFilters.weight, this.selectedFilters.product);
 
-    console.log(filterRequest);
-    console.log(filteredLayout);
+    const formattedLayoutData = await this.formatLayoutData(filteredLayout.data, "filter");
 
-    const layoutData = await this.formatLayoutData(filteredLayout.data, "filter");
-    console.log(layoutData)
-    this.simulator.refreshLayout(layoutData);
-
-    this.toggleLoading();
+    this.simulator.refreshLayout(formattedLayoutData);
   }
 
   async prepareCategories() {
@@ -332,17 +312,53 @@ class Manager {
     })
 
     const btnSubmit = document.querySelector(`#${this.panelId} .filters_container button`);
-    btnSubmit.addEventListener("click", (e) => {
+    btnSubmit.addEventListener("click", async (e) => {
       const { weight, product, location } = this.selectedFilters
 
       if (weight.length == 0 && product.length == 0 && !location) {
         alert("select some filters");
       } else {
-        console.log(this.selectedFilters);
-        this.filterLayout()
+        this.toggleLoading()
+        await this.filterLayout()
+        this.toggleLoading()
       }
     })
 
+  }
+
+  async getRouting(startDate, endDate) {
+    let route = [
+      "start",
+      "Yol-8",
+      "Yol-7",
+      "Yol-6",
+      "4H001K1",
+      "4H035K1",
+      "4G003K1",
+      "Yol-6",
+      "Yol-7",
+      "Yol-8",
+      "start"
+    ]
+
+    return route;
+  }
+
+  async showRouting() {
+    const startDate = document.querySelector(`#Routing input[name="start_date"]`)
+    const endDate = document.querySelector(`#Routing input[name="end_date"]`)
+    const btnGet = document.querySelector(`#Routing button`)
+
+    btnGet.addEventListener("click", async (e) => {
+      const route = await this.getRouting(startDate.value, endDate.value);
+      await this.simulator.drawRouting(route);
+      alert(startDate.value + " - " + endDate.value);
+    });
+  }
+
+
+  clearRouting(route) {
+    this.simulator.clearRouting(route);
   }
 
   async btnRefreshLayout() {
