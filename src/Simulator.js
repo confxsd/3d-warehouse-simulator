@@ -1,4 +1,3 @@
-// DataVisual: documentation: https://github.com/mariodelgadosr/dataVisual
 
 import {
   WebGLRenderer,
