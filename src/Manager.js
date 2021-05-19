@@ -109,7 +109,11 @@ class Manager {
         this.toggleLoading();
       }
       else if (e.target.id === 'BtnRouting') {
+        if (this.simulator.isRoutingWorking()) {
+          e.target.disabled = true;
+        }
         await this.showRouting();
+        e.target.disabled = false;
       }
       else if (e.target.id === 'BtnRoutingClear') {
         this.clearRouting();
@@ -380,12 +384,19 @@ class Manager {
     const endDate = document.querySelector(`#Routing input[name="end_date"]`)
     const btnGet = document.querySelector(`#Routing button`)
 
-    btnGet.addEventListener("click", async (e) => {
-      // const res = await this.getRouting(startDate.value, endDate.value);
-      const res = await this.getRouting("2021-04-03", "2021-04-25");
-      console.log(res);
-      await this.simulator.drawRouting(res[7]);
-    });
+    console.log("deactivating panel")
+    this.togglePanelActivity();
+
+    this.toggleLoading();
+    // const res = await this.getRouting(startDate.value, endDate.value);
+    const res = await this.getRouting("2021-04-03", "2021-04-25");
+    console.log(res);
+    this.toggleLoading();
+
+    await this.simulator.drawRouting(res[7]);
+
+    console.log("activating panel")
+    this.togglePanelActivity();
   }
 
   handleZoomBtn() {
@@ -428,6 +439,15 @@ class Manager {
   async getHistory(loc, startDate, endDate) {
     const history = await this.dataController.getLocHistory(this.selectedDepotId, loc, startDate, endDate);
     return history;
+  }
+
+  togglePanelActivity() {
+    const hider = document.querySelector("#MainOps div:first-child");
+    if (hider.style.display === "block") {
+      hider.style.display = "none";
+    } else {
+      hider.style.display = "block";
+    }
   }
 
 }

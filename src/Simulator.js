@@ -27,7 +27,8 @@ import {
   Line,
   PointLight,
   Vector3,
-  FileLoader
+  FileLoader,
+  Uint8ClampedAttribute
 } from "three";
 
 import { OrbitControls } from "./lib/OrbitControls.js";
@@ -85,6 +86,9 @@ class Simulator {
 
 
     this.hoveredbox = null;
+
+    this.isRouting = false;
+    this.isRouted = false;
 
 
     const gridHelper = new GridHelper(this.size.x, this.size.x);
@@ -745,10 +749,14 @@ class Simulator {
   }
 
   clearRouting() {
-    this.origRoutingPath.children = []
-    this.optRoutingPath.children = []
-    this.scene.remove(this.pickupPoints);
-    this.toggleCollectorGuy(false);
+    console.log(this.isRouted, this.isRouting)
+    if (this.isRouted && !this.isRouting) {
+      this.origRoutingPath.children = []
+      this.optRoutingPath.children = []
+      this.scene.remove(this.pickupPoints);
+      this.toggleCollectorGuy(false);
+      this.isRouted = false;
+    }
   }
 
   toggleCollectorGuy(show) {
@@ -777,7 +785,7 @@ class Simulator {
     }
 
     const onProgress = (progress) => {
-      const percent = Math.floor(progress.loaded/progress.total*100);
+      const percent = Math.floor(progress.loaded / progress.total * 100);
       console.log(`Model is loading... ${percent}%`)
     }
 
@@ -794,7 +802,18 @@ class Simulator {
     );
   }
 
+  isRoutingWorking() {
+    return this.isRouting || this.isRouted;
+  }
+
   async drawRouting(routing) {
+    
+    console.log(this.isRouted, this.isRouting)
+
+    const frames = [];
+    const delay = 20 //ms
+    this.isRouting = true;
+
     this.toggleCollectorGuy(true);
     this.markPickupLocs(routing.pickupLocs);
 
@@ -809,7 +828,9 @@ class Simulator {
 
     const N = Math.max(origPath.length, optPath.length);
 
+
     for (let i = 0; i < N; i++) {
+      const frameActions = [];
 
       let p0x, p0y, p1x, p1y;
       let p;
@@ -826,7 +847,9 @@ class Simulator {
         points.push(new Vector3(p1x, 0.1, p1y));
         const geometry = new BufferGeometry().setFromPoints(points);
         const line = new Line(geometry, materialOpt);
-        this.optRoutingPath.add(line);
+        frameActions.push(() => {
+          this.optRoutingPath.add(line)
+        })
       }
 
       if (origPath[i]) {
@@ -840,11 +863,23 @@ class Simulator {
         points.push(new Vector3(p1x, 0.1, p1y));
         const geometry = new BufferGeometry().setFromPoints(points);
         const line = new Line(geometry, materialOrig);
-        this.optRoutingPath.add(line);
+        frameActions.push(() => {
+          this.origRoutingPath.add(line)
+        })
       }
 
-      await new Promise(r => setTimeout(r, 50));
+      frames.push(frameActions);
     }
+
+    for (const frame of frames) {
+      frame.forEach((act) => {
+        act();
+      })
+      await util.timeout(delay);
+    }
+
+    this.isRouted = true;
+    this.isRouting = false;
 
   }
 

@@ -311,6 +311,10 @@ const getColorValue = (id, stockRatio, type) => {
     }
 }
 
+const timeout = async (ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 const map = (value, x1, y1, x2, y2) =>
     ((value - x1) * (y2 - x2)) / (y1 - x1) + x2;
 
@@ -322,5 +326,6 @@ module.exports = {
     locToGridPoint,
     map,
     allCorridorNames,
-    determineRoutePaths
+    determineRoutePaths,
+    timeout
 }
