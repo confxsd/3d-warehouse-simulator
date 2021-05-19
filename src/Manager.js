@@ -85,6 +85,7 @@ class Manager {
     this.handlePanel();
     this.handleFilters();
     this.handleLayoutUpload();
+    this.handleZoomBtn();
 
 
     this.prepareFirstValues(this.fillRate, "depotInfo");
@@ -387,6 +388,12 @@ class Manager {
     });
   }
 
+  handleZoomBtn() {
+    const zoomBtn = document.querySelector("#ResetZoom");
+    zoomBtn.addEventListener("click", (e) => {
+      this.simulator.resetZoom();
+    })
+  }
 
   clearRouting(route) {
     this.simulator.clearRouting(route);

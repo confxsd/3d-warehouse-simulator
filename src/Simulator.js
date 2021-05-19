@@ -49,17 +49,17 @@ class Simulator {
     this.blockSize = 1;
     this.getHistory = getHistory;
     this.updateStock = updateStock;
-
     this.font = null;
   }
-
-
+  
+  
   init() {
     const width = this.container.clientWidth;
     const height = this.container.clientHeight;
-
+    
+    this.defaultCameraPos = new Vector3(0, 32, 20);
     this.camera = new PerspectiveCamera(50, width / height, 0.1, 1000);
-    this.camera.position.set(0, 32, 20);
+    this.camera.position.set(this.defaultCameraPos.x, this.defaultCameraPos.y, this.defaultCameraPos.z);
 
     this.controls = new OrbitControls(
       this.camera,
@@ -103,6 +103,11 @@ class Simulator {
 
 
     this.animate();
+  }
+
+  resetZoom() {
+    this.camera.lookAt(new Vector3(0, 0, 0));
+    this.camera.position.set(this.defaultCameraPos.x, this.defaultCameraPos.y, this.defaultCameraPos.z);
   }
 
 
@@ -196,13 +201,14 @@ class Simulator {
 
     this.boxGroup = new Group();
     this.boxGroup.type = "box";
-    
+
     for (const item of layout) {
       this.addToScene(this.boxGroup, item);
     }
 
     this.scene.add(this.boxGroup);
   }
+
 
   animate() {
     requestAnimationFrame(() => this.animate());
@@ -642,7 +648,7 @@ class Simulator {
   togglehoverBox(activated) {
     if (this.hoveredbox) {
       const toDelete = this.scene.getObjectByName("hoveredbox");
-      
+
       this.scene.remove(toDelete);
 
       if (activated) {

@@ -1,5 +1,5 @@
 const { color } = require("d3-color");
-const LAYOUT_CORRIDOR_MAP = require("./layoutCorridorMap");
+const LAYOUT_CORRIDOR_MAP = require("./LAYOUT_CORRIDOR_MAP");
 
 const layoutSorter = (a, b) => {
     if (a.LocId[1] < b.LocId[1]) return -1;
