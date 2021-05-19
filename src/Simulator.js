@@ -3,13 +3,18 @@ import {
   Scene,
   PerspectiveCamera,
   Color,
+  MeshPhongMaterial,
   GridHelper,
   BoxGeometry,
   MeshBasicMaterial,
   Mesh,
   EdgesHelper,
+  AmbientLight,
+  DefaultLoadingManager,
+  LoadingManager,
   EdgesGeometry,
   LineSegments,
+  MeshLambertMaterial,
   LineBasicMaterial,
   Font,
   SphereGeometry,
@@ -19,10 +24,12 @@ import {
   Vector2,
   BufferGeometry,
   Line,
+  PointLight,
   Vector3
 } from "three";
 
-import { OrbitControls } from "./OrbitControls.js";
+import { OrbitControls } from "./lib/OrbitControls.js";
+import { OBJLoader } from "./lib/OBJLoader.js";
 
 const helvetikerFont = require('./assets/helvetiker.json')
 const util = require("./util");
@@ -51,18 +58,32 @@ class Simulator {
     const height = this.container.clientHeight;
 
     this.camera = new PerspectiveCamera(50, width / height, 0.1, 1000);
+    this.camera.position.set(0, 32, 20);
+
     this.controls = new OrbitControls(
       this.camera,
       this.renderer.domElement
     );
 
+    const ambientLight = new AmbientLight(0xfefff9, 0.90);
+    this.scene.add(ambientLight);
+
+    const pointLight = new PointLight(0xefefef, 0.15);
+    this.camera.add(pointLight);
+
     const bgcolor = new Color(0xefefef);
     this.scene.background = bgcolor;
+
+    this.scene.add(this.camera);
+
+
 
     this.renderer.setSize(width, height);
     this.container.appendChild(this.renderer.domElement);
 
-    this.camera.position.set(0, 32, 20);
+
+
+
 
     const gridHelper = new GridHelper(this.size.x, this.size.x);
     // this.scene.add(gridHelper);
@@ -112,7 +133,7 @@ class Simulator {
       textMesh.position.x = p.x - this.size.x / 2 - 0.5;
       textMesh.position.y = 0;
 
-      if(index < 8 || index === 17) {
+      if (index < 8 || index === 17) {
         textMesh.position.z = p.y - this.size.y / 2 - 1;
       } else {
         textMesh.position.z = p.y - this.size.y / 2 + 1;
@@ -656,14 +677,14 @@ class Simulator {
 
     let material;
     if (itemType === "empty") {
-      material = new MeshBasicMaterial({
+      material = new MeshLambertMaterial({
         // color: Math.floor(Math.random() * 16777215),
         color: color,
         opacity: 0.6,
         transparent: true
       });
     } else {
-      material = new MeshBasicMaterial({
+      material = new MeshLambertMaterial({
         // color: Math.floor(Math.random() * 16777215),
         color: color,
         opacity: 1
@@ -707,8 +728,58 @@ class Simulator {
     this.optRoutingPath.children = []
   }
 
+  loadCollecterGuy() {
+    let guyObject;
+
+    const manager = new LoadingManager(() => {
+      const material = new MeshPhongMaterial({ color: 0x0000ff });
+      guyObject.traverse(function (child) {
+        if (child.isMesh) child.material = material;
+      });
+
+      guyObject.scale.set(0.05, 0.05, 0.05);
+      guyObject.color = 0x0000ff;
+      guyObject.position.x = this.size.x / 2 -6;
+      guyObject.position.y = 0;
+      guyObject.position.z = -this.size.y  /2 - 4;
+
+      this.scene.add(guyObject)
+    }, () => {
+      console.log("loading")
+    }, () => {
+      console.log("error")
+    })
+    manager.onProgress = function (item, loaded, total) {
+      console.log(item, loaded, total);
+    };
+
+    const loader = new OBJLoader(manager);
+    // load a resource
+    loader.load(
+      // resource URL
+      'models/collecter_guy.obj',
+      // called when resource is loaded
+      function (obj) {
+        guyObject = obj;
+      },
+      // called when loading is in progresses
+      () => {
+        console.log("on progress")
+      },
+      // called when loading has errors
+      function (error) {
+
+        console.log('An error happened');
+        console.log(error);
+
+      }
+    );
+  }
+
   async drawRouting(routing) {
     this.markPickupLocs(routing.pickupLocs);
+
+    this.loadCollecterGuy();
 
     this.scene.add(this.origRoutingPath);
     this.scene.add(this.optRoutingPath);
@@ -766,7 +837,7 @@ class Simulator {
     })
 
 
-    const material = new MeshBasicMaterial({ color: 0xff0000 });
+    const material = new MeshLambertMaterial({ color: 0xff0000 });
 
     points.forEach((p) => {
       const geometry = new SphereGeometry(0.3, 32, 32);
