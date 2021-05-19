@@ -26,7 +26,8 @@ import {
   BufferGeometry,
   Line,
   PointLight,
-  Vector3
+  Vector3,
+  FileLoader
 } from "three";
 
 import { OrbitControls } from "./lib/OrbitControls.js";
@@ -51,12 +52,12 @@ class Simulator {
     this.updateStock = updateStock;
     this.font = null;
   }
-  
-  
+
+
   init() {
     const width = this.container.clientWidth;
     const height = this.container.clientHeight;
-    
+
     this.defaultCameraPos = new Vector3(0, 32, 20);
     this.camera = new PerspectiveCamera(50, width / height, 0.1, 1000);
     this.camera.position.set(this.defaultCameraPos.x, this.defaultCameraPos.y, this.defaultCameraPos.z);
@@ -100,6 +101,7 @@ class Simulator {
     this.initBoxes(this.data);
 
 
+    this.loadCollectorGuy();
 
 
     this.animate();
@@ -108,6 +110,7 @@ class Simulator {
   resetZoom() {
     this.camera.lookAt(new Vector3(0, 0, 0));
     this.camera.position.set(this.defaultCameraPos.x, this.defaultCameraPos.y, this.defaultCameraPos.z);
+    this.controls.reset();
   }
 
 
@@ -744,60 +747,56 @@ class Simulator {
   clearRouting() {
     this.origRoutingPath.children = []
     this.optRoutingPath.children = []
+    this.scene.remove(this.pickupPoints);
+    this.toggleCollectorGuy(false);
   }
 
-  loadCollecterGuy() {
-    let guyObject;
-
-    const manager = new LoadingManager(() => {
-      const material = new MeshPhongMaterial({ color: 0x0000ff });
-      guyObject.traverse(function (child) {
-        if (child.isMesh) child.material = material;
-      });
-
-      guyObject.scale.set(0.05, 0.05, 0.05);
-      guyObject.color = 0x0000ff;
-      guyObject.position.x = this.size.x / 2 - 6;
-      guyObject.position.y = 0;
-      guyObject.position.z = -this.size.y / 2 - 4;
-
-      this.scene.add(guyObject)
-    }, () => {
-      console.log("loading")
-    }, () => {
-      console.log("error")
-    })
-    manager.onProgress = function (item, loaded, total) {
-      console.log(item, loaded, total);
-    };
-
-    const loader = new OBJLoader(manager);
-    // load a resource
-    loader.load(
-      // resource URL
-      'models/collecter_guy.obj',
-      // called when resource is loaded
-      function (obj) {
-        guyObject = obj;
-      },
-      // called when loading is in progresses
-      () => {
-        console.log("on progress")
-      },
-      // called when loading has errors
-      function (error) {
-
-        console.log('An error happened');
-        console.log(error);
-
+  toggleCollectorGuy(show) {
+    if (this.guyObject) {
+      if (show) {
+        this.scene.add(this.guyObject);
+      } else {
+        this.scene.remove(this.guyObject);
       }
+    }
+  }
+
+  loadCollectorGuy() {
+    if (this.guyObject) return;
+
+    const onLoad = (obj) => {
+      const objLoader = new OBJLoader(null);
+      this.guyObject = objLoader.parse(obj);
+
+      this.guyObject.scale.set(0.05, 0.05, 0.05);
+      this.guyObject.color = 0x0000ff;
+      this.guyObject.position.x = this.size.x / 2 - 6;
+      this.guyObject.position.y = 0;
+      this.guyObject.position.z = -this.size.y / 2 - 4;
+      console.log("Model loaded")
+    }
+
+    const onProgress = (progress) => {
+      const percent = Math.floor(progress.loaded/progress.total*100);
+      console.log(`Model is loading... ${percent}%`)
+    }
+
+    const onError = (error) => {
+      console.log('Model not loaded');
+      console.log(error);
+    }
+
+    const loader = new FileLoader();
+    loader.load('./models/collecter_guy.obj',
+      onLoad,
+      onProgress,
+      onError,
     );
   }
 
   async drawRouting(routing) {
+    this.toggleCollectorGuy(true);
     this.markPickupLocs(routing.pickupLocs);
-
-    this.loadCollecterGuy();
 
     this.scene.add(this.origRoutingPath);
     this.scene.add(this.optRoutingPath);
