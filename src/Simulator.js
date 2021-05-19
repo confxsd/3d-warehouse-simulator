@@ -8,6 +8,7 @@ import {
   BoxGeometry,
   MeshBasicMaterial,
   Mesh,
+  WireframeGeometry,
   EdgesHelper,
   AmbientLight,
   DefaultLoadingManager,
@@ -82,7 +83,7 @@ class Simulator {
     this.container.appendChild(this.renderer.domElement);
 
 
-
+    this.hoveredbox = null;
 
 
     const gridHelper = new GridHelper(this.size.x, this.size.x);
@@ -195,7 +196,7 @@ class Simulator {
 
     this.boxGroup = new Group();
     this.boxGroup.type = "box";
-    // console.log(this.data);
+    
     for (const item of layout) {
       this.addToScene(this.boxGroup, item);
     }
@@ -563,9 +564,7 @@ class Simulator {
       if (this.isActionActive) return;
 
       if (event.type == "mouseleave") {
-        // this.boxGroup.traverse((box) => {
-        //     box.remove(line);
-        // })
+        this.togglehoverBox(false);
         tooltip.style.display = "none";
         return;
       }
@@ -623,23 +622,14 @@ class Simulator {
       if (intersected) {
         const item = intersected.object;
 
-        const edges = new EdgesGeometry(item.geometry);
-        const line = new LineSegments(
-          edges,
-          new LineBasicMaterial({ color: 0x444444 })
-        );
-        line.type = "hoverbox";
-
-        // this.scene.add(line);
+        if (item.boxType === "standart" || item.boxType === "empty") {
+          this.hoveredbox = item
+          this.togglehoverBox(true);
+        }
 
         displayTooltip(mouse, item);
       } else {
-        // this.scene.traverse((obj) => {
-        //     console.log(obj)
-        //     if(obj.type === "hoverbox") {
-        //         this.scene.remove(obj);
-        //     }
-        // })
+        this.togglehoverBox(false);
         tooltip.style.display = "none";
       }
     }
@@ -649,25 +639,46 @@ class Simulator {
     this.renderer.domElement.addEventListener("click", onMouse, false);
   }
 
+  togglehoverBox(activated) {
+    if (this.hoveredbox) {
+      const toDelete = this.scene.getObjectByName("hoveredbox");
+      
+      this.scene.remove(toDelete);
+
+      if (activated) {
+        this.scene.remove(toDelete);
+
+        const edges = new WireframeGeometry(this.hoveredbox.geometry);
+        const line = new LineSegments(
+          edges,
+          new LineBasicMaterial({ color: 0x444444 })
+        );
+        this.hoveredbox = line;
+        this.hoveredbox.name = "hoveredbox"
+        this.scene.add(this.hoveredbox);
+      }
+    }
+  }
+
   render() {
     this.renderer.render(this.scene, this.camera);
   }
 
   addToScene(group, item) {
     let itemSize;
-    let itemType;
+    let boxType;
 
     if (item.id === "block") {
-      itemType = "block"
+      boxType = "block"
     } else if (item.locWeight === -1) {
-      itemType = "empty"
+      boxType = "empty"
     } else {
-      itemType = "standart"
+      boxType = "standart"
     }
 
-    if (itemType === "block") {
+    if (boxType === "block") {
       itemSize = 1;
-    } else if (itemType === "empty") {
+    } else if (boxType === "empty") {
       itemSize = 0.5;
     } else {
       itemSize = util.map(item.stock, 0, 300, 0, 1);
@@ -676,7 +687,7 @@ class Simulator {
     const color = new Color(util.getColorValue(item.locWeight, itemSize, item.id));
 
     let material;
-    if (itemType === "empty") {
+    if (boxType === "empty") {
       material = new MeshLambertMaterial({
         // color: Math.floor(Math.random() * 16777215),
         color: color,
@@ -718,6 +729,7 @@ class Simulator {
     box.proWeight = item.proWeight;
     box.maxQuan = item.maxQuan;
     box.proId = item.proId;
+    box.boxType = boxType;
     // box.add(line);
 
     group.add(box);
@@ -739,9 +751,9 @@ class Simulator {
 
       guyObject.scale.set(0.05, 0.05, 0.05);
       guyObject.color = 0x0000ff;
-      guyObject.position.x = this.size.x / 2 -6;
+      guyObject.position.x = this.size.x / 2 - 6;
       guyObject.position.y = 0;
-      guyObject.position.z = -this.size.y  /2 - 4;
+      guyObject.position.z = -this.size.y / 2 - 4;
 
       this.scene.add(guyObject)
     }, () => {
