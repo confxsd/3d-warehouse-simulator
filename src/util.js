@@ -27,17 +27,40 @@ const getCorridorDist = (name) => {
 
 
 
-const locToGridPoint = (locId, mapSizeX) => {
+const locToGridPoint = (locId, size) => {
     if (locId === "start") {
         return {
-            x: mapSizeX / 2,
-            y: -mapSizeX /2
+            x: (8 + 1) * 4,
+            y: -4,
+            type: "start"
         }
     } else if (locId.includes("Yol") || locId.includes("yol")) {
-        const order = parseInt(locId.slice(-1));
-        return {
-            x:  mapSizeX / 2 - (order + 1) * 4 ,
-            y: -mapSizeX / 2
+        const order = parseInt(locId.slice(4, 6));
+        if (order <= 8) {
+            return {
+                x: (order) * 4 + 0.5,
+                y: -1.5,
+                type: "path",
+            }
+        }
+        else if (order < 18) {
+            return {
+                x: (order - 8) * 4 + 0.5,
+                y: size.y + 1.5,
+                type: "path",
+            }
+        } else if (order === 18) {
+            return {
+                x: 0.5,
+                y: -1.5,
+                type: "path",
+            }
+        } else if (order === 19) {
+            return {
+                x: 0.5,
+                y: size.y + 1.5,
+                type: "path",
+            }
         }
     }
     else {
@@ -80,16 +103,42 @@ const locToGridPoint = (locId, mapSizeX) => {
         }
 
         return {
-            x, y
+            x, y, type: isLocAtLeft ? "left" : "right"
         }
     }
 }
 
-const determineRoutePaths = (locs, mapSize) => {
+const determineRoutePaths = (locs, type, size) => {
     let paths = []
+    let indent = 0;
+
+    if (type === "orig") {
+        indent = 0.9;
+    } else if (type == "opt") {
+        indent = 1.2;
+    }
+
     for (let i = 0; i < locs.length - 1; i++) {
-        const p1 = locToGridPoint(locs[i], mapSize);
-        const p2 = locToGridPoint(locs[i + 1], mapSize);
+        const p1 = locToGridPoint(locs[i], size);
+        const p2 = locToGridPoint(locs[i + 1], size);
+
+        if (p1.type === "left") {
+            p1.x += indent
+        } else if (p1.type === "right") {
+            p1.x -= indent
+        } else if (p1.type === "path") {
+            p1.y += indent;
+        }
+
+
+        if (p2.type === "left") {
+            p2.x += indent
+        } else if (p2.type === "right") {
+            p2.x -= indent
+        } else if (p2.type === "path") {
+            p2.y += indent;
+        }
+
         paths.push([p1, p2])
     }
 
@@ -270,6 +319,7 @@ module.exports = {
     corridorNames,
     toGridLayout,
     getColorValue,
+    locToGridPoint,
     map,
     allCorridorNames,
     determineRoutePaths

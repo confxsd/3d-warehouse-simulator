@@ -129,19 +129,19 @@ class Manager {
       this.toggleLoading();
 
       const file = fileInput.files[0];
-      try{
+      try {
         const uploadedLayout = await this.dataController.uploadNewLayout(this.selectedDepotId, file);
         const formattedLayoutData = await this.formatLayoutData(uploadedLayout.info, "get");
         this.simulator.refreshLayout(formattedLayoutData);
         this.toggleLoading();
         alert("Layout updated");
-      } catch(error) {
+      } catch (error) {
         console.log(error)
         alert("Something went wrong");
         this.toggleLoading();
       }
-      
-      
+
+
     })
   }
 
@@ -345,21 +345,12 @@ class Manager {
   }
 
   async getRouting(startDate, endDate) {
-    let route = [
-      "start",
-      "Yol-8",
-      "Yol-7",
-      "Yol-6",
-      "4H001K1",
-      "4H035K1",
-      "4G003K1",
-      "Yol-6",
-      "Yol-7",
-      "Yol-8",
-      "start"
-    ]
-
-    return route;
+    try {
+      const res = await this.dataController.getRouting(this.selectedDepotId, startDate, endDate);
+      return res;
+    } catch (error) {
+      throw error;
+    }
   }
 
   async updateStock(type, loc, amount, productId) {
@@ -389,9 +380,10 @@ class Manager {
     const btnGet = document.querySelector(`#Routing button`)
 
     btnGet.addEventListener("click", async (e) => {
-      const route = await this.getRouting(startDate.value, endDate.value);
-      await this.simulator.drawRouting(route);
-      alert(startDate.value + " - " + endDate.value);
+      // const res = await this.getRouting(startDate.value, endDate.value);
+      const res = await this.getRouting("2021-04-03", "2021-04-25");
+      console.log(res);
+      await this.simulator.drawRouting(res[7]);
     });
   }
 

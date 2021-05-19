@@ -1,4 +1,3 @@
-
 import {
   WebGLRenderer,
   Scene,
@@ -13,6 +12,7 @@ import {
   LineSegments,
   LineBasicMaterial,
   Font,
+  SphereGeometry,
   TextGeometry,
   Group,
   Raycaster,
@@ -21,7 +21,7 @@ import {
   Line,
   Vector3
 } from "three";
-// import * as d3 from "d3";
+
 import { OrbitControls } from "./OrbitControls.js";
 
 const helvetikerFont = require('./assets/helvetiker.json')
@@ -85,7 +85,10 @@ class Simulator {
 
 
   createRoutingTexts() {
-    const routingPoints = ["Yol-1", "Yol-2", "Yol-3", "Yol-4", "Yol-5", "Yol-6", "Yol-7", "Yol-8"].reverse()
+    const pathPoints = [];
+    for (let i = 1; i <= 19; i++) {
+      pathPoints.push("Yol-" + i);
+    }
 
     const font = new Font(helvetikerFont);
     const material = new MeshBasicMaterial({
@@ -93,8 +96,8 @@ class Simulator {
       opacity: 0.4,
     });
 
-    for (let index = 0; index < routingPoints.length; index++) {
-      const name = routingPoints[index];
+    for (let index = 0; index < pathPoints.length; index++) {
+      const name = pathPoints[index];
       const geometry = new TextGeometry(name, {
         font: font,
         size: 0.4,
@@ -103,10 +106,18 @@ class Simulator {
 
       geometry.computeBoundingBox();
 
+      const p = util.locToGridPoint(name, this.size);
       const textMesh = new Mesh(geometry, material);
-      textMesh.position.x = (index + 1) * 4 - this.size.x / 2 + 0.5;
+
+      textMesh.position.x = p.x - this.size.x / 2 - 0.5;
       textMesh.position.y = 0;
-      textMesh.position.z = -this.size.y / 2 - 1;
+
+      if(index < 8 || index === 17) {
+        textMesh.position.z = p.y - this.size.y / 2 - 1;
+      } else {
+        textMesh.position.z = p.y - this.size.y / 2 + 1;
+      }
+
 
       textMesh.rotation.x = -Math.PI / 2;
 
@@ -135,6 +146,7 @@ class Simulator {
       geometry.computeBoundingBox();
 
       const textMesh = new Mesh(geometry, material);
+
       textMesh.position.x = index * 4 - this.size.x / 2 + 0.75;
       textMesh.position.y = 0.1;
       textMesh.position.z = 0;
@@ -151,8 +163,14 @@ class Simulator {
   }
 
   initBoxes(layout) {
-    this.routingPaths = new Group();
-    this.routingPaths.type = "paths";
+    this.origRoutingPath = new Group();
+    this.origRoutingPath.type = "path";
+
+    this.optRoutingPath = new Group();
+    this.optRoutingPath.type = "path";
+
+    this.pickupPoints = new Group();
+    this.pickupPoints.type = "pickup";
 
     this.boxGroup = new Group();
     this.boxGroup.type = "box";
@@ -308,7 +326,7 @@ class Simulator {
           }
           cb(amount, productId);
         })
-        
+
         // complex logic, can be simplified
         optionsParams.appendChild(itemTitle);
         if (isEmpty) {
@@ -685,36 +703,80 @@ class Simulator {
   }
 
   clearRouting() {
-    this.routingPaths.children = []
+    this.origRoutingPath.children = []
+    this.optRoutingPath.children = []
   }
 
-  async drawRouting(route) {
-    this.scene.add(this.routingPaths);
+  async drawRouting(routing) {
+    this.markPickupLocs(routing.pickupLocs);
 
-    const material = new LineBasicMaterial({ color: 0xff0000, linewidth: 3 });
+    this.scene.add(this.origRoutingPath);
+    this.scene.add(this.optRoutingPath);
 
-    const paths = util.determineRoutePaths(route, this.size.x);
-    for (let i = 0; i < paths.length; i++) {
-      const p = paths[i];
-      const points = [];
+    const origPath = util.determineRoutePaths(routing.origPath, "orig", this.size);
+    const materialOrig = new LineBasicMaterial({ color: 0xff0000, linewidth: 3 });
 
-      const p0x = p[0].x - 0.5;
-      const p0y = p[0].y - 0.5;
-      const p1x = p[1].x - 0.5;
-      const p1y = p[1].y - 0.5;
+    const optPath = util.determineRoutePaths(routing.optPath, "opt", this.size);
+    const materialOpt = new LineBasicMaterial({ color: 0x0000ff, linewidth: 3 });
 
-      points.push(new Vector3(p0x, 0.1, p0y));
-      points.push(new Vector3(p1x, 0.1, p1y));
+    const N = Math.max(origPath.length, optPath.length);
 
-      const geometry = new BufferGeometry().setFromPoints(points);
-      const line = new Line(geometry, material);
-      this.routingPaths.add(line);
+    for (let i = 0; i < N; i++) {
 
-      await new Promise(r => setTimeout(r, 2000));
+      let p0x, p0y, p1x, p1y;
+      let p;
+
+      let points = [];
+
+      if (optPath[i]) {
+        p = optPath[i];
+        p0x = p[0].x - 0.5 - this.size.x / 2;
+        p0y = p[0].y - 0.5 - this.size.y / 2;
+        p1x = p[1].x - 0.5 - this.size.x / 2;
+        p1y = p[1].y - 0.5 - this.size.y / 2;
+        points.push(new Vector3(p0x, 0.1, p0y));
+        points.push(new Vector3(p1x, 0.1, p1y));
+        const geometry = new BufferGeometry().setFromPoints(points);
+        const line = new Line(geometry, materialOpt);
+        this.optRoutingPath.add(line);
+      }
+
+      if (origPath[i]) {
+        points = [];
+        p = origPath[i];
+        p0x = p[0].x - 0.5 - this.size.x / 2;
+        p0y = p[0].y - 0.5 - this.size.y / 2;
+        p1x = p[1].x - 0.5 - this.size.x / 2;
+        p1y = p[1].y - 0.5 - this.size.y / 2;
+        points.push(new Vector3(p0x, 0.1, p0y));
+        points.push(new Vector3(p1x, 0.1, p1y));
+        const geometry = new BufferGeometry().setFromPoints(points);
+        const line = new Line(geometry, materialOrig);
+        this.optRoutingPath.add(line);
+      }
+
+      await new Promise(r => setTimeout(r, 50));
     }
 
-    console.log(paths)
+  }
 
+  markPickupLocs(locs) {
+    const points = locs.map((l) => {
+      return util.locToGridPoint(l, this.size)
+    })
+
+
+    const material = new MeshBasicMaterial({ color: 0xff0000 });
+
+    points.forEach((p) => {
+      const geometry = new SphereGeometry(0.3, 32, 32);
+      const sphere = new Mesh(geometry, material);
+      sphere.position.x = p.x - this.size.x / 2 - 0.5;
+      sphere.position.y = 1.2;
+      sphere.position.z = p.y - this.size.y / 2 - 0.5;
+      this.pickupPoints.add(sphere)
+    })
+    this.scene.add(this.pickupPoints);
   }
 }
 

@@ -95,6 +95,34 @@ class DataController {
     }
   }
 
+
+  async getRouting(depotId, startDate, endDate) {
+    try {
+      const url = `${this.base}/GetRotalama`;
+      const res = await axios.get(url, {
+        params: {
+          code: "deFxLoH0y6HuaAxjAb1xA9he8aag0Wri2pQ3t4u89YraCgOiF5TCaw==",
+          Depot_Id: depotId,
+          "Date-LowerBound": startDate,
+          "Date-UpperBound": endDate
+        }
+      });
+
+      return res.data.map((sol) => {
+        return {
+          origLen: sol.OrigLen,
+          optLen: sol.FoundLen,
+          pickupLocs: sol.OrigOrder,
+          origPath: sol.OrigPath,
+          optPath: sol.FoundPath
+        }
+      });
+
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async uploadNewLayout(depotId, file) {
     try {
       const url = `${this.base}/InsertLayout`;
