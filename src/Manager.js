@@ -391,7 +391,7 @@ class Manager {
     // const res = await this.getRouting(startDate.value, endDate.value);
     const res = await this.getRouting("2021-04-03", "2021-04-25");
     this.toggleLoading();
-    
+
     await this.simulator.drawRouting(res[7], parseInt(speed.id));
 
     console.log("activating panel")
@@ -443,8 +443,17 @@ class Manager {
   }
 
   async getHistory(loc, startDate, endDate) {
-    const history = await this.dataController.getLocHistory(this.selectedDepotId, loc, startDate, endDate);
-    return history;
+    this.toggleLoading();
+    
+    try {
+      const history = await this.dataController.getLocHistory(this.selectedDepotId, loc, startDate, endDate);
+      this.toggleLoading();
+      return history;
+    } catch (error) {
+      console.log(error);
+      this.toggleLoading();
+      alert("Something went wrong")
+    }
   }
 
   togglePanelActivity() {
