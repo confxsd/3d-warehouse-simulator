@@ -113,9 +113,9 @@ const determineRoutePaths = (locs, type, size) => {
     let indent = 0;
 
     if (type === "orig") {
-        indent = 0.9;
-    } else if (type == "opt") {
         indent = 1.2;
+    } else if (type == "opt") {
+        indent = 1.5;
     }
 
     for (let i = 0; i < locs.length - 1; i++) {
@@ -127,7 +127,7 @@ const determineRoutePaths = (locs, type, size) => {
         } else if (p1.type === "right") {
             p1.x -= indent
         } else if (p1.type === "path") {
-            p1.y += indent;
+            
         }
 
 
@@ -136,7 +136,7 @@ const determineRoutePaths = (locs, type, size) => {
         } else if (p2.type === "right") {
             p2.x -= indent
         } else if (p2.type === "path") {
-            p2.y += indent;
+            
         }
 
         paths.push([p1, p2])
@@ -185,7 +185,6 @@ const fillRestOfLayout = (layout) => {
 }
 
 const toGridLayout = (layout, type) => {
-    // layoutSorted = layout.sort(layoutSorter)
     let layoutMapped;
     if (type == "get") {
         layoutMapped = layout.map(loc => {

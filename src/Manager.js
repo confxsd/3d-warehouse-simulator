@@ -86,6 +86,7 @@ class Manager {
     this.handleFilters();
     this.handleLayoutUpload();
     this.handleZoomBtn();
+    this.handleCancelRoutingBtn();
 
 
     this.prepareFirstValues(this.fillRate, "depotInfo");
@@ -110,10 +111,9 @@ class Manager {
       }
       else if (e.target.id === 'BtnRouting') {
         if (this.simulator.isRoutingWorking()) {
-          e.target.disabled = true;
+          return;
         }
         await this.showRouting();
-        e.target.disabled = false;
       }
       else if (e.target.id === 'BtnRoutingClear') {
         this.clearRouting();
@@ -382,7 +382,7 @@ class Manager {
   async showRouting() {
     const startDate = document.querySelector(`#Routing input[name="start_date"]`)
     const endDate = document.querySelector(`#Routing input[name="end_date"]`)
-    const btnGet = document.querySelector(`#Routing button`)
+    const speed = document.querySelector(`#Routing input[name="speed"]:checked`)
 
     console.log("deactivating panel")
     this.togglePanelActivity();
@@ -390,10 +390,9 @@ class Manager {
     this.toggleLoading();
     // const res = await this.getRouting(startDate.value, endDate.value);
     const res = await this.getRouting("2021-04-03", "2021-04-25");
-    console.log(res);
     this.toggleLoading();
-
-    await this.simulator.drawRouting(res[7]);
+    
+    await this.simulator.drawRouting(res[7], parseInt(speed.id));
 
     console.log("activating panel")
     this.togglePanelActivity();
@@ -403,6 +402,13 @@ class Manager {
     const zoomBtn = document.querySelector("#ResetZoom");
     zoomBtn.addEventListener("click", (e) => {
       this.simulator.resetZoom();
+    })
+  }
+
+  handleCancelRoutingBtn() {
+    const cancelBtn = document.querySelector("#CancelRouting");
+    cancelBtn.addEventListener("click", (e) => {
+      this.simulator.cancelRouting();
     })
   }
 

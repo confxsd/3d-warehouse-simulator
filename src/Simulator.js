@@ -14,6 +14,7 @@ import {
   DefaultLoadingManager,
   LoadingManager,
   EdgesGeometry,
+  Euler,
   LineSegments,
   MeshLambertMaterial,
   LineBasicMaterial,
@@ -28,7 +29,8 @@ import {
   PointLight,
   Vector3,
   FileLoader,
-  Uint8ClampedAttribute
+  Uint8ClampedAttribute,
+  MathUtils
 } from "three";
 
 import { OrbitControls } from "./lib/OrbitControls.js";
@@ -71,7 +73,7 @@ class Simulator {
     const ambientLight = new AmbientLight(0xfefff9, 0.90);
     this.scene.add(ambientLight);
 
-    const pointLight = new PointLight(0xefefef, 0.15);
+    const pointLight = new PointLight(0xefefef, 0.20);
     this.camera.add(pointLight);
 
     const bgcolor = new Color(0xefefef);
@@ -79,19 +81,19 @@ class Simulator {
 
     this.scene.add(this.camera);
 
-
-
     this.renderer.setSize(width, height);
     this.container.appendChild(this.renderer.domElement);
 
 
     this.hoveredbox = null;
 
+
+    this.shouldRoute = true;
     this.isRouting = false;
     this.isRouted = false;
 
 
-    const gridHelper = new GridHelper(this.size.x, this.size.x);
+    // const gridHelper = new GridHelper(this.size.x, this.size.x);
     // this.scene.add(gridHelper);
 
     this.createTooltip();
@@ -117,8 +119,22 @@ class Simulator {
     this.controls.reset();
   }
 
+  showRoutingTexts(show) {
+    if (this.routingTexts) {
+      if (show) {
+        this.scene.add(this.routingTexts);
+      } else {
+        this.scene.remove(this.routingTexts);
+      }
+    }
+  }
+
 
   createRoutingTexts() {
+    if (this.routingTexts) return;
+
+    this.routingTexts = new Group();
+
     const pathPoints = [];
     for (let i = 1; i <= 19; i++) {
       pathPoints.push("Yol-" + i);
@@ -155,7 +171,7 @@ class Simulator {
 
       textMesh.rotation.x = -Math.PI / 2;
 
-      this.scene.add(textMesh)
+      this.routingTexts.add(textMesh)
     }
   }
 
@@ -192,7 +208,9 @@ class Simulator {
   }
 
   refreshLayout(layout) {
-    this.boxGroup.children = [];
+    this.boxGroup.children.forEach((c) => {
+      this.scene.remove(c)
+    });
     this.initBoxes(layout);
   }
 
@@ -202,9 +220,6 @@ class Simulator {
 
     this.optRoutingPath = new Group();
     this.optRoutingPath.type = "path";
-
-    this.pickupPoints = new Group();
-    this.pickupPoints.type = "pickup";
 
     this.boxGroup = new Group();
     this.boxGroup.type = "box";
@@ -729,12 +744,6 @@ class Simulator {
       item.z - this.size.y / 2 - 0.5
     );
 
-    // const edges = new EdgesGeometry(geometry);
-    // const line = new LineSegments(
-    //     edges,
-    //     new LineBasicMaterial({ color: 0x999999 })
-    // );
-
     const box = new Mesh(geometry, material);
     box.title = item.id;
     box.stock = item.stock;
@@ -743,19 +752,25 @@ class Simulator {
     box.maxQuan = item.maxQuan;
     box.proId = item.proId;
     box.boxType = boxType;
-    // box.add(line);
 
     group.add(box);
+  }
+
+  clearGroup(group) {
+    group.remove(...group.children);
   }
 
   clearRouting() {
     console.log(this.isRouted, this.isRouting)
     if (this.isRouted && !this.isRouting) {
-      this.origRoutingPath.children = []
-      this.optRoutingPath.children = []
-      this.scene.remove(this.pickupPoints);
+      this.clearGroup(this.origRoutingPath)
+      this.clearGroup(this.optRoutingPath);
+      this.clearGroup(this.pickupPoints);
+      
       this.toggleCollectorGuy(false);
       this.isRouted = false;
+      this.showRoutingTexts(false);
+      this.shouldRoute = true;
     }
   }
 
@@ -776,11 +791,17 @@ class Simulator {
       const objLoader = new OBJLoader(null);
       this.guyObject = objLoader.parse(obj);
 
-      this.guyObject.scale.set(0.05, 0.05, 0.05);
-      this.guyObject.color = 0x0000ff;
-      this.guyObject.position.x = this.size.x / 2 - 6;
+      this.guyObject.traverse(function (obj) {
+        if (obj.isMesh) {
+          obj.material = new MeshLambertMaterial({ color: 0x0000aa })
+        }
+      });
+
+      this.guyObject.scale.set(0.03, 0.03, 0.03);
+      this.guyObject.position.x = this.size.x / 2 - 8;
       this.guyObject.position.y = 0;
       this.guyObject.position.z = -this.size.y / 2 - 4;
+
       console.log("Model loaded")
     }
 
@@ -806,14 +827,19 @@ class Simulator {
     return this.isRouting || this.isRouted;
   }
 
-  async drawRouting(routing) {
-    
-    console.log(this.isRouted, this.isRouting)
+  cancelRouting() {
+    this.shouldRoute = false;
+  }
 
+  async drawRouting(routing, speed) {
+
+    this.shouldRoute = true;
+    
     const frames = [];
-    const delay = 20 //ms
+    const delay = 200 / speed //ms
     this.isRouting = true;
 
+    this.showRoutingTexts(true);
     this.toggleCollectorGuy(true);
     this.markPickupLocs(routing.pickupLocs);
 
@@ -839,14 +865,16 @@ class Simulator {
 
       if (optPath[i]) {
         p = optPath[i];
-        p0x = p[0].x - 0.5 - this.size.x / 2;
-        p0y = p[0].y - 0.5 - this.size.y / 2;
-        p1x = p[1].x - 0.5 - this.size.x / 2;
-        p1y = p[1].y - 0.5 - this.size.y / 2;
-        points.push(new Vector3(p0x, 0.1, p0y));
-        points.push(new Vector3(p1x, 0.1, p1y));
+        p0x = p[0].x - this.size.x / 2;
+        p0y = p[0].y - this.size.y / 2;
+        p1x = p[1].x - this.size.x / 2;
+        p1y = p[1].y - this.size.y / 2;
+        points.push(new Vector3(p0x, 0, p0y));
+        points.push(new Vector3(p1x, 0, p1y));
+
         const geometry = new BufferGeometry().setFromPoints(points);
         const line = new Line(geometry, materialOpt);
+
         frameActions.push(() => {
           this.optRoutingPath.add(line)
         })
@@ -855,23 +883,35 @@ class Simulator {
       if (origPath[i]) {
         points = [];
         p = origPath[i];
-        p0x = p[0].x - 0.5 - this.size.x / 2;
-        p0y = p[0].y - 0.5 - this.size.y / 2;
-        p1x = p[1].x - 0.5 - this.size.x / 2;
-        p1y = p[1].y - 0.5 - this.size.y / 2;
-        points.push(new Vector3(p0x, 0.1, p0y));
-        points.push(new Vector3(p1x, 0.1, p1y));
+        p0x = p[0].x - this.size.x / 2;
+        p0y = p[0].y - this.size.y / 2;
+        p1x = p[1].x - this.size.x / 2;
+        p1y = p[1].y - this.size.y / 2;
+        points.push(new Vector3(p0x, 0, p0y));
+        points.push(new Vector3(p1x, 0, p1y));
+
         const geometry = new BufferGeometry().setFromPoints(points);
         const line = new Line(geometry, materialOrig);
+
         frameActions.push(() => {
           this.origRoutingPath.add(line)
         })
       }
 
+      frameActions.push(() => {
+        if (optPath[i]) {
+          this.moveCollectorGuy(optPath[i][1])
+        }
+      });
+
       frames.push(frameActions);
     }
 
+
+    // Run simulation for each frame
     for (const frame of frames) {
+
+      if (!this.shouldRoute) break;
       frame.forEach((act) => {
         act();
       })
@@ -880,16 +920,41 @@ class Simulator {
 
     this.isRouted = true;
     this.isRouting = false;
+  }
 
+
+  moveCollectorGuy(nextLoc) {
+    if (!this.guyObject) return;
+
+    const prevPos = new Vector3().copy(this.guyObject.position);
+    const nextPos = new Vector3(nextLoc.x - this.size.x / 2, 0, nextLoc.y - this.size.y / 2);
+
+    this.guyObject.lookAt(nextPos);
+
+    let indent = 0;
+    if (nextPos.z > prevPos.z) {
+      console.log("down")
+      indent = -0.5;
+    } if (nextPos.z < prevPos.z) {
+      console.log("up")
+      indent = 0.5;
+    }
+
+    this.guyObject.position.set(nextPos.x + indent, 0, nextPos.z)
   }
 
   markPickupLocs(locs) {
+    if(!this.pickupPoints) {
+      this.pickupPoints = new Group();
+      this.pickupPoints.type = "pickup";
+      this.scene.add(this.pickupPoints);
+    }
+    
     const points = locs.map((l) => {
       return util.locToGridPoint(l, this.size)
     })
 
-
-    const material = new MeshLambertMaterial({ color: 0xff0000 });
+    const material = new MeshLambertMaterial({ color: 0xfacc33 });
 
     points.forEach((p) => {
       const geometry = new SphereGeometry(0.3, 32, 32);
@@ -899,7 +964,8 @@ class Simulator {
       sphere.position.z = p.y - this.size.y / 2 - 0.5;
       this.pickupPoints.add(sphere)
     })
-    this.scene.add(this.pickupPoints);
+
+    
   }
 }
 

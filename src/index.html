@@ -36,6 +36,8 @@
             transition: 0.15s cubic-bezier(0.45, 0.05, 0.55, 0.95);
         }
 
+
+
         .popup_modal {
             height: 365px;
             width: 650px;
@@ -167,12 +169,23 @@
         }
 
         #MainOps {
+            position: relative;
             background: white;
             margin: 12px 12px 0 0;
             width: 240px;
             display: flex;
             flex-direction: column;
             border: 1px solid #ccc;
+        }
+
+        #MainOps .hider {
+            display: none;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.3);
+            right: 0;
+            left: 0;
+            top: 0;
+            bottom: 0;
         }
 
         #MainOps>div {
@@ -183,7 +196,7 @@
             box-shadow: 0px 2px 8px #bbb;
         }
 
-        #MainOps>div+div {
+        #MainOps>div:nth-child(n+3) {
             border-top: 1px solid #ccc;
         }
 
@@ -301,8 +314,80 @@
             cursor: pointer;
         }
 
+        #CancelRouting {
+            position: fixed;
+            right: 260px;
+            top: 58px;
+            z-index: 4;
+            padding: 12px;
+            background: white;
+            border: 1px solid #ccc;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #CancelRouting:hover {
+            background-color: #ccc;
+        }
+
         #ResetZoom:hover {
             background-color: #ccc;
+        }
+
+        #Routing {
+            position: relative;
+        }
+
+        #Routing .options {
+            position: absolute;
+            right: 241px;
+            background: white;
+            width: 200px;
+            top: -1px;
+            bottom: -1px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-right: 0;
+        }
+
+        #Routing .options:hover {
+            box-shadow: -2px 2px 8px #bbb;
+        }
+
+        #Routing .options h6 {
+            font-size: 14px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        #Routing .options .container {
+            position: relative;
+            height: 100%;
+        }
+
+        #Routing .options .list {
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 13%;
+            bottom: 0;
+            height: 84%;
+            overflow-y: scroll;
+        }
+
+        #Routing .options .list p {
+            padding: 2px;
+            cursor: pointer;
+        }
+
+        #Routing .options .list p+p {
+            border-top: 1px solid #ccc;
+        }
+
+        #Routing .options .list p:hover {
+            background: #eee;
         }
     </style>
 </head>
@@ -340,8 +425,12 @@
         <div id="ResetZoom">
             <p>Reset zoom</p>
         </div>
+        <div id="CancelRouting">
+            <p>Cancel Routing</p>
+        </div>
         <div id="Panel">
             <div id="MainOps">
+                <div class="hider"></div>
                 <div class="filters_container">
                     <h4>Filter by </h4>
                     <fieldset class="filter_types align-horizontal">
@@ -368,9 +457,41 @@
                     <button id="Reload">Reload Layout</button>
                 </div>
                 <div id="Routing">
+                    <div class="options">
+                        <div class="container">
+                            <h6>Select an order</h6>
+                            <div class="list">
+                                <p>selection 1</p>
+                                <p>selection 2</p>
+                                <p>selection 2</p>
+                                <p>selection 2</p>
+                                <p>selection 2</p>
+                                <p>selection 2</p>
+                                <p>selection 2</p>
+                                <p>selection 2</p>
+                                <p>selection 2</p>
+                                <p>selection 2</p>
+                                <p>selection 2</p>
+                                <p>selection 2</p>
+                                <p>selection 2</p>
+                                <p>selection 2</p>
+                                <p>selection 2</p>
+                                <p>selection 2</p>
+                                <p>selection 3</p>
+                            </div>
+                        </div>
+                    </div>
                     <h4>Routing</h4>
                     <input type="text" name="start_date" id="start_date" placeholder="Start (YYYY-MM-DD)">
                     <input type="text" name="end_date" id="end_date" placeholder="End (YYYY-MM-DD)">
+                    <fieldset class="routing_speed align-horizontal">
+                        <legend>Speed</legend>
+                        <input type="radio" name="speed" id="1" checked="true"><label for="1">1x</label>
+                        <input type="radio" name="speed" id="2"><label for="2">2x</label>
+                        <input type="radio" name="speed" id="3"><label for="3">3x</label>
+                        <input type="radio" name="speed" id="4"><label for="4">4x</label>
+                        <input type="radio" name="speed" id="5"><label for="5">5x</label>
+                    </fieldset>
                     <button id="BtnRouting">Get</button>
                     <button id="BtnRoutingClear">Clear</button>
                 </div>
