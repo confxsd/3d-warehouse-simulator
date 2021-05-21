@@ -208,9 +208,7 @@ class Simulator {
   }
 
   refreshLayout(layout) {
-    this.boxGroup.children.forEach((c) => {
-      this.scene.remove(c)
-    });
+    this.clearGroup(this.boxGroup);
     this.initBoxes(layout);
   }
 
