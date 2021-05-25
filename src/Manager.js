@@ -31,6 +31,8 @@ class Manager {
     this.initDepotSelection();
   }
 
+  
+
   async initDepotSelection() {
     const depotIds = await this.dataController.getDepots();
     const depotSelectionList = document.querySelector(`#${this.depotSelectionId} ul`);
@@ -49,16 +51,38 @@ class Manager {
     const depotSelectionScene = document.querySelector(`#${this.depotSelectionId}`);
     depotSelectionScene.style.display = "none";
     this.selectedDepotId = selectedDepotId;
+
     this.toggleLoading()
     await this.initSimulation();
+    this.setDepotId(selectedDepotId);
     this.toggleLoading()
   }
+
+
 
   async prepareLayoutData() {
     const layout = await this.dataController.getLayout(this.selectedDepotId);
     this.fillRate = layout.fillRate;
 
     return this.formatLayoutData(layout.data, "get");
+  }
+
+  resetSelectedFilters() {
+    this.selectedFilters = {
+      weight: [],
+      product: [],
+      location: false
+    };
+    this.updateFilterOptions("weight");
+    this.updateFilterOptions("product");
+
+    const inputs = document.querySelectorAll("#MainOps .filters_container input");
+    Array.from(inputs).forEach((i) => i.checked = false);
+  }
+
+  setDepotId(id) {
+    const idField = document.querySelector("#DepotInfo .depot_id");
+    idField.textContent = id;
   }
 
   async formatLayoutData(layoutData, type) {
@@ -87,6 +111,7 @@ class Manager {
     this.handleLayoutUpload();
     this.handleZoomBtn();
     this.handleCancelRoutingBtn();
+    this.handleResetFiltersBtn();
 
 
     await this.setFillRate(this.fillRate);
@@ -99,6 +124,15 @@ class Manager {
     const loadingBox = document.getElementById("Loading");
     loadingBox.classList.toggle("closed");
     this.isLoading = !this.isLoading;
+  }
+
+  handleResetFiltersBtn() {
+    const btn = document.querySelector("#MainOps span.reset");
+
+    btn.addEventListener("click", (e)=> {
+      e.preventDefault();
+      this.resetSelectedFilters();
+    })
   }
 
 
