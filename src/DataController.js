@@ -114,7 +114,8 @@ class DataController {
           optLen: sol.FoundLen,
           pickupLocs: sol.OrigOrder,
           origPath: sol.OrigPath,
-          optPath: sol.FoundPath
+          optPath: sol.FoundPath,
+          name: sol.OrderId
         }
       });
 

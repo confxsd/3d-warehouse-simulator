@@ -448,22 +448,8 @@ class Simulator {
           } else if (event.target.classList.contains("history")) {
             displayHistoryOptions(item.title, async (startDateStr, endDateStr) => {
 
-              const pattern = /^(\d{4})(\/|-)(\d{1,2})(\/|-)(\d{1,2})$/
-
-              const startDateMatch = startDateStr.match(pattern);
-              const endDateMatch = endDateStr.match(pattern);
-
-              if (!startDateMatch || !endDateMatch) {
-                alert("Invalid dates")
-
-                // hideActionbar();
-                return;
-              }
-
-              const endDate = new Date(endDateStr);
-              if (endDate - new Date() >= 0) {
-                alert("End date cannot exceed today");
-                // hideActionbar();
+              if(!util.checkDate(startDateStr) || !util.checkDate(endDateStr)) {
+                alert("Wrong date format.");
                 return;
               }
 

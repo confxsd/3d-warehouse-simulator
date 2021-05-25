@@ -89,7 +89,8 @@ class Manager {
     this.handleCancelRoutingBtn();
 
 
-    this.prepareFirstValues(this.fillRate, "depotInfo");
+    await this.setFillRate(this.fillRate);
+
     this.simulator.init();
     this.isLoading = false;
   }
@@ -110,10 +111,7 @@ class Manager {
         this.toggleLoading();
       }
       else if (e.target.id === 'BtnRouting') {
-        if (this.simulator.isRoutingWorking()) {
-          return;
-        }
-        await this.showRouting();
+        await this.initRouting();
       }
       else if (e.target.id === 'BtnRoutingClear') {
         this.clearRouting();
@@ -379,23 +377,89 @@ class Manager {
     return res;
   }
 
-  async showRouting() {
+  async initRouting() {
     const startDate = document.querySelector(`#Routing input[name="start_date"]`)
     const endDate = document.querySelector(`#Routing input[name="end_date"]`)
+
+    if (!util.checkDate(startDate.value) || !util.checkDate(endDate.value)) {
+      alert("Wrong date format");
+      return;
+    }
+
+
+    this.toggleLoading();
+
+    try {
+      const res = await this.getRouting(startDate.value, endDate.value);
+    } catch(error) {
+      console.log(error);
+      if(res) console.log(res);
+      alert("Network request error.");
+      this.toggleLoading();
+      return;
+    }
+
+    if (res.length === 0) {
+      alert("No order found.")
+      return;
+    }
+    this.toggleLoading();
+
+    this.showRoutingOptions();
+
+    const ordersMapped = res.map((r) => {
+      return { [r.name]: r };
+    })
+    this.fillRoutingOrderSelection(ordersMapped);
+  }
+
+  showRoutingOptions() {
+    const routingOptions = document.querySelector("#Routing .options");
+    routingOptions.style.display = "block";
+  }
+
+  hideRoutingOptions() {
+    const routingOptions = document.querySelector("#Routing .options");
+    const list = routingOptions.getElementsByClassName("list")[0];
+    routingOptions.style.display = "none";
+    list.innerHTML = "";
+  }
+
+  async drawRouting(order) {
+    this.clearRouting();
+
+    if (this.simulator.isRoutingWorking()) {
+      return;
+    }
+
+    this.togglePanelActivity();
+    this.hideRoutingOptions();
+
+    this.updateRoutingInfo({ origLen: order.origLen.toFixed(1), optLen: order.optLen.toFixed(1), orderName: order.name });
     const speed = document.querySelector(`#Routing input[name="speed"]:checked`)
+    await this.simulator.drawRouting(order, parseInt(speed.id));
 
-    console.log("deactivating panel")
     this.togglePanelActivity();
+  }
 
-    this.toggleLoading();
-    // const res = await this.getRouting(startDate.value, endDate.value);
-    const res = await this.getRouting("2021-04-03", "2021-04-25");
-    this.toggleLoading();
+  fillRoutingOrderSelection(orders) {
+    const routingOptions = document.querySelector("#Routing .options");
+    routingOptions.style.display = "block";
 
-    await this.simulator.drawRouting(res[7], parseInt(speed.id));
+    const routingOrderList = document.querySelector("#Routing .list");
+    routingOrderList.innerHTML = "";
 
-    console.log("activating panel")
-    this.togglePanelActivity();
+    orders.forEach((o) => {
+      const name = Object.keys(o)[0];
+      const order = o[name];
+      const p = document.createElement("p");
+      p.textContent = name;
+      p.addEventListener("click", (e) => {
+        this.drawRouting(order);
+      });
+
+      routingOrderList.appendChild(p);
+    })
   }
 
   handleZoomBtn() {
@@ -412,18 +476,43 @@ class Manager {
     })
   }
 
-  clearRouting(route) {
-    this.simulator.clearRouting(route);
+  clearRouting() {
+    this.simulator.clearRouting();
+    this.hideRoutingOptions();
+    this.hideRoutingInfo();
   }
 
   async btnRefreshLayout() {
     const layoutData = await this.prepareLayoutData();
     this.simulator.refreshLayout(layoutData);
+    this.setFillRate(layoutData.fillRate);
   }
 
-  async prepareFirstValues(fillRate, depotInfo) {
-    await this.setFillRate(fillRate);
-    // await this.setDepotInfo(depotInfo);
+  async updateRoutingInfo({ orderName, origLen, optLen }) {
+    const diff = (origLen - optLen).toFixed(1);
+    const diffPercentage = (diff / origLen * 100).toFixed(1);
+
+    const routingInfo = document.querySelector('#Title .routing_info');
+    routingInfo.style.display = "block";
+
+    const orderNameField = routingInfo.getElementsByClassName("order_name")[0];
+    const origLenField = routingInfo.getElementsByClassName("orig_len")[0];
+    const optLenField = routingInfo.getElementsByClassName("opt_len")[0];
+    const diffField = routingInfo.getElementsByClassName("diff")[0];
+    const diffPercentageField = routingInfo.getElementsByClassName("diff_percentage")[0];
+
+    orderNameField.textContent = orderName;
+    origLenField.textContent = origLen;
+    optLenField.textContent = optLen;
+    diffField.textContent = diff;
+    diffPercentageField.textContent = diffPercentage;
+
+
+  }
+
+  hideRoutingInfo() {
+    const routingInfo = document.querySelector('#Title .routing_info');
+    routingInfo.style.display = "none";
   }
 
   async setFillRate(fillRate) {
@@ -444,7 +533,7 @@ class Manager {
 
   async getHistory(loc, startDate, endDate) {
     this.toggleLoading();
-    
+
     try {
       const history = await this.dataController.getLocHistory(this.selectedDepotId, loc, startDate, endDate);
       this.toggleLoading();

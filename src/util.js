@@ -127,7 +127,7 @@ const determineRoutePaths = (locs, type, size) => {
         } else if (p1.type === "right") {
             p1.x -= indent
         } else if (p1.type === "path") {
-            
+
         }
 
 
@@ -136,7 +136,7 @@ const determineRoutePaths = (locs, type, size) => {
         } else if (p2.type === "right") {
             p2.x -= indent
         } else if (p2.type === "path") {
-            
+
         }
 
         paths.push([p1, p2])
@@ -318,6 +318,22 @@ const map = (value, x1, y1, x2, y2) =>
     ((value - x1) * (y2 - x2)) / (y1 - x1) + x2;
 
 
+const checkDate = (dateStr) => {
+    const pattern = /^(\d{4})(\/|-)(\d{1,2})(\/|-)(\d{1,2})$/
+
+    const dateMatch = dateStr.match(pattern);
+
+    if (!dateMatch) {
+        return false;
+    }
+    const date = new Date(dateStr);
+    if (date - new Date() >= 0) {
+        return false;
+    }
+
+    return true;
+}
+
 module.exports = {
     corridorNames,
     toGridLayout,
@@ -326,5 +342,6 @@ module.exports = {
     map,
     allCorridorNames,
     determineRoutePaths,
-    timeout
+    timeout,
+    checkDate
 }

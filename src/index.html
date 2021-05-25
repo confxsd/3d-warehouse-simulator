@@ -95,6 +95,43 @@
             font-size: 16px;
         }
 
+        #Title .routing_info {
+            display: none;
+            width: 200px;
+            margin: auto;
+            background: #fff;
+            padding: 8px 0;
+            border: 1px solid #aaa;
+        }
+
+        #Title .routing_info div+div {
+            margin-top: 6px;
+        }
+
+        #Title .routing_info .order_name {
+            font-weight: bold;
+        }
+
+        #Title .routing_info .orig_len,
+        #Title .routing_info .opt_len {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        #Title .routing_info .lengths {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        #Title .routing_info .orig_len {
+            color: #c70a0a;
+        }
+
+        #Title .routing_info .opt_len {
+            color: #0a3ac7;
+        }
+
         #SimulationContainer {
             width: 100vw;
             height: 100vh;
@@ -341,6 +378,7 @@
         }
 
         #Routing .options {
+            display: none;
             position: absolute;
             right: 241px;
             background: white;
@@ -418,10 +456,19 @@
         </div>
         <div id="Title">
             <h3>Warehouse Simulation</h3>
+            <div class="routing_info">
+                <div class="order_name">
+                    <p>order name</p>
+                </div>
+                <div>
+                    <p> <span class="diff"></span>m saved. <span class="diff_percentage"></span>% Efficient</p>
+                </div>
+                <div>
+                    <p class="lengths"><span class="orig_len"></span> <span class="opt_len"></span></p>
+                </div>
+            </div>
         </div>
         <div id="DepotInfo">
-            <p class="id">Depot id: <span></span></p>
-            <p class="name">Depot name: <span></span></p>
             <p class="fill_rate"><span>0%</span></p>
         </div>
         <div id="ResetZoom">
@@ -463,23 +510,6 @@
                         <div class="container">
                             <h6>Select an order</h6>
                             <div class="list">
-                                <p>selection 1</p>
-                                <p>selection 2</p>
-                                <p>selection 2</p>
-                                <p>selection 2</p>
-                                <p>selection 2</p>
-                                <p>selection 2</p>
-                                <p>selection 2</p>
-                                <p>selection 2</p>
-                                <p>selection 2</p>
-                                <p>selection 2</p>
-                                <p>selection 2</p>
-                                <p>selection 2</p>
-                                <p>selection 2</p>
-                                <p>selection 2</p>
-                                <p>selection 2</p>
-                                <p>selection 2</p>
-                                <p>selection 3</p>
                             </div>
                         </div>
                     </div>
