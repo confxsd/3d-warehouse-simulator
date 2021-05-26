@@ -31,10 +31,18 @@ class Manager {
     this.initDepotSelection();
   }
 
-  
+
 
   async initDepotSelection() {
-    const depotIds = await this.dataController.getDepots();
+    let depotIds;
+    try {
+      depotIds = await this.dataController.getDepots();
+    } catch(error) {
+      console.log(error);
+      alert("Network request error.");
+      return;
+    }
+
     const depotSelectionList = document.querySelector(`#${this.depotSelectionId} ul`);
 
     depotIds.forEach(item => {
@@ -59,14 +67,6 @@ class Manager {
   }
 
 
-
-  async prepareLayoutData() {
-    const layout = await this.dataController.getLayout(this.selectedDepotId);
-    this.fillRate = layout.fillRate;
-
-    return this.formatLayoutData(layout.data, "get");
-  }
-
   resetSelectedFilters() {
     this.selectedFilters = {
       weight: [],
@@ -85,7 +85,7 @@ class Manager {
     idField.textContent = id;
   }
 
-  async formatLayoutData(layoutData, type) {
+  formatLayoutData(layoutData, type) {
     return util.toGridLayout(layoutData, type);
   }
 
@@ -94,7 +94,10 @@ class Manager {
     this.simulationScene.style.display = "block";
     this.depotInfoContainer = document.getElementById(this.depotInfoId);
 
-    const layoutData = await this.prepareLayoutData();
+    const layout = await this.dataController.getLayout(this.selectedDepotId);
+    const layoutData = this.formatLayoutData(layout.data, "get");
+    this.setFillRate(layout.fillRate);
+    console.log(layout)
 
     this.simulator = new Simulator({
       data: layoutData,
@@ -112,9 +115,7 @@ class Manager {
     this.handleZoomBtn();
     this.handleCancelRoutingBtn();
     this.handleResetFiltersBtn();
-
-
-    await this.setFillRate(this.fillRate);
+    this.handleCloseRoutingOptionsBtn();
 
     this.simulator.init();
     this.isLoading = false;
@@ -129,7 +130,7 @@ class Manager {
   handleResetFiltersBtn() {
     const btn = document.querySelector("#MainOps span.reset");
 
-    btn.addEventListener("click", (e)=> {
+    btn.addEventListener("click", (e) => {
       e.preventDefault();
       this.resetSelectedFilters();
     })
@@ -332,8 +333,8 @@ class Manager {
     if (this.selectedFilters.location) whichFilters.push("3");
 
     const filteredLayout = await this.dataController.filterLayout(this.selectedDepotId, whichFilters, this.selectedFilters.weight, this.selectedFilters.product);
-
     const formattedLayoutData = await this.formatLayoutData(filteredLayout.data, "filter");
+    this.setFillRate(filteredLayout.fillRate);
 
     this.simulator.refreshLayout(formattedLayoutData);
   }
@@ -425,26 +426,25 @@ class Manager {
 
     try {
       const res = await this.getRouting(startDate.value, endDate.value);
-    } catch(error) {
+      if (res.length === 0) {
+        alert("No order found.")
+        this.toggleLoading();
+        return;
+      }
+      
+      this.toggleLoading();
+
+      const ordersMapped = res.map((r) => {
+        return { [r.name]: r };
+      })
+      this.showRoutingOptions();
+      this.fillRoutingOrderSelection(ordersMapped);
+    } catch (error) {
       console.log(error);
-      if(res) console.log(res);
+      if (res) console.log(res);
       alert("Network request error.");
       this.toggleLoading();
-      return;
     }
-
-    if (res.length === 0) {
-      alert("No order found.")
-      return;
-    }
-    this.toggleLoading();
-
-    this.showRoutingOptions();
-
-    const ordersMapped = res.map((r) => {
-      return { [r.name]: r };
-    })
-    this.fillRoutingOrderSelection(ordersMapped);
   }
 
   showRoutingOptions() {
@@ -487,7 +487,7 @@ class Manager {
       const name = Object.keys(o)[0];
       const order = o[name];
       const p = document.createElement("p");
-      p.textContent = name;
+      p.innerHTML = "&#9654; " + name;
       p.addEventListener("click", (e) => {
         this.drawRouting(order);
       });
@@ -517,9 +517,20 @@ class Manager {
   }
 
   async btnRefreshLayout() {
-    const layoutData = await this.prepareLayoutData();
+    const layout = await this.dataController.getLayout(this.selectedDepotId);
+    const layoutData = this.formatLayoutData(layout.data, "get");
     this.simulator.refreshLayout(layoutData);
-    this.setFillRate(layoutData.fillRate);
+    this.setFillRate(layout.fillRate);
+  }
+
+
+  handleCloseRoutingOptionsBtn() {
+    const btn = document.querySelector("#Routing .options .title .close");
+    btn.addEventListener("click", (e)=>{
+      e.preventDefault();
+
+      this.hideRoutingOptions();
+    })
   }
 
   async updateRoutingInfo({ orderName, origLen, optLen }) {

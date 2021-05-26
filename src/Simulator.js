@@ -107,7 +107,7 @@ class Simulator {
     this.initBoxes(this.data);
 
 
-    this.loadCollectorGuy();
+    this.loadCollectorGuys();
 
 
     this.animate();
@@ -129,7 +129,6 @@ class Simulator {
     }
   }
 
-
   createRoutingTexts() {
     if (this.routingTexts) return;
 
@@ -145,6 +144,21 @@ class Simulator {
       color: new Color('rgb(0, 0, 0)'),
       opacity: 0.4,
     });
+
+    const geometry = new TextGeometry("start", {
+      font: font,
+      size: 4,
+      height: 2.5,
+    });
+
+    geometry.computeBoundingBox();
+    const textMesh = new Mesh(geometry, material);
+    textMesh.position.x = 200 - this.size.x / 2;
+    textMesh.position.y = 0;
+    textMesh.position.z = 200 - this.size.y / 2;
+
+    textMesh.rotation.x = -Math.PI / 2;
+    this.routingTexts.add(textMesh);
 
     for (let index = 0; index < pathPoints.length; index++) {
       const name = pathPoints[index];
@@ -173,6 +187,9 @@ class Simulator {
 
       this.routingTexts.add(textMesh)
     }
+
+
+
   }
 
   createCorridorTexts() {
@@ -229,14 +246,13 @@ class Simulator {
     this.scene.add(this.boxGroup);
   }
 
-
   animate() {
     requestAnimationFrame(() => this.animate());
     this.controls.update();
     this.render();
   }
 
-  createActionbar(item) {
+  createActionbar() {
     const optionsList = document.createElement("div");
     optionsList.className = "options_list"
 
@@ -267,15 +283,6 @@ class Simulator {
     actionbar.appendChild(optionsParams);
 
     this.container.appendChild(actionbar);
-
-    // actionbar.style.position = "absolute";
-    // actionbar.style.top = `${-999}px`;
-    // actionbar.style.left = `${-999}px`;
-    // actionbar.style.display = "none";
-    // actionbar.style.background = "white";
-    // actionbar.style.display = "flex";
-    // actionbar.style.justifyContent = "space-between";
-    // actionbar.style.flexDirection = "row";
 
     const mouse = new Vector2();
     const raycaster = new Raycaster();
@@ -448,7 +455,7 @@ class Simulator {
           } else if (event.target.classList.contains("history")) {
             displayHistoryOptions(item.title, async (startDateStr, endDateStr) => {
 
-              if(!util.checkDate(startDateStr) || !util.checkDate(endDateStr)) {
+              if (!util.checkDate(startDateStr) || !util.checkDate(endDateStr)) {
                 alert("Wrong date format.");
                 return;
               }
@@ -543,6 +550,9 @@ class Simulator {
     const proWeight = document.createElement("p");
     proWeight.classList.add("pro_weight");
 
+    const proCategory = document.createElement("p");
+    proCategory.classList.add("pro_category");
+
     const maxQuan = document.createElement("p");
     maxQuan.classList.add("max_quan");
 
@@ -555,6 +565,7 @@ class Simulator {
     tooltip.appendChild(locId);
     tooltip.appendChild(locWeight);
     tooltip.appendChild(proWeight);
+    tooltip.appendChild(proCategory);
     tooltip.appendChild(maxQuan);
     tooltip.appendChild(stock);
     tooltip.appendChild(proId);
@@ -613,12 +624,22 @@ class Simulator {
         if (item.stock !== 0) {
           maxQuan.style.display = "block"
           locWeight.style.display = "block"
-          proWeight.style.display = "block"
+          proWeight.style.display = "none"
+          proCategory.style.display = "none"
           proId.style.display = "block"
 
           maxQuan.textContent = "Max Quantity: " + item.maxQuan;
           locWeight.textContent = "Loc weight: " + item.locWeight;
-          proWeight.textContent = "Pro Weight: " + item.proWeight;
+          
+          if(item.proWeight) {
+            proWeight.textContent = "Pro Weight: " + item.proWeight;
+            proWeight.style.display = "block"
+          }
+          if(item.proCategory) {
+            proCategory.textContent = "Pro Category: " + item.proCategory;
+            proCategory.style.display = "block"
+          }
+
           proId.textContent = "Product Id: " + item.proId;
         } else {
           maxQuan.style.display = "none"
@@ -628,8 +649,8 @@ class Simulator {
         }
       }
 
+      // handle item here
       const intersected = intersects[0];
-
 
       if (intersected) {
         const item = intersected.object;
@@ -638,7 +659,6 @@ class Simulator {
           this.hoveredbox = item
           this.togglehoverBox(true);
         }
-
         displayTooltip(mouse, item);
       } else {
         this.togglehoverBox(false);
@@ -733,10 +753,12 @@ class Simulator {
     box.stock = item.stock;
     box.locWeight = item.locWeight;
     box.proWeight = item.proWeight;
+    box.proCategory = item.proCategory;
     box.maxQuan = item.maxQuan;
     box.proId = item.proId;
     box.boxType = boxType;
-
+    box.fromWhichResult = item.fromWhichResult;
+    
     group.add(box);
   }
 
@@ -750,43 +772,60 @@ class Simulator {
       this.clearGroup(this.origRoutingPath)
       this.clearGroup(this.optRoutingPath);
       this.clearGroup(this.pickupPoints);
-      
-      this.toggleCollectorGuy(false);
+
+      this.toggleCollectorGuys(false);
       this.isRouted = false;
       this.showRoutingTexts(false);
       this.shouldRoute = true;
     }
   }
 
-  toggleCollectorGuy(show) {
-    if (this.guyObject) {
+  toggleCollectorGuys(show) {
+    console.log(this.origGuyObject, show)
+    if (this.origGuyObject && this.optGuyObject) {
       if (show) {
-        this.scene.add(this.guyObject);
+        this.scene.add(this.origGuyObject);
+        this.scene.add(this.optGuyObject);
       } else {
-        this.scene.remove(this.guyObject);
+        this.scene.remove(this.origGuyObject);
+        this.scene.remove(this.optGuyObject);
       }
     }
   }
 
-  loadCollectorGuy() {
-    if (this.guyObject) return;
+  loadCollectorGuys() {
+    if (this.origGuyObject || this.optGuyObject) return;
+    const guySize = 0.04;
 
     const onLoad = (obj) => {
       const objLoader = new OBJLoader(null);
-      this.guyObject = objLoader.parse(obj);
+      this.origGuyObject = objLoader.parse(obj);
+      this.optGuyObject = objLoader.parse(obj);
 
-      this.guyObject.traverse(function (obj) {
+      this.optGuyObject.traverse(function (obj) {
         if (obj.isMesh) {
           obj.material = new MeshLambertMaterial({ color: 0x0000aa })
         }
       });
 
-      this.guyObject.scale.set(0.03, 0.03, 0.03);
-      this.guyObject.position.x = this.size.x / 2 - 8;
-      this.guyObject.position.y = 0;
-      this.guyObject.position.z = -this.size.y / 2 - 4;
+      this.origGuyObject.traverse(function (obj) {
+        if (obj.isMesh) {
+          obj.material = new MeshLambertMaterial({ color: 0xaa0000 })
+        }
+      });
 
-      console.log("Model loaded")
+      this.optGuyObject.scale.set(guySize, guySize, guySize);
+      this.optGuyObject.position.x = this.size.x / 2 - 7;
+      this.optGuyObject.position.y = 0;
+      this.optGuyObject.position.z = -this.size.y / 2 - 4;
+
+      this.origGuyObject.scale.set(guySize, guySize, guySize);
+      this.origGuyObject.position.x = this.size.x / 2 - 7;
+      this.origGuyObject.position.y = 0;
+      this.origGuyObject.position.z = -this.size.y / 2 - 4;
+
+      console.log("Models are loaded")
+
     }
 
     const onProgress = (progress) => {
@@ -818,13 +857,13 @@ class Simulator {
   async drawRouting(routing, speed) {
 
     this.shouldRoute = true;
-    
+
     const frames = [];
     const delay = 200 / speed //ms
     this.isRouting = true;
 
     this.showRoutingTexts(true);
-    this.toggleCollectorGuy(true);
+    this.toggleCollectorGuys(true);
     this.markPickupLocs(routing.pickupLocs);
 
     this.scene.add(this.origRoutingPath);
@@ -884,7 +923,10 @@ class Simulator {
 
       frameActions.push(() => {
         if (optPath[i]) {
-          this.moveCollectorGuy(optPath[i][1])
+          this.moveCollectorGuy(optPath[i][1], "opt")
+        }
+        if (origPath[i]) {
+          this.moveCollectorGuy(origPath[i][1], "orig")
         }
       });
 
@@ -907,13 +949,15 @@ class Simulator {
   }
 
 
-  moveCollectorGuy(nextLoc) {
-    if (!this.guyObject) return;
+  moveCollectorGuy(nextLoc, which) {
+    const guy = which === "orig" ? this.origGuyObject : this.optGuyObject;
 
-    const prevPos = new Vector3().copy(this.guyObject.position);
+    if (!guy) return;
+
+    const prevPos = new Vector3().copy(guy.position);
     const nextPos = new Vector3(nextLoc.x - this.size.x / 2, 0, nextLoc.y - this.size.y / 2);
 
-    this.guyObject.lookAt(nextPos);
+    guy.lookAt(nextPos);
 
     let indent = 0;
     if (nextPos.z > prevPos.z) {
@@ -924,16 +968,16 @@ class Simulator {
       indent = 0.5;
     }
 
-    this.guyObject.position.set(nextPos.x + indent, 0, nextPos.z)
+    guy.position.set(nextPos.x + indent, 0, nextPos.z)
   }
 
   markPickupLocs(locs) {
-    if(!this.pickupPoints) {
+    if (!this.pickupPoints) {
       this.pickupPoints = new Group();
       this.pickupPoints.type = "pickup";
       this.scene.add(this.pickupPoints);
     }
-    
+
     const points = locs.map((l) => {
       return util.locToGridPoint(l, this.size)
     })
@@ -949,7 +993,7 @@ class Simulator {
       this.pickupPoints.add(sphere)
     })
 
-    
+
   }
 }
 

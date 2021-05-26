@@ -30,7 +30,7 @@ const getCorridorDist = (name) => {
 const locToGridPoint = (locId, size) => {
     if (locId === "start") {
         return {
-            x: (8 + 1) * 4,
+            x: (7 + 1) * 4,
             y: -4,
             type: "start"
         }
@@ -196,9 +196,11 @@ const toGridLayout = (layout, type) => {
                 stock: loc.Stok,
                 locWeight: loc.LocWeight,
                 proWeight: loc.ProWeight,
+                proCategory: null,
                 maxQuan: loc.MaxQuan,
                 insertedAt: loc.InsertedAt,
-                proId: loc.ProId
+                proId: loc.ProId,
+                fromWhichResult: "get"
             }
         });
     } else if (type == "filter") {
@@ -210,10 +212,12 @@ const toGridLayout = (layout, type) => {
                 z: point.y,
                 stock: loc["Koli Miktari"],
                 locWeight: loc["Lokasyon Agirlik Grubu"],
-                proWeight: loc["Kategori"],
+                proCategory: loc["Kategori"],
+                proWeight: null,
                 maxQuan: loc["Max Quantity"],
                 insertedAt: loc.Inserted_At,
-                proId: loc["Product ID"]
+                proId: loc["Product ID"],
+                fromWhichResult: "filter"
             }
         });
     } else {
