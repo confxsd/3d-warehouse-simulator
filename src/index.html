@@ -100,35 +100,49 @@
             width: 200px;
             margin: auto;
             background: #fff;
-            padding: 8px 0;
+            padding: 12px 16px 4px 16px;
             border: 1px solid #aaa;
         }
 
+        #Title .routing_info .comparison {
+            display: flex;
+            justify-content: space-around;
+        }
+
         #Title .routing_info div+div {
-            margin-top: 6px;
+            margin-top: 4px;
         }
 
         #Title .routing_info .order_name {
             font-weight: bold;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 4px;
         }
 
-        #Title .routing_info .orig_len,
-        #Title .routing_info .opt_len {
+        #Title .routing_info .orig_len_field,
+        #Title .routing_info .opt_len_field {
+            font-size: 12px;
+        }
+
+        #Title .routing_info .orig_len_field .orig_len,
+        #Title .routing_info .opt_len_field .opt_len {
             font-weight: bold;
-            font-size: 16px;
+            font-size: 18px;
         }
 
         #Title .routing_info .lengths {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
+            text-align: left;
         }
 
-        #Title .routing_info .orig_len {
+        #Title .routing_info .orig_len_field {
             color: #c70a0a;
         }
 
-        #Title .routing_info .opt_len {
+        #Title .routing_info .opt_len_field {
             color: #0a3ac7;
         }
 
@@ -215,6 +229,18 @@
             border: 1px solid #ccc;
         }
 
+        #MainOps .filters_container h4 {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #MainOps .filters_container h4 span.reset {
+            font-weight: 400;
+            text-decoration: underline;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
         #MainOps .hider {
             display: none;
             position: absolute;
@@ -227,7 +253,7 @@
         }
 
         #MainOps>div {
-            padding: 12px 24px;
+            padding: 8px 12px;
         }
 
         #MainOps>div:hover {
@@ -346,31 +372,37 @@
             right: 260px;
             top: 12px;
             z-index: 4;
-            padding: 12px;
-            background: white;
+            padding: 8px 4px;
+            width: 112px;
+            text-align: center;
+            background: rgba(255,255,255,0.2);
             border: 1px solid #ccc;
-            font-weight: bold;
             cursor: pointer;
         }
 
         #CancelRouting {
             position: fixed;
             right: 260px;
-            top: 58px;
+            top: 51px;
             z-index: 4;
-            padding: 12px;
-            background: white;
+            padding: 8px 4px;
+            width: 112px;
+            text-align: center;
+            background: rgba(255,255,255,0.2);
             border: 1px solid #ccc;
-            font-weight: bold;
             cursor: pointer;
         }
 
         #CancelRouting:hover {
-            background-color: #ccc;
+            background: rgba(255,255,255,1);
+        }
+
+        #CancelRouting p {
+            pointer-events: none;
         }
 
         #ResetZoom:hover {
-            background-color: #ccc;
+            background: rgba(255,255,255,1);
         }
 
         #Routing {
@@ -388,6 +420,15 @@
             padding: 8px;
             border: 1px solid #ccc;
             border-right: 0;
+        }
+
+        #Routing .options .title {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #Routing .options .title .close {
+            cursor: pointer;
         }
 
         #Routing .options:hover {
@@ -420,6 +461,7 @@
         #Routing .options .list p {
             padding: 2px;
             cursor: pointer;
+            font-size: 11px;
         }
 
         #Routing .options .list p+p {
@@ -461,27 +503,40 @@
                     <p>order name</p>
                 </div>
                 <div>
-                    <p> <span class="diff"></span>m saved. <span class="diff_percentage"></span>% Efficient</p>
+                    <div class="comparison">
+                        <p><span class="diff"></span>m saved.</p>
+                        <p><span class="diff_percentage"></span>% Efficient</p>
+                    </div>
                 </div>
                 <div>
-                    <p class="lengths"><span class="orig_len"></span> <span class="opt_len"></span></p>
+                    <div class="lengths">
+                        <div class="orig_len_field">
+                            <p>Original:</p>
+                            <p><span class="orig_len"></span>m</p>
+                        </div>
+                        <div class="opt_len_field">
+                            <p>Optimized:</p>
+                            <p><span class="opt_len"></span>m</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <div id="DepotInfo">
+            <p>Depot Id: <span class="depot_id"></span></p>
             <p class="fill_rate"><span>0%</span></p>
         </div>
         <div id="ResetZoom">
             <p>Reset zoom</p>
         </div>
-        <div id="CancelRouting">
-            <p>Cancel Routing</p>
+        <div data-status="playing" id="CancelRouting">
+            <p>Cancel animation</p>
         </div>
         <div id="Panel">
             <div id="MainOps">
                 <div class="hider"></div>
                 <div class="filters_container">
-                    <h4>Filter by <span class="reset">Reset</span></h4>
+                    <h4><span>Filter by </span><span class="reset">Reset</span></h4>
                     <fieldset class="filter_types align-horizontal">
                         <input type="checkbox" name="filters" id="weight_category" value="weight_category" /><label
                             for="weight_category">Weight Category</label>
@@ -508,14 +563,15 @@
                 <div id="Routing">
                     <div class="options">
                         <div class="container">
-                            <h6>Select an order</h6>
+                            <h6 class="title">Simulate an order <span class="close">X</span></h6>
                             <div class="list">
                             </div>
                         </div>
                     </div>
                     <h4>Routing</h4>
-                    <input type="text" name="start_date" id="start_date" placeholder="Start (YYYY-MM-DD)">
-                    <input type="text" name="end_date" id="end_date" placeholder="End (YYYY-MM-DD)">
+                    <input type="text" name="start_date" id="start_date" placeholder="Start (YYYY-MM-DD)"
+                        value="2021-04-04">
+                    <input type="text" name="end_date" id="end_date" placeholder="End (YYYY-MM-DD)" value="2021-05-26">
                     <fieldset class="routing_speed align-horizontal">
                         <legend>Speed</legend>
                         <input type="radio" name="speed" id="1" checked="true"><label for="1">1x</label>
@@ -524,8 +580,8 @@
                         <input type="radio" name="speed" id="4"><label for="4">4x</label>
                         <input type="radio" name="speed" id="5"><label for="5">5x</label>
                     </fieldset>
-                    <button id="BtnRouting">Get</button>
-                    <button id="BtnRoutingClear">Clear</button>
+                    <button id="BtnRouting">List Orders</button>
+                    <button id="BtnRoutingClear">Clean Routing</button>
                 </div>
                 <div id="UploadLayout">
                     <h4>Upload Layout</h4>

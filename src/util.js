@@ -30,8 +30,8 @@ const getCorridorDist = (name) => {
 const locToGridPoint = (locId, size) => {
     if (locId === "start") {
         return {
-            x: (7 + 1) * 4,
-            y: -4,
+            x: 8 * 4 + 1,
+            y: -5,
             type: "start"
         }
     } else if (locId.includes("Yol") || locId.includes("yol")) {

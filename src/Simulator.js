@@ -61,7 +61,7 @@ class Simulator {
     const width = this.container.clientWidth;
     const height = this.container.clientHeight;
 
-    this.defaultCameraPos = new Vector3(0, 32, 20);
+    this.defaultCameraPos = new Vector3(0, 54, 16);
     this.camera = new PerspectiveCamera(50, width / height, 0.1, 1000);
     this.camera.position.set(this.defaultCameraPos.x, this.defaultCameraPos.y, this.defaultCameraPos.z);
 
@@ -70,7 +70,7 @@ class Simulator {
       this.renderer.domElement
     );
 
-    const ambientLight = new AmbientLight(0xfefff9, 0.90);
+    const ambientLight = new AmbientLight(0xfefff9, 0.85);
     this.scene.add(ambientLight);
 
     const pointLight = new PointLight(0xefefef, 0.20);
@@ -147,15 +147,15 @@ class Simulator {
 
     const geometry = new TextGeometry("start", {
       font: font,
-      size: 4,
-      height: 2.5,
+      size: 0.4,
+      height: 0.025,
     });
 
     geometry.computeBoundingBox();
     const textMesh = new Mesh(geometry, material);
-    textMesh.position.x = 200 - this.size.x / 2;
+    textMesh.position.x = this.size.x / 2 - 5.5;
     textMesh.position.y = 0;
-    textMesh.position.z = 200 - this.size.y / 2;
+    textMesh.position.z = - this.size.y / 2 - 5.5;
 
     textMesh.rotation.x = -Math.PI / 2;
     this.routingTexts.add(textMesh);
@@ -630,12 +630,12 @@ class Simulator {
 
           maxQuan.textContent = "Max Quantity: " + item.maxQuan;
           locWeight.textContent = "Loc weight: " + item.locWeight;
-          
-          if(item.proWeight) {
+
+          if (item.proWeight) {
             proWeight.textContent = "Pro Weight: " + item.proWeight;
             proWeight.style.display = "block"
           }
-          if(item.proCategory) {
+          if (item.proCategory) {
             proCategory.textContent = "Pro Category: " + item.proCategory;
             proCategory.style.display = "block"
           }
@@ -758,7 +758,7 @@ class Simulator {
     box.proId = item.proId;
     box.boxType = boxType;
     box.fromWhichResult = item.fromWhichResult;
-    
+
     group.add(box);
   }
 
@@ -795,7 +795,7 @@ class Simulator {
 
   loadCollectorGuys() {
     if (this.origGuyObject || this.optGuyObject) return;
-    const guySize = 0.04;
+    const guySize = 0.032;
 
     const onLoad = (obj) => {
       const objLoader = new OBJLoader(null);
@@ -962,10 +962,10 @@ class Simulator {
     let indent = 0;
     if (nextPos.z > prevPos.z) {
       console.log("down")
-      indent = -0.5;
+      indent = -1.05;
     } if (nextPos.z < prevPos.z) {
       console.log("up")
-      indent = 0.5;
+      indent = 0.75;
     }
 
     guy.position.set(nextPos.x + indent, 0, nextPos.z)

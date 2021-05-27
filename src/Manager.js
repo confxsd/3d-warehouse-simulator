@@ -37,7 +37,7 @@ class Manager {
     let depotIds;
     try {
       depotIds = await this.dataController.getDepots();
-    } catch(error) {
+    } catch (error) {
       console.log(error);
       alert("Network request error.");
       return;
@@ -73,6 +73,8 @@ class Manager {
       product: [],
       location: false
     };
+    this.filterSwitchProductCategory(false);
+    this.filterSwitchWeightCategory(false);
     this.updateFilterOptions("weight");
     this.updateFilterOptions("product");
 
@@ -375,8 +377,14 @@ class Manager {
         alert("select some filters");
       } else {
         this.toggleLoading()
-        await this.filterLayout()
-        this.toggleLoading()
+        try {
+          await this.filterLayout()
+          this.toggleLoading()
+        } catch (error) {
+          console.log(error);
+          this.toggleLoading()
+          alert("Server didn't response")
+        }
       }
     })
 
@@ -431,7 +439,7 @@ class Manager {
         this.toggleLoading();
         return;
       }
-      
+
       this.toggleLoading();
 
       const ordersMapped = res.map((r) => {
@@ -526,7 +534,7 @@ class Manager {
 
   handleCloseRoutingOptionsBtn() {
     const btn = document.querySelector("#Routing .options .title .close");
-    btn.addEventListener("click", (e)=>{
+    btn.addEventListener("click", (e) => {
       e.preventDefault();
 
       this.hideRoutingOptions();
