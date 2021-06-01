@@ -148,6 +148,30 @@ class DataController {
       throw error;
     }
   }
+  async uploadReplenishmentData(depotId, file) {
+    try {
+      const url = `${this.base}/InsertLayout`;
+      let formData = new FormData()
+      formData.append('Depot_Id', depotId)
+      formData.append('layout', file, file.name)
+
+      const res = await axios({
+        method: 'post',
+        url,
+        data: formData,
+        params: {
+          code: "6mwa4yhvCbwyc6UONSZAUqkwv4O2v4C0/rT5HAOgTvbku5a/WtRicA==",
+          Depot_Id: depotId
+        },
+        headers: {
+          "Content-type": "multipart/form-data",
+        }
+      });
+      return res.data;
+    } catch (error) {
+      throw error;
+    }
+  }
 
   async filterLayout(depotId, filters, weight_filters, product_filters) {
     try {

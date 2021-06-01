@@ -407,15 +407,16 @@ class Manager {
       opType = "Delete"
     }
 
-
     this.toggleLoading();
+    
     const res = await this.dataController.updateStock(this.selectedDepotId, opType, loc, amount, productId);
-    if (res && res.Stok) {
+    if (res) {
       await this.btnRefreshLayout();
       alert("Succesfully updated the stock value");
     } else {
       alert("Something went wrong")
     }
+
     this.toggleLoading();
     return res;
   }

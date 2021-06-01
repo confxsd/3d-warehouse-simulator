@@ -213,7 +213,7 @@ const toGridLayout = (layout, type) => {
                 stock: loc["Koli Miktari"],
                 locWeight: loc["Lokasyon Agirlik Grubu"],
                 proCategory: loc["Kategori"],
-                proWeight: null,
+                proWeight: loc["Urun Agirlik Grubu"],
                 maxQuan: loc["Max Quantity"],
                 insertedAt: loc.Inserted_At,
                 proId: loc["Product ID"],

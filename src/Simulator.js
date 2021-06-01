@@ -437,7 +437,7 @@ class Simulator {
                 alert("Invalid value")
                 return
               }
-              if (amount <= 0) {
+              if (amount < 0) {
                 alert("Amount should be positive")
                 return
               }
@@ -449,6 +449,7 @@ class Simulator {
 
               const res = await this.updateStock("remove", item.title, amount);
               console.log(res)
+              // this.refreshLayout()
 
               hideActionbar();
             })
