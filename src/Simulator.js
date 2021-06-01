@@ -36,7 +36,7 @@ import {
 import { OrbitControls } from "./lib/OrbitControls.js";
 import { OBJLoader } from "./lib/OBJLoader.js";
 
-const helvetikerFont = require('./assets/helvetiker.json')
+const helvetikerFont = require('./static/helvetiker.json')
 const util = require("./util");
 
 
@@ -842,7 +842,7 @@ class Simulator {
     }
 
     const loader = new FileLoader();
-    loader.load('./models/collecter_guy.obj',
+    loader.load('./collector_guy.obj',
       onLoad,
       onProgress,
       onError,

@@ -11,10 +11,10 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {
-          from: "./src/index.html", to: "index.html"
+          from: "./src/static/index.html", to: "index.html"
         },
         {
-          from: "./src/models", to: "models"
+          from: "./src/static/collector_guy.obj", to: "collector_guy.obj"
         },
       ]
     })
