@@ -1,6 +1,6 @@
 import Simulator from "./Simulator";
 import DataController from './DataController';
-const util = require("./util")
+const util = require("../util")
 
 
 class Manager {

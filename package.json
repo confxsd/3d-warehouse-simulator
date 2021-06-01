@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start": "node app.js",
+    "start": "node server.js",
     "dev": "npm run build && npm run start"
   },
   "author": "",

@@ -3,18 +3,12 @@ import {
   Scene,
   PerspectiveCamera,
   Color,
-  MeshPhongMaterial,
-  GridHelper,
   BoxGeometry,
   MeshBasicMaterial,
   Mesh,
   WireframeGeometry,
   EdgesHelper,
   AmbientLight,
-  DefaultLoadingManager,
-  LoadingManager,
-  EdgesGeometry,
-  Euler,
   LineSegments,
   MeshLambertMaterial,
   LineBasicMaterial,
@@ -29,15 +23,13 @@ import {
   PointLight,
   Vector3,
   FileLoader,
-  Uint8ClampedAttribute,
-  MathUtils
 } from "three";
 
-import { OrbitControls } from "./lib/OrbitControls.js";
-import { OBJLoader } from "./lib/OBJLoader.js";
+import { OrbitControls } from "../lib/OrbitControls.js";
+import { OBJLoader } from "../lib/OBJLoader.js";
 
-const helvetikerFont = require('./static/helvetiker.json')
-const util = require("./util");
+const helvetikerFont = require('../static/helvetiker.json')
+const util = require("../util");
 
 
 class Simulator {
