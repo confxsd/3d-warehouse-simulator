@@ -647,6 +647,7 @@ class Simulator {
           locWeight.style.display = "none"
           proWeight.style.display = "none"
           proId.style.display = "none"
+          proCategory.style.display = "none"
         }
       }
 
@@ -703,6 +704,7 @@ class Simulator {
 
     if (item.id === "block") {
       boxType = "block"
+      console.log(item)
     } else if (item.locWeight === -1) {
       boxType = "empty"
     } else {
@@ -858,10 +860,10 @@ class Simulator {
   async drawRouting(routing, speed) {
 
     this.shouldRoute = true;
+    this.isRouting = true;
 
     const frames = [];
     const delay = 200 / speed //ms
-    this.isRouting = true;
 
     this.showRoutingTexts(true);
     this.toggleCollectorGuys(true);

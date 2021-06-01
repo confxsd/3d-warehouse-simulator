@@ -146,7 +146,7 @@ const determineRoutePaths = (locs, type, size) => {
 }
 
 const fillRestOfLayout = (layout) => {
-    const corrNames = corridorNames(layout);
+    const corrNames = allCorridorNames();
 
     corrNames.forEach((name) => {
         const left = LAYOUT_CORRIDOR_MAP[name].left;
@@ -231,10 +231,8 @@ const isLocEmpty = (layout, corr, order) => {
     const locId = toLocationId(corr, order);
     const point = locToGridPoint(locId);
 
-
     for (let i = 0; i < layout.length; i++) {
         const loc = layout[i];
-
         if (loc.x === point.x && loc.z === point.y) return false;
     }
 
@@ -278,6 +276,7 @@ const fillEmptySlots = (layout) => {
     empties.forEach((e) => {
         const locId = toLocationId(e.corrName, e.i);
         const point = locToGridPoint(locId);
+
         layout.push({
             x: point.x,
             z: point.y,

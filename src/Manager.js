@@ -31,8 +31,6 @@ class Manager {
     this.initDepotSelection();
   }
 
-
-
   async initDepotSelection() {
     let depotIds;
     try {
@@ -65,7 +63,6 @@ class Manager {
     this.setDepotId(selectedDepotId);
     this.toggleLoading()
   }
-
 
   resetSelectedFilters() {
     this.selectedFilters = {
@@ -408,11 +405,10 @@ class Manager {
     }
 
     this.toggleLoading();
-    
+
     const res = await this.dataController.updateStock(this.selectedDepotId, opType, loc, amount, productId);
     if (res) {
       await this.btnRefreshLayout();
-      alert("Succesfully updated the stock value");
     } else {
       alert("Something went wrong")
     }
@@ -429,7 +425,6 @@ class Manager {
       alert("Wrong date format");
       return;
     }
-
 
     this.toggleLoading();
 
@@ -560,8 +555,6 @@ class Manager {
     optLenField.textContent = optLen;
     diffField.textContent = diff;
     diffPercentageField.textContent = diffPercentage;
-
-
   }
 
   hideRoutingInfo() {
