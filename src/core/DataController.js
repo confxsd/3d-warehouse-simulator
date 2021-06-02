@@ -148,20 +148,21 @@ class DataController {
       throw error;
     }
   }
+  
   async uploadReplenishmentData(depotId, file) {
     try {
-      const url = `${this.base}/InsertLayout`;
+      const url = `${this.base}/InsertOrders`;
       let formData = new FormData()
-      formData.append('Depot_Id', depotId)
-      formData.append('layout', file, file.name)
+      formData.append('depo_id', depotId)
+      formData.append('orders', file, file.name)
 
       const res = await axios({
         method: 'post',
         url,
         data: formData,
         params: {
-          code: "6mwa4yhvCbwyc6UONSZAUqkwv4O2v4C0/rT5HAOgTvbku5a/WtRicA==",
-          Depot_Id: depotId
+          code: "MfjinlHDMj9c5bSChuLmqQRvQcKWAl4GAYCdjn1hNkoiDl9Q4yHrmw==",
+          depo_id: depotId
         },
         headers: {
           "Content-type": "multipart/form-data",

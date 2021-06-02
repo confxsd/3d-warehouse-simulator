@@ -96,7 +96,6 @@ class Manager {
     const layout = await this.dataController.getLayout(this.selectedDepotId);
     const layoutData = this.formatLayoutData(layout.data, "get");
     this.setFillRate(layout.fillRate);
-    console.log(layout)
 
     this.simulator = new Simulator({
       data: layoutData,
@@ -111,6 +110,7 @@ class Manager {
     this.handlePanel();
     this.handleFilters();
     this.handleLayoutUpload();
+    this.handleReplenishmentUpload();
     this.handleZoomBtn();
     this.handleCancelRoutingBtn();
     this.handleResetFiltersBtn();
@@ -179,6 +179,37 @@ class Manager {
       }
 
 
+    })
+  }
+
+  handleReplenishmentUpload() {
+    const form = document.querySelector('#UploadReplenisment form');
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const fileInput = form.querySelector("input[type=file]");
+      if (!fileInput.files || fileInput.files.length !== 1) {
+        alert("Select an .xlsx file");
+        return;
+      }
+      const file = fileInput.files[0];
+
+      this.toggleLoading();
+
+      try {
+        const res = await this.dataController.uploadReplenishmentData(this.selectedDepotId, file);
+
+        if (res && res.indexOf("success") === -1) {
+          console.log(res);
+          alert("Something went wrong");
+        }
+
+        await this.btnRefreshLayout();
+      } catch (error) {
+        console.log(error)
+        alert("Something went wrong");
+      }
+
+      this.toggleLoading();
     })
   }
 

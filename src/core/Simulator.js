@@ -409,7 +409,6 @@ class Simulator {
                 return
               }
               if (item.stock + amount > item.maxQuan) {
-                console.log(item.stock, amount, item.maxQuan)
                 alert("Amount exceeds max quantity")
                 return
               }
@@ -434,14 +433,11 @@ class Simulator {
                 return
               }
               if (amount > item.stock) {
-                console.log(item.stock, amount, item.maxQuan)
                 alert("Amount exceeds stock quantity")
                 return
               }
 
               const res = await this.updateStock("remove", item.title, amount);
-              console.log(res)
-              // this.refreshLayout()
 
               hideActionbar();
             })
@@ -454,8 +450,6 @@ class Simulator {
               }
 
               const history = await this.getHistory(item.title, startDateStr, endDateStr);
-              console.log(startDateStr, endDateStr);
-              console.log(history);
               this.showLocHistory(history);
               hideActionbar();
             })
@@ -696,7 +690,6 @@ class Simulator {
 
     if (item.id === "block") {
       boxType = "block"
-      console.log(item)
     } else if (item.locWeight === -1) {
       boxType = "empty"
     } else {
@@ -762,7 +755,6 @@ class Simulator {
   }
 
   clearRouting() {
-    console.log(this.isRouted, this.isRouting)
     if (this.isRouted && !this.isRouting) {
       this.clearGroup(this.origRoutingPath)
       this.clearGroup(this.optRoutingPath);
@@ -776,7 +768,6 @@ class Simulator {
   }
 
   toggleCollectorGuys(show) {
-    console.log(this.origGuyObject, show)
     if (this.origGuyObject && this.optGuyObject) {
       if (show) {
         this.scene.add(this.origGuyObject);
@@ -956,10 +947,8 @@ class Simulator {
 
     let indent = 0;
     if (nextPos.z > prevPos.z) {
-      console.log("down")
       indent = -1.05;
     } if (nextPos.z < prevPos.z) {
-      console.log("up")
       indent = 0.75;
     }
 

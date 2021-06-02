@@ -16,6 +16,9 @@ module.exports = {
         {
           from: "./src/static/collector_guy.obj", to: "collector_guy.obj"
         },
+        {
+          from: "./src/static/styles.css", to: "styles.css"
+        },
       ]
     })
   ],
