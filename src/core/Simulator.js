@@ -413,8 +413,8 @@ class Simulator {
                 return
               }
 
-              const res = await this.updateStock("add", item.title, amount, productId);
-
+              await this.updateStock("add", item.title, amount, productId);
+              
               hideActionbar();
             })
           } else if (event.target.classList.contains("remove")) {
@@ -423,7 +423,7 @@ class Simulator {
                 alert("Cannot remove from empty location")
                 return;
               }
-              const amount = parseInt(amountStr);
+              let amount = parseInt(amountStr);
               if (!amountStr) {
                 alert("Invalid value")
                 return
@@ -437,8 +437,13 @@ class Simulator {
                 return
               }
 
-              const res = await this.updateStock("remove", item.title, amount);
+              //backend expects 0 for full-removal
+              if(amount === item.maxQuan) {
+                amount = 0;
+              }
 
+              await this.updateStock("remove", item.title, amount);
+              
               hideActionbar();
             })
           } else if (event.target.classList.contains("history")) {

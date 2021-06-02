@@ -214,7 +214,9 @@ const toGridLayout = (layout, type) => {
     throw Error("Invalid formatting type (must be get or filter)")
   }
 
-  return fillRestOfLayout(layoutMapped);
+  const layoutHaveStock = layoutMapped.filter((loc)=> loc.stock > 0);
+
+  return fillRestOfLayout(layoutHaveStock);
 }
 
 const isLocEmpty = (layout, corr, order) => {
@@ -223,7 +225,7 @@ const isLocEmpty = (layout, corr, order) => {
 
   for (let i = 0; i < layout.length; i++) {
     const loc = layout[i];
-    if (loc.x === point.x && loc.z === point.y) return false;
+    if (loc.x === point.x && loc.z === point.y && loc.stock > 0) return false;
   }
 
   return true;
