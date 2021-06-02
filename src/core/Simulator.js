@@ -414,7 +414,7 @@ class Simulator {
               }
 
               await this.updateStock("add", item.title, amount, productId);
-              
+
               hideActionbar();
             })
           } else if (event.target.classList.contains("remove")) {
@@ -438,12 +438,12 @@ class Simulator {
               }
 
               //backend expects 0 for full-removal
-              if(amount === item.maxQuan) {
+              if (amount === item.maxQuan) {
                 amount = 0;
               }
 
               await this.updateStock("remove", item.title, amount);
-              
+
               hideActionbar();
             })
           } else if (event.target.classList.contains("history")) {
@@ -786,7 +786,7 @@ class Simulator {
 
   loadCollectorGuys() {
     if (this.origGuyObject || this.optGuyObject) return;
-    const guySize = 0.032;
+    const guySize = 0.028;
 
     const onLoad = (obj) => {
       const objLoader = new OBJLoader(null);
@@ -950,14 +950,17 @@ class Simulator {
 
     guy.lookAt(nextPos);
 
-    let indent = 0;
+    let xIndent = 0;
+    let yIndent = 0;
     if (nextPos.z > prevPos.z) {
-      indent = -1.05;
-    } if (nextPos.z < prevPos.z) {
-      indent = 0.75;
+      xIndent = -0.85;
+    } else if (nextPos.z < prevPos.z) {
+      xIndent = 0.75;
+    } else {
+      yIndent = nextPos.x > prevPos.x ? 0.5 : -0.5;
     }
 
-    guy.position.set(nextPos.x + indent, 0, nextPos.z)
+    guy.position.set(nextPos.x + xIndent, 0, nextPos.z + yIndent)
   }
 
   markPickupLocs(locs) {
@@ -971,10 +974,10 @@ class Simulator {
       return util.locToGridPoint(l, this.size)
     })
 
-    const material = new MeshLambertMaterial({ color: 0xfacc33 });
+    const material = new MeshLambertMaterial({ color: 0xe66d00 });
 
     points.forEach((p) => {
-      const geometry = new SphereGeometry(0.3, 32, 32);
+      const geometry = new SphereGeometry(0.4, 32, 32);
       const sphere = new Mesh(geometry, material);
       sphere.position.x = p.x - this.size.x / 2 - 0.5;
       sphere.position.y = 1.2;

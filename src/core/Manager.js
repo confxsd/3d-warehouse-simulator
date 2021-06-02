@@ -502,12 +502,14 @@ class Manager {
     }
 
     this.togglePanelActivity();
+    this.toggleCancelRoutingBtn();
     this.hideRoutingOptions();
 
     this.updateRoutingInfo({ origLen: order.origLen.toFixed(1), optLen: order.optLen.toFixed(1), orderName: order.name });
     const speed = document.querySelector(`#Routing input[name="speed"]:checked`)
     await this.simulator.drawRouting(order, parseInt(speed.id));
 
+    this.toggleCancelRoutingBtn();
     this.togglePanelActivity();
   }
 
@@ -543,6 +545,16 @@ class Manager {
     cancelBtn.addEventListener("click", (e) => {
       this.simulator.cancelRouting();
     })
+  }
+
+  toggleCancelRoutingBtn() {
+    const cancelBtn = document.querySelector("#CancelRouting");
+    
+    if (cancelBtn.style.display === "block") {
+      cancelBtn.style.display = "none"
+    } else {
+      cancelBtn.style.display = "block"
+    }
   }
 
   clearRouting() {

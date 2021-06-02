@@ -26,28 +26,29 @@ const locToGridPoint = (locId, size) => {
     }
   } else if (locId.includes("Yol") || locId.includes("yol")) {
     const order = parseInt(locId.slice(4, 6));
+    const indent = 0.75;
     if (order <= 8) {
       return {
-        x: (order) * 4 + 0.5,
+        x: (order) * 4 + indent,
         y: -1.5,
         type: "path",
       }
     }
     else if (order < 18) {
       return {
-        x: (order - 8) * 4 + 0.5,
+        x: (order - 8) * 4 + indent,
         y: size.y + 1.5,
         type: "path",
       }
     } else if (order === 18) {
       return {
-        x: 0.5,
+        x: indent,
         y: -1.5,
         type: "path",
       }
     } else if (order === 19) {
       return {
-        x: 0.5,
+        x: indent,
         y: size.y + 1.5,
         type: "path",
       }
@@ -100,12 +101,21 @@ const locToGridPoint = (locId, size) => {
 
 const determineRoutePaths = (locs, type, size) => {
   let paths = []
-  let indent = 0;
+  let indents = {
+    left: 0,
+    right: 0,
+  }
 
   if (type === "orig") {
-    indent = 1.2;
-  } else if (type == "opt") {
-    indent = 1.5;
+    indents = {
+      left: 0.3,
+      right: 1.2,
+    }
+  } else if (type === "opt") {
+    indents = {
+      left: 0.6,
+      right: 1.5,
+    }
   }
 
   for (let i = 0; i < locs.length - 1; i++) {
@@ -113,20 +123,18 @@ const determineRoutePaths = (locs, type, size) => {
     const p2 = locToGridPoint(locs[i + 1], size);
 
     if (p1.type === "left") {
-      p1.x += indent
+      p1.x += indents.left
     } else if (p1.type === "right") {
-      p1.x -= indent
+      p1.x -= indents.right
     } else if (p1.type === "path") {
-
     }
 
 
     if (p2.type === "left") {
-      p2.x += indent
+      p2.x += indents.left
     } else if (p2.type === "right") {
-      p2.x -= indent
+      p2.x -= indents.right
     } else if (p2.type === "path") {
-
     }
 
     paths.push([p1, p2])
@@ -214,7 +222,7 @@ const toGridLayout = (layout, type) => {
     throw Error("Invalid formatting type (must be get or filter)")
   }
 
-  const layoutHaveStock = layoutMapped.filter((loc)=> loc.stock > 0);
+  const layoutHaveStock = layoutMapped.filter((loc) => loc.stock > 0);
 
   return fillRestOfLayout(layoutHaveStock);
 }
@@ -286,13 +294,14 @@ const fillEmptySlots = (layout) => {
 }
 
 const colorMap = [
-  'hsl(60, 65%, X%)',
-  'hsl(120, 65%, X%)',
-  'hsl(180, 65%, X%)',
-  'hsl(220, 65%, X%)',
-  'hsl(350, 65%, X%)',
+  'hsl(60, 60%, X%)',
+  'hsl(120, 60%, X%)',
+  'hsl(180, 60%, X%)',
+  'hsl(220, 60%, X%)',
+  'hsl(350, 60%, X%)',
 ]
 
+// assumes that there will be 5 loc types to color
 const getColorValue = (id, stockRatio, type) => {
   if (type === "block") {
     return 'rgb(100,100,100)';
