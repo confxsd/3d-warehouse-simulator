@@ -1,17 +1,17 @@
 # Graduation Project 
 ## Stock Warehouse Simulation 3D
 
-Three.js and pure vanilla js implementation of 3D warehouse stock management simulation
+Three.js and pure vanilla js implementation for 3D warehouse stock management simulation
 
-## Sample Screen
+## Sample Screen
 
 ![gradproj-sample-screen](https://user-images.githubusercontent.com/15836972/149926272-97679d9c-f9dc-4378-9ff0-323b7beac0d5.png)
 
-## Tech Stack
+## Tech Stack
 
 <img width="509" alt="gradproj-stack" src="https://user-images.githubusercontent.com/15836972/149917893-0d1263c8-f4d0-4435-8bed-8fff743263aa.png">
 
-## High Level System Design
+## High Level System Design
 
 ![gradproj-system-design](https://user-images.githubusercontent.com/15836972/149917757-47a352ed-9380-4e9c-a85d-fa6e5cebc7a7.png)
 
@@ -50,7 +50,7 @@ Three.js and pure vanilla js implementation of 3D warehouse stock management sim
 - Can display stock items as boxes
 - Can display stock items with their info
 
-### Extra Features 
+### Extra Features 
 
 <img width="413" alt="gradproj-features" src="https://user-images.githubusercontent.com/15836972/149926486-7b8270b2-b649-4920-bbf9-842dd5420d4a.png">
 
