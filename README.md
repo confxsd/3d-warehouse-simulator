@@ -3,11 +3,9 @@
 
 
 ## Introduction
-
-![gradproj-intro](https://user-images.githubusercontent.com/15836972/149927006-438c0893-0551-406d-aa66-fe7c3391b8d4.png)
-
 Three.js and pure vanilla js implementation for 3D warehouse stock management simulation
 
+![gradproj-intro](https://user-images.githubusercontent.com/15836972/149927006-438c0893-0551-406d-aa66-fe7c3391b8d4.png)
 
 ## Sample Screen
 
