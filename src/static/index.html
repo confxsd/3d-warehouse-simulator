@@ -20,12 +20,14 @@
     <div id="SceneDepotSelection">
         <div>
             <h2>Please select the depot</h2>
+            <p>This local demo uses sample warehouse data and does not require the backend.</p>
             <ul id="Depots">
 
             </ul>
         </div>
     </div>
     <div id="SceneSimulation">
+        <p id="DemoNotice" role="status">Demo mode: sample warehouse data. Backend-only actions are unavailable.</p>
         <div id="Loading" class="closed">
             <p>Loading...</p>
         </div>
@@ -93,7 +95,7 @@
                 <div>
                     <button id="Reload">Reload Layout</button>
                 </div>
-                <div id="Routing">
+                <div id="Routing" hidden>
                     <div class="options">
                         <div class="container">
                             <h6 class="title">Simulate an order <span class="close">X</span></h6>
@@ -116,14 +118,14 @@
                     <button id="BtnRouting">List Orders</button>
                     <button id="BtnRoutingClear">Clean Routing</button>
                 </div>
-                <div id="UploadLayout">
+                <div id="UploadLayout" hidden>
                     <h4>Upload Layout</h4>
                     <form>
                         <input type="file" accept=".json" name="layout" id="layout">
                         <button id="BtnUploadLayout">Upload</button>
                     </form>
                 </div>
-                <div id="UploadReplenisment">
+                <div id="UploadReplenisment" hidden>
                     <h4>Upload Replenishment</h4>
                     <form>
                         <input type="file" accept=".xlsx" name="replenishment" id="replenishment">

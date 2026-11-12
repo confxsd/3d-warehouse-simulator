@@ -33,7 +33,7 @@ const util = require("../util");
 
 
 class Simulator {
-  constructor({ containerId, data, size, getHistory, updateStock }) {
+  constructor({ containerId, data, size, getHistory, updateStock, readOnly = false }) {
     this.container = document.getElementById(containerId);
     this.renderer = new WebGLRenderer();
 
@@ -45,6 +45,7 @@ class Simulator {
     this.blockSize = 1;
     this.getHistory = getHistory;
     this.updateStock = updateStock;
+    this.readOnly = readOnly;
     this.font = null;
   }
 
@@ -89,7 +90,7 @@ class Simulator {
     // this.scene.add(gridHelper);
 
     this.createTooltip();
-    this.createActionbar();
+    if (!this.readOnly) this.createActionbar();
     this.isActionActive = false;
 
 

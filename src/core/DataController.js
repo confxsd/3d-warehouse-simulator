@@ -26,36 +26,28 @@ class DataController {
   }
 
   async getLayout(depotId) {
-    try {
-      const url = `${this.base}/GetLayout`;
-      const res = await axios.get(url, {
-        params: {
-          code: "HAzwypx06J1lLS6FgP2C3luLW3QE/U/iY0UVxHNf0DaXmondvohgIQ==",
-          Depot_Id: depotId
-        }
-      });
-      return {
-        fillRate: res.data.DepoDoluluk,
-        data: res.data.info
+    const url = `${this.base}/GetLayout`;
+    const res = await axios.get(url, {
+      params: {
+        code: "HAzwypx06J1lLS6FgP2C3luLW3QE/U/iY0UVxHNf0DaXmondvohgIQ==",
+        Depot_Id: depotId
       }
-    } catch (error) {
-      console.log(error);
+    });
+    return {
+      fillRate: res.data.DepoDoluluk,
+      data: res.data.info
     }
   }
 
   async getCategories(depotId) {
-    try {
-      const url = `${this.base}/GetCategories`;
-      const res = await axios.get(url, {
-        params: {
-          code: "DVEIM74Odx9tmHUaTQC9Vw5sn8vh11nUDgKCyaQAEDmZsLyceTjP4g==",
-          Depot_Id: depotId
-        }
-      });
-      return res.data;
-    } catch (error) {
-      console.log(error);
-    }
+    const url = `${this.base}/GetCategories`;
+    const res = await axios.get(url, {
+      params: {
+        code: "DVEIM74Odx9tmHUaTQC9Vw5sn8vh11nUDgKCyaQAEDmZsLyceTjP4g==",
+        Depot_Id: depotId
+      }
+    });
+    return res.data;
   }
 
   async updateStock(depotId, opType, loc, amount, productId) {
@@ -207,17 +199,13 @@ class DataController {
   }
 
   async getDepots() {
-    try {
-      const url = `${this.base}/GetDepots`;
-      const res = await axios.get(url, {
-        params: {
-          code: "F0aJNaES2qvRS1S6MGECqOk8asL61LkBnzjVgK3eKdOaomF5zyGH4A=="
-        }
-      });
-      return res.data.info;
-    } catch (error) {
-      console.log(error);
-    }
+    const url = `${this.base}/GetDepots`;
+    const res = await axios.get(url, {
+      params: {
+        code: "F0aJNaES2qvRS1S6MGECqOk8asL61LkBnzjVgK3eKdOaomF5zyGH4A=="
+      }
+    });
+    return res.data.info;
   }
 }
 
