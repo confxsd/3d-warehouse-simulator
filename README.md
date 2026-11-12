@@ -54,7 +54,21 @@ Three.js and pure vanilla js implementation for 3D warehouse stock management si
 - Can display stock items as boxes
 - Can display stock items with their info
 
+## Run locally
+
+Install the original locked dependencies and start the app:
+
+```sh
+npm ci
+npm run dev
+```
+
+The server listens on port `3001` by default; set `PORT` to use another port.
+The app starts in a read-only demo mode using synthetic local sample data; it
+does not call the unavailable Azure API. Depot selection, the 3D view, and
+filters work locally. Backend-dependent actions such as uploads, stock updates,
+history, and routing are hidden in demo mode.
+
 ### Extra Features 
 
 <img width="413" alt="gradproj-features" src="https://user-images.githubusercontent.com/15836972/149926486-7b8270b2-b649-4920-bbf9-842dd5420d4a.png">
-

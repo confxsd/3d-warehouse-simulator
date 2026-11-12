@@ -148,6 +148,16 @@ td {
   z-index: 1;
 }
 
+#DemoNotice {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 4;
+  padding: 8px 12px;
+  background: #fff;
+  border: 1px solid #aaa;
+}
+
 
 
 #Actionbar {
@@ -336,7 +346,8 @@ td {
   align-items: center;
 }
 
-#SceneDepotSelection ul li {
+#SceneDepotSelection ul li button {
+  min-height: 44px;
   cursor: pointer;
 }
 

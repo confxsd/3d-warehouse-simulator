@@ -1,16 +1,15 @@
 import Simulator from "./Simulator";
-import DataController from './DataController';
+import DemoDataController from "./DemoDataController";
 const util = require("../util")
 
 
 class Manager {
-  constructor({ depotSelectionId, simulationSceneId, panelId, simulatorId, depotInfoId, remoteUrl }) {
+  constructor({ depotSelectionId, simulationSceneId, panelId, simulatorId, depotInfoId }) {
     this.depotSelectionId = depotSelectionId;
     this.simulationSceneId = simulationSceneId;
     this.panelId = panelId;
     this.simulatorId = simulatorId;
     this.depotInfoId = depotInfoId;
-    this.remoteUrl = remoteUrl;
     this.selectedDepotId = null;
 
     this.selectedFilters = {
@@ -24,9 +23,7 @@ class Manager {
   }
 
   init() {
-    this.dataController = new DataController({
-      url: this.remoteUrl
-    });
+    this.dataController = new DemoDataController();
 
     this.initDepotSelection();
   }
@@ -44,12 +41,15 @@ class Manager {
     const depotSelectionList = document.querySelector(`#${this.depotSelectionId} ul`);
 
     depotIds.forEach(item => {
-      let depot = document.createElement("li");
-      depot.textContent = item.DepoId;
-      depot.addEventListener('click', (e) => {
-        this.goToSimulationScene(e.target.textContent);
+      const listItem = document.createElement("li");
+      const depotButton = document.createElement("button");
+      depotButton.type = "button";
+      depotButton.textContent = item.DepoId;
+      depotButton.addEventListener("click", () => {
+        this.goToSimulationScene(item.DepoId);
       })
-      depotSelectionList.appendChild(depot);
+      listItem.appendChild(depotButton);
+      depotSelectionList.appendChild(listItem);
     });
   }
 
@@ -59,9 +59,18 @@ class Manager {
     this.selectedDepotId = selectedDepotId;
 
     this.toggleLoading()
-    await this.initSimulation();
-    this.setDepotId(selectedDepotId);
-    this.toggleLoading()
+    try {
+      await this.initSimulation();
+      this.setDepotId(selectedDepotId);
+    } catch (error) {
+      console.log(error);
+      this.simulationScene.style.display = "none";
+      depotSelectionScene.style.display = "block";
+      alert("Unable to load depot data. Check the server connection and try again.");
+    } finally {
+      document.getElementById("Loading").classList.add("closed");
+      this.isLoading = false;
+    }
   }
 
   resetSelectedFilters() {
@@ -93,7 +102,11 @@ class Manager {
     this.simulationScene.style.display = "block";
     this.depotInfoContainer = document.getElementById(this.depotInfoId);
 
-    const layout = await this.dataController.getLayout(this.selectedDepotId);
+    const [layout, categories] = await Promise.all([
+      this.dataController.getLayout(this.selectedDepotId),
+      this.prepareCategories()
+    ]);
+    this.allCategories = categories;
     const layoutData = this.formatLayoutData(layout.data, "get");
     this.setFillRate(layout.fillRate);
 
@@ -105,12 +118,11 @@ class Manager {
       },
       getHistory: this.getHistory,
       updateStock: this.updateStock,
+      readOnly: true,
     });
 
     this.handlePanel();
     this.handleFilters();
-    this.handleLayoutUpload();
-    this.handleReplenishmentUpload();
     this.handleZoomBtn();
     this.handleCancelRoutingBtn();
     this.handleResetFiltersBtn();
@@ -377,8 +389,7 @@ class Manager {
     }
   }
 
-  async handleFilters() {
-    this.allCategories = await this.prepareCategories();
+  handleFilters() {
     this.filterConstructOptions();
 
     const filters = document.querySelectorAll(`#${this.panelId} .filters_container input`);
